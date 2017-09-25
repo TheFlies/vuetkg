@@ -1,0 +1,4 @@
+{
+  "name": "vuetkg",
+  "env": ".prod.env"
+}
