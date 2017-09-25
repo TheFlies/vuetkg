@@ -23,6 +23,7 @@
 <script>
 import vueniverseLogo from '~/assets/img/vueniverse_logo.svg'
 export default {
+  layout: 'home',
   data() {
     return {
       vueniverseLogo
