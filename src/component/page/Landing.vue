@@ -24,25 +24,25 @@
         <div class="features-row">
           <section>
             <span class="icon major fa-bolt accent2"></span>
-            <h3>Manga, truyện tranh, nhứng thứ xem bằng hình</h3>
-            <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+            <h3>Hình</h3>
+            <p>Xem truyện.</p>
           </section>
           <section>
             <span class="icon major fa-area-chart accent3"></span>
-            <h3>Truyện kiếm hiệp, tiên hiệp, tùm lum thứ</h3>
-            <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+            <h3>Chữ</h3>
+            <p>Đọc sách.</p>
           </section>
         </div>
         <div class="features-row">
           <section>
             <span class="icon major fa-cloud accent4"></span>
-            <h3>Những tuyển tập kinh điển</h3>
-            <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+            <h3>Ăn chơi</h3>
+            <p>Quán xá, tụ điểm, trò chơi.</p>
           </section>
           <section>
             <span class="icon major fa-lock accent5"></span>
             <h3>Không biết xếp vào đâu</h3>
-            <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+            <p>Linh tinh lặt vặt.</p>
           </section>
         </div>
       </section>
@@ -53,9 +53,9 @@
           <section class="box special">
             <span class="image featured"><img src="static/images/pic022.jpg" alt="" /></span>
             <h3>Dzịt giả - Truyện tranh</h3>
-            <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+            <p>Dịch theo khung chữ trên hình.</p>
             <ul class="actions">
-              <li><a href="#" class="button alt">Learn More</a></li>
+              <li><a href="#" class="button alt">Coi thêm</a></li>
             </ul>
           </section>
 
@@ -65,9 +65,9 @@
           <section class="box special">
             <span class="image featured"><img src="static/images/pic033.jpg" alt="" /></span>
             <h3>Dzật giả - Truyện chữ</h3>
-            <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+            <p>Dịch theo từng đoạn, câu văn.</p>
             <ul class="actions">
-              <li><a href="#" class="button alt">Learn More</a></li>
+              <li><a href="#" class="button alt">Chi tiết</a></li>
             </ul>
           </section>
 

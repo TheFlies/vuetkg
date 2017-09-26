@@ -3,25 +3,22 @@
     <h1><a href="/">TKG</a> by The Flies</h1>
     <nav id="nav">
       <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="/">GÁC</a></li>
         <li>
-          <a href="#" class="icon fa-angle-down">Layouts</a>
+          <a href="#" class="icon fa-angle-down">XEM</a>
           <ul>
-            <li><a href="/generic">Generic</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/elements">Elements</a></li>
-            <li>
-              <a href="#">Submenu</a>
-              <ul>
-                <li><a href="#">Option One</a></li>
-                <li><a href="#">Option Two</a></li>
-                <li><a href="#">Option Three</a></li>
-                <li><a href="#">Option Four</a></li>
-              </ul>
-            </li>
+            <li><a href="/generic">HÌNH</a></li>
+            <li><a href="/contact">CHỮ</a></li>
           </ul>
         </li>
-        <li><a href="/login" >Login</a> or <a href="/register" class="button">Sign Up</a></li>
+        <li>
+          <a href="#" class="icon fa-angle-down">DỊCH</a>
+          <ul>
+            <li><a href="/generic">HÌNH</a></li>
+            <li><a href="/contact">CHỮ</a></li>
+          </ul>
+        </li>
+        <li><a href="/login" >Đăng nhập</a> hay <a href="/register" class="button">Đăng ký</a></li>
       </ul>
     </nav>
   </header>

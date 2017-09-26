@@ -10,7 +10,7 @@
           <input type="email" name="email" id="email" placeholder="I Meo" />
         </div>
         <div class="4u 12u(mobilep)">
-          <input type="submit" value="Sign Up" class="fit" />
+          <input type="submit" value="Chơi luôn" class="fit" />
         </div>
       </div>
     </form>
