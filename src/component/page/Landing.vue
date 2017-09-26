@@ -2,7 +2,7 @@
   <div id="page-wrapper">
     <!-- Header -->
     <header id="header" class="alt">
-      <h1><a href="/">Alpha</a> by HTML5 UP</h1>
+      <h1><a href="/">TKG</a> by The Flies</h1>
       <nav id="nav">
         <ul>
           <li><a href="/">Home</a></li>
@@ -49,7 +49,7 @@
           <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
           adipiscing nunc adipiscing. Condimentum turpis massa.</p>
         </header>
-        <span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+        <span class="image featured"><img src="static/images/pic011.jpg" alt="" /></span>
       </section>
 
       <section class="box special features">
@@ -83,7 +83,7 @@
         <div class="6u 12u(narrower)">
 
           <section class="box special">
-            <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+            <span class="image featured"><img src="static/images/pic022.jpg" alt="" /></span>
             <h3>Sed lorem adipiscing</h3>
             <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
             <ul class="actions">
@@ -95,7 +95,7 @@
         <div class="6u 12u(narrower)">
 
           <section class="box special">
-            <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
+            <span class="image featured"><img src="static/images/pic033.jpg" alt="" /></span>
             <h3>Accumsan integer</h3>
             <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
             <ul class="actions">
