@@ -3,10 +3,10 @@
   <!-- Banner -->
     <section id="banner">
       <h2>Ooops!!!</h2>
-      <p>You sucked.</p>
+      <p>Đây là đâu đây ta.</p>
       <ul class="actions">
-        <li><a href="/" class="button special">Home</a></li>
-        <li><a href="https://google.com" class="button">Google</a></li>
+        <li><a href="/" class="button special">GÁC</a></li>
+        <li><a href="https://google.com" class="button">Gu Gồ</a></li>
       </ul>
     </section>
 </div>

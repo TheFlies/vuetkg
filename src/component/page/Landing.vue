@@ -1,53 +1,21 @@
 <template>
   <div id="page-wrapper">
     <!-- Header -->
-    <header id="header" class="alt">
-      <h1><a href="/">TKG</a> by The Flies</h1>
-      <nav id="nav">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li>
-            <a href="#" class="icon fa-angle-down">Layouts</a>
-            <ul>
-              <li><a href="/generic">Generic</a></li>
-              <li><a href="/contact">Contact</a></li>
-              <li><a href="/elements">Elements</a></li>
-              <li>
-                <a href="#">Submenu</a>
-                <ul>
-                  <li><a href="#">Option One</a></li>
-                  <li><a href="#">Option Two</a></li>
-                  <li><a href="#">Option Three</a></li>
-                  <li><a href="#">Option Four</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="/login" >Login</a> or <a href="/register" class="button">Sign Up</a></li>
-        </ul>
-      </nav>
-    </header>
+    <tkg-header></tkg-header>
 
     <!-- Banner -->
-    <section id="banner">
-      <h2>Alpha</h2>
-      <p>Another fine responsive site template freebie by HTML5 UP.</p>
-      <ul class="actions">
-        <li><a href="#" class="button special">Sign Up</a></li>
-        <li><a href="#" class="button">Learn More</a></li>
-      </ul>
-    </section>
+    <tkg-banner></tkg-banner>
 
     <!-- Main -->
     <section id="main" class="container">
 
       <section class="box special">
         <header class="major">
-          <h2>Introducing the ultimate mobile app
+          <h2>Căn gác nhỏ, ngôi nhà cuối phố
           <br />
-          for doing stuff with your phone</h2>
-          <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-          adipiscing nunc adipiscing. Condimentum turpis massa.</p>
+          chẳng hiểu vì sao không khép bao giờ...</h2>
+          <p>Nơi để tìm học và đọc và chia sẻ những quyển sách,<br />
+          những tập truyện hay của Việt Nam cũng như thế giới.</p>
         </header>
         <span class="image featured"><img src="static/images/pic011.jpg" alt="" /></span>
       </section>
@@ -56,24 +24,24 @@
         <div class="features-row">
           <section>
             <span class="icon major fa-bolt accent2"></span>
-            <h3>Magna etiam</h3>
+            <h3>Manga, truyện tranh, nhứng thứ xem bằng hình</h3>
             <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
           </section>
           <section>
             <span class="icon major fa-area-chart accent3"></span>
-            <h3>Ipsum dolor</h3>
+            <h3>Truyện kiếm hiệp, tiên hiệp, tùm lum thứ</h3>
             <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
           </section>
         </div>
         <div class="features-row">
           <section>
             <span class="icon major fa-cloud accent4"></span>
-            <h3>Sed feugiat</h3>
+            <h3>Những tuyển tập kinh điển</h3>
             <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
           </section>
           <section>
             <span class="icon major fa-lock accent5"></span>
-            <h3>Enim phasellus</h3>
+            <h3>Không biết xếp vào đâu</h3>
             <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
           </section>
         </div>
@@ -84,7 +52,7 @@
 
           <section class="box special">
             <span class="image featured"><img src="static/images/pic022.jpg" alt="" /></span>
-            <h3>Sed lorem adipiscing</h3>
+            <h3>Dzịt giả - Truyện tranh</h3>
             <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
             <ul class="actions">
               <li><a href="#" class="button alt">Learn More</a></li>
@@ -96,7 +64,7 @@
 
           <section class="box special">
             <span class="image featured"><img src="static/images/pic033.jpg" alt="" /></span>
-            <h3>Accumsan integer</h3>
+            <h3>Dzật giả - Truyện chữ</h3>
             <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
             <ul class="actions">
               <li><a href="#" class="button alt">Learn More</a></li>
@@ -109,49 +77,28 @@
     </section>
 
     <!-- CTA -->
-    <section id="cta">
-
-      <h2>Sign up for beta access</h2>
-      <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-
-      <form>
-        <div class="row uniform 50%">
-          <div class="8u 12u(mobilep)">
-            <input type="email" name="email" id="email" placeholder="Email Address" />
-          </div>
-          <div class="4u 12u(mobilep)">
-            <input type="submit" value="Sign Up" class="fit" />
-          </div>
-        </div>
-      </form>
-
-    </section>
+    <tkg-cta></tkg-cta>
 
     <!-- Footer -->
-    <footer id="footer">
-      <ul class="icons">
-        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-      </ul>
-      <ul class="copyright">
-        <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-      </ul>
-    </footer>
+    <tkg-footer></tkg-footer>
   </div>
 </template>
 
 <script>
+
+import TkgHeader from '../common/Header'
+import TkgBanner from '../common/Banner'
+import TkgFooter from '../common/Footer'
+import TkgCta from '../common/BetaInvite'
+
 export default {
-  name: 'hello',
+  name: 'tkg-landing',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+  components: { TkgHeader, TkgBanner, TkgFooter, TkgCta }
 }
 </script>
 
