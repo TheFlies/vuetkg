@@ -8,8 +8,9 @@
 
     <!-- Main -->
     <section id="main" class="container">
-
-      <section class="box special">
+      <special-box class="box special" 
+                   spanImgClass="image featured"
+                   spanImgSrc="static/images/pic011.jpg" >
         <header class="major">
           <h2>Căn gác nhỏ, ngôi nhà cuối phố
           <br />
@@ -17,19 +18,18 @@
           <p>Nơi để tìm học và đọc và chia sẻ những quyển sách,<br />
           những tập truyện hay của Việt Nam cũng như thế giới.</p>
         </header>
-        <span class="image featured"><img src="static/images/pic011.jpg" alt="" /></span>
-      </section>
+      </special-box>
 
-      <section class="box special features">
+      <special-box class="box special features">
         <div class="features-row">
           <section>
             <span class="icon major fa-bolt accent2"></span>
-            <h3>Hình</h3>
+            <h3>Hình có chữ</h3>
             <p>Xem truyện.</p>
           </section>
           <section>
             <span class="icon major fa-area-chart accent3"></span>
-            <h3>Chữ</h3>
+            <h3>Chữ không hình</h3>
             <p>Đọc sách.</p>
           </section>
         </div>
@@ -45,7 +45,7 @@
             <p>Linh tinh lặt vặt.</p>
           </section>
         </div>
-      </section>
+      </special-box>
 
       <div class="row">
         <div class="6u 12u(narrower)">
@@ -90,6 +90,7 @@ import TkgHeader from '../common/Header'
 import TkgBanner from '../common/Banner'
 import TkgFooter from '../common/Footer'
 import TkgCta from '../common/BetaInvite'
+import SpecialBox from '../common/SpecialBox'
 
 export default {
   name: 'tkg-landing',
@@ -98,7 +99,7 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  components: { TkgHeader, TkgBanner, TkgFooter, TkgCta }
+  components: { TkgHeader, TkgBanner, TkgFooter, TkgCta, SpecialBox }
 }
 </script>
 

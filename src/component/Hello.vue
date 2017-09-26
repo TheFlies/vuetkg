@@ -1,5 +1,8 @@
 <template>
   <div class="hello">
+    <div class="mdc-theme--primary-bg mdc-theme--text-primary-on-primary mdc-typography--title mdc-elevation--z4">
+      <button class="demo-menu material-icons" @click="$refs.drawer.open()">menu</button>
+    </div>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -32,7 +35,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+@import '@material/ripple/mdc-ripple';
+@import '@material/elevation/mdc-elevation';
+@import '@material/list/mdc-list';
+@import '@material/theme/mdc-theme';
+
 h1, h2 {
   font-weight: normal;
 }
