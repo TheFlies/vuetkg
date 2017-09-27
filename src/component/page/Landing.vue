@@ -85,14 +85,6 @@
 </template>
 
 <script>
-
-import '../../../static/assets/js/jquery.min.js'
-import '../../../static/assets/js/jquery.dropotron.min.js'
-import '../../../static/assets/js/jquery.scrollgress.min.js'
-import '../../../static/assets/js/skel.min.js'
-import '../../../static/assets/js/util.js'
-import '../../../static/assets/js/main.js'
-
 import TkgHeader from '../common/Header'
 import TkgBanner from '../common/Banner'
 import TkgFooter from '../common/Footer'

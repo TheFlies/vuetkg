@@ -1,6 +1,6 @@
 <template>
   <div class="mdc-typography demo-body">
-    <div class="demo-toolbar mdc-theme--primary-bg mdc-theme--text-primary-on-primary mdc-typography--title mdc-elevation--z4">
+    <!-- <div class="demo-toolbar mdc-theme--primary-bg mdc-theme--text-primary-on-primary mdc-typography--title mdc-elevation--z4">
       <mdl-button class="demo-menu material-icons" @click="$refs.drawer.open()">menu</mdl-button>
     </div>
 
@@ -96,21 +96,21 @@
           <checkbox-label id="slider-disabled-label" for="slider-disabled" label="Disabled:"></checkbox-label>
         </form-field>
       </section>
-    </main>
+    </main> -->
   </div>
 </template>
 
 <script>
-import MdlButton from '@/component/common/mdc/Button.vue'
-import Ripple from '@/component/common/mdc/Ripple.js'
-import Snackbar from '@/component/common/mdc/Snackbar.vue'
-import FormField from '@/component/common/mdc/FormField.vue'
-import Checkbox from '@/component/common/mdc/Checkbox.vue'
-import CheckboxLabel from '@/component/common/mdc/CheckboxLabel.vue'
-import IconToggle from '@/component/common/mdc/IconToggle.vue'
-import TemporaryDrawer from '@/component/common/mdc/TemporaryDrawer.vue'
-import Slider from '@/component/common/mdc/Slider.vue'
-
+// import MdlButton from '@/component/common/mdc/Button.vue'
+// import Ripple from '@/component/common/mdc/Ripple.js'
+// import Snackbar from '@/component/common/mdc/Snackbar.vue'
+// import FormField from '@/component/common/mdc/FormField.vue'
+// import Checkbox from '@/component/common/mdc/Checkbox.vue'
+// import CheckboxLabel from '@/component/common/mdc/CheckboxLabel.vue'
+// import IconToggle from '@/component/common/mdc/IconToggle.vue'
+// import TemporaryDrawer from '@/component/common/mdc/TemporaryDrawer.vue'
+// import Slider from '@/component/common/mdc/Slider.vue'
+//
 export default {
   name: 'hello',
   data () {
@@ -128,8 +128,8 @@ export default {
       sliderDisabled: false
     }
   },
-  components: { MdlButton, Snackbar, FormField, Checkbox, CheckboxLabel, IconToggle, TemporaryDrawer, Slider },
-  directives: { Ripple },
+  // components: { MdlButton, Snackbar, FormField, Checkbox, CheckboxLabel, IconToggle, TemporaryDrawer, Slider },
+  // directives: { Ripple },
   watch: {
     checked () {
       this.changeCount++
@@ -149,46 +149,46 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+// 
+// @import url('https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css');
+// 
+// @import '@material/ripple/mdc-ripple';
+// @import '@material/elevation/mdc-elevation';
+// @import '@material/list/mdc-list';
+// @import '@material/theme/mdc-theme';
 
-@import url('https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css');
+// @media (min-width: 600px) {
+//   .demo-toolbar {
+//     height: 64px;
+//   }
+// }
 
-@import '@material/ripple/mdc-ripple';
-@import '@material/elevation/mdc-elevation';
-@import '@material/list/mdc-list';
-@import '@material/theme/mdc-theme';
+// .demo-body {
+//   padding: 0;
+//   margin: 0;
+//   box-sizing: border-box;
+// }
 
-@media (min-width: 600px) {
-  .demo-toolbar {
-    height: 64px;
-  }
-}
-
-.demo-body {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.demo-menu {
-  background: none;
-  border: none;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  margin: 0;
-  color: #FFF;
-  box-sizing: border-box;
-}
-.demo-surface {
-  @include mdc-elevation(2);
-  width: 150px;
-  height: 150px;
-}
-main {
-  padding: 12px;
-}
-section.example {
-  margin: 24px;
-  padding: 24px;
-}
+// .demo-menu {
+//   background: none;
+//   border: none;
+//   width: 24px;
+//   height: 24px;
+//   padding: 0;
+//   margin: 0;
+//   color: #FFF;
+//   box-sizing: border-box;
+// }
+// .demo-surface {
+//   @include mdc-elevation(2);
+//   width: 150px;
+//   height: 150px;
+// }
+// main {
+//   padding: 12px;
+// }
+// section.example {
+//   margin: 24px;
+//   padding: 24px;
+// }
 </style>
