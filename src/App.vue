@@ -11,8 +11,6 @@ export default {
 </script>
 
 <style>
-@import '~/static/assets/css/main.css';
-
 /* loading style*/
 .loader {
   margin: 0 auto;
