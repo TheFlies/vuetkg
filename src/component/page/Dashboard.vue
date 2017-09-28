@@ -1,5 +1,5 @@
 <template lang="pug">
-#app
+#dashboard
   .wrapper(:class="{ 'nav-open' : navOpened }")
     sidebar(:open='navOpened')
     md-notifications
@@ -11,6 +11,10 @@
 </template>
 
 <script>
+import Navigation from '../common/lucduong/navigation'
+import MdFooter from '../common/lucduong/footer'
+import Sidebar from '../common/lucduong/sidebar'
+
 export default {
   name: 'tkg-dashboard',
   data () {
@@ -18,6 +22,7 @@ export default {
       sidebarToggled: false
     }
   },
+  components: { Sidebar, MdFooter, Navigation },
   computed: {
     navOpened () {
       return this.sidebarToggled
@@ -44,5 +49,5 @@ export default {
 </script>
 
 <style lang="scss">
-
+@import "../../assets/sass/md/_variables.scss";
 </style>

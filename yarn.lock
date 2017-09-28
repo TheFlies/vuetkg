@@ -1228,6 +1228,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bootstrap@^3.3.7:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
+
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -1453,6 +1457,10 @@ character-parser@^2.1.1:
   resolved "https://registry.yarnpkg.com/character-parser/-/character-parser-2.2.0.tgz#c7ce28f36d4bcd9744e5ffc2c5fcde1c73261fc0"
   dependencies:
     is-regex "^1.0.3"
+
+chartist@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/chartist/-/chartist-0.11.0.tgz#84ba5e05490d096d93dcfa9343ebc31ef6a3bd28"
 
 chokidar@^1.4.1, chokidar@^1.7.0:
   version "1.7.0"
@@ -6516,6 +6524,10 @@ utils-merge@1.0.1:
 uuid@^3.0.0, uuid@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
+
+v-click-outside@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/v-click-outside/-/v-click-outside-0.1.2.tgz#e3377bcca1a6aaebe37cdec77836c2135ed37e2b"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"

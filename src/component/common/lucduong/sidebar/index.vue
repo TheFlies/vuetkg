@@ -22,8 +22,8 @@
 </template>
 <script>
 import Item from './item'
-import NavbarSearch from '@/components/Navigation/navbar-search'
-import NavbarRight from '@/components/Navigation/navbar-right'
+import NavbarSearch from '@/component/common/lucduong/navigation/navbar-search'
+import NavbarRight from '@/component/common/lucduong/navigation/navbar-right'
 export default {
   props: {
     open: Boolean
@@ -38,6 +38,6 @@ export default {
 
 <style lang="scss">
 .sidebar-background {
-  background-image: url('~images/sidebar-2.jpg')
+  background-image: url('../../../../assets/img/sidebar-2.jpg')
 }
 </style>
