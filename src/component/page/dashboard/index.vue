@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Navigation from '../common/lucduong/navigation'
-import MdFooter from '../common/lucduong/footer'
-import Sidebar from '../common/lucduong/sidebar'
+import Navigation from '@/component/common/lucduong/navigation'
+import MdFooter from '@/component/common/lucduong/footer'
+import Sidebar from '@/component/common/lucduong/sidebar'
 
 export default {
   name: 'tkg-dashboard',

@@ -1,19 +1,19 @@
 <template lang="pug">
 .sidebar(data-color='blue')
   .logo
-    a.simple-text(href='http://www.creative-tim.com')
-      | Creative Tim
+    a.simple-text(href='http://theflies.mooo.com/')
+      | The Flies
   .sidebar-wrapper
     navbar-search(v-if='open')
     navbar-right(v-if='open', :mobile='true')
     ul.nav
-      item(title='Dashboard', icon='dashboard', href='/')
-      item(title='User Profile', icon='person', href='person')
-      item(title='Table List', icon='content_paste', href='table')
-      item(title='Typography', icon='library_books', href='typography')
-      item(title='Icons', icon='bubble_chart', href='icons')
-      item(title='Maps', icon='location_on', href='maps')
-      item(title='Notifications', icon='notifications', href='notifications')
+      item(title='Dashboard', icon='dashboard', href='/dashboard')
+      item(title='User Profile', icon='person', href='/dashboard/person')
+      item(title='Table List', icon='content_paste', href='/dashboard/table')
+      item(title='Typography', icon='library_books', href='/dashboard/typography')
+      item(title='Icons', icon='bubble_chart', href='/dashboard/icons')
+      item(title='Maps', icon='location_on', href='/dashboard/maps')
+      item(title='Notifications', icon='notifications', href='/dashboard/notifications')
       li(:class='{ "active-pro" : !open }')
         a(href='upgrade.html')
           i.material-icons unarchive
