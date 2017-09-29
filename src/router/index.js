@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import TkgLanding from '@/component/page/Landing'
+import TkgLogin from '@/component/page/Login'
 import PageNotFound from '@/component/page/PageNotFound'
 import TkgDashboard from '@/component/page/dashboard'
 import Hello from '@/component/Hello'
@@ -19,10 +20,11 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'landing',
+      path: '',
+      name: 'Landing',
       component: TkgLanding
     },
+    { path: '/login', name: 'Login', TkgLogin },
     {
       path: '/dashboard',
       component: TkgDashboard,

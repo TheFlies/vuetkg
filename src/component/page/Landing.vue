@@ -1,4 +1,5 @@
 <template>
+<div id="landing" class="landing">
   <div id="page-wrapper">
     <!-- Header -->
     <tkg-header></tkg-header>
@@ -82,6 +83,7 @@
     <!-- Footer -->
     <tkg-footer></tkg-footer>
   </div>
+</div>
 </template>
 
 <script>
