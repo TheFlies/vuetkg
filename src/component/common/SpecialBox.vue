@@ -17,3 +17,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+h2 {
+    font-family: 'Roboto Slab', serif;
+}
+
+p {
+    font-family: 'Roboto', serif;
+}
+</style>
+

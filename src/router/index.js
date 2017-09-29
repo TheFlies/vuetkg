@@ -24,7 +24,7 @@ export default new Router({
       name: 'Landing',
       component: TkgLanding
     },
-    { path: '/login', name: 'Login', TkgLogin },
+    { path: '/login', name: 'Login', component: TkgLogin },
     {
       path: '/dashboard',
       component: TkgDashboard,
