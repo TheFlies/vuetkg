@@ -7,15 +7,15 @@ header.alt(id='header')
 	nav#nav: ul
 		li: a(href='/') gác
 		li
-			a.icon(class='fa-angle-down' href='#') dịch
-			ul
-				li: a(href='/manga-tl') hình
-				li: a(href='/book-tl') chữ
-		li
-			a.icon(class='fa-angle-down' href='#') xem
+			a.icon.fa-angle-down(href='#') xem
 			ul
 				li: a(href='/manga') hình
 				li: a(href='/book') chữ
+		li
+			a.icon.fa-angle-down(href='#') dịch
+			ul
+				li: a(href='/manga-tl') hình
+				li: a(href='/book-tl') chữ
 		li
 			a(href='/login') đăng nhập
 			| hay

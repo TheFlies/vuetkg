@@ -39,7 +39,7 @@
       .card.card-profile
         .card-avatar
           a(href='#pablo')
-            img.img(src='../../../../assets/img/faces/d001.png')
+            img.img(src='/static/images/d001.png')
         .content
           h6.category.text-gray CEO / Co-Founder
           h4.card-title {{user.name}}
