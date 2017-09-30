@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import TkgLanding from '@/component/page/Landing'
 import TkgLogin from '@/component/page/Login'
+import TkgBooks from '@/component/page/Books'
 import PageNotFound from '@/component/page/PageNotFound'
 import TkgDashboard from '@/component/page/dashboard'
 import Hello from '@/component/Hello'
@@ -25,6 +26,7 @@ export default new Router({
       component: TkgLanding
     },
     { path: '/login', name: 'Login', component: TkgLogin },
+    { path: '/books', name: 'Xem truyen tranh', component: TkgBooks },
     {
       path: '/dashboard',
       component: TkgDashboard,

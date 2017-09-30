@@ -1,6 +1,6 @@
 <template lang="pug">
 header.alt(id='header')
-	h1
+	h6
 		a(href='/') TKG
 		|
 		| by The Flies
@@ -29,5 +29,20 @@ export default {
 </script>
 
 <style lang="scss">
+#header h6 {
+	color: inherit;
+	height: inherit;
+	left: 1.25em;
+	line-height: inherit;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+}
+#header h6 a {
+	color: #fff;
+	font-weight: 400;
+	border: 0;
+}
 </style>
 
