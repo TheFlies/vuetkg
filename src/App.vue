@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/sass/md/_variables.scss";
+@import "assets/sass/md/variables";
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
