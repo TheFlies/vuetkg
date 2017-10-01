@@ -1,28 +1,29 @@
 <template lang="pug">
 #login.content
-  .row
-    .col-md-4
-    .col-md-4
-      transition(name='bounce')
-        #cover.box(v-if='coverShow' @mouseover='hideGirl')
-      .card(@focus="focusOne" @blue="lostFocus")
-        .card-header(data-background-color='grey')
-          .ribbon
-            .txt <a href='/'>gác</a>
-          h4 Đăng nhập
-          p.category Nhập tài khoản của bạn
-        .card-content
-          form
-            .row
-              .col-md-8
-                md-fg-input(label='Username', :labelFloating='true')
-            .row
-              .col-md-8
-                md-fg-input(label='Password', :labelFloating='true')
-            .row
-              .btn.btn-info.pull-right(@click.prevent='showGirl', style={backgroundColor: 'red', color: 'white'}) gái?
-              md-button.btn.btn-primary.pull-right(@click.prevent='login') login
-            .clearfix
+  .row.pull-center
+    //- .col-md-4
+    //- .col-md-4
+    transition(name='bounce')
+      #cover.box(v-if='coverShow' @mouseover='hideGirl')
+    .card
+      .card-header(data-background-color='grey')
+        .ribbon
+          .txt <a href='/'>gác</a>
+        h4 Đăng nhập
+        p.category Nhập tài khoản của bạn
+      .card-content
+        form
+          .row
+            .col-md-8
+              md-fg-input(label='Username', :labelFloating='true')
+          .row
+            .col-md-8
+              md-fg-input(label='Password', :labelFloating='true')
+          .row
+            .btn.btn-info.pull-right(@click.prevent='showGirl', style={backgroundColor: 'red', color: 'white'}) gái?
+            md-button.btn.btn-primary.pull-right(@click.prevent='login') login
+          .clearfix
+    //- .col-md-4
 </template>
 
 
@@ -55,6 +56,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.row {
+  max-width: 620px;
+  min-width: 310px;
+  margin: 0 auto;
+}
+
+
 .content {
   margin-top: 5%;
 }
@@ -64,7 +72,7 @@ export default {
 }
 
 .card-header {
-  background-image: url('/static/assets/css/images/login-background.png'), url('/static/images/pic0111.jpg');
+  background-image: url('/static/assets/css/images/overlay.png'), url('/static/images/pic0111.jpg');
   background-position: top right, center center;
   background-repeat: no-repeat, no-repeat;
   background-size: cover, cover;
