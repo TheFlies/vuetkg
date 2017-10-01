@@ -1,5 +1,5 @@
 <template lang="pug">
-#login.content
+#register.content
   .row
     .col-md-4
     .col-md-4
@@ -9,8 +9,8 @@
         .card-header(data-background-color='grey')
           .ribbon
             .txt <a href='/'>gác</a>
-          h4 Đăng nhập
-          p.category Nhập tài khoản của bạn
+          h4 Đăng ký
+          p.category Tạo tài khoản mới
         .card-content
           form
             .row(v-if=error)
@@ -18,15 +18,15 @@
                 span: p(style={color: 'red'}) {{error}}
             .row
               .col-md-8
-                md-fg-input(label='Email', :labelFloating='true', v-model='account.email')
+                md-fg-input(label='Email', :labelFloating='true', v-model='account.email', required='true')
             .row
               .col-md-8
-                md-fg-input(label='Password', :labelFloating='true', type='password', v-model='account.password')
+                md-fg-input(label='Password', type='password', :labelFloating='true', v-model='account.password')
             .row
               .btn.btn-info.pull-right(@click.prevent='showGirl', style={backgroundColor: 'red', color: 'white'}) gái?
-              md-button.btn.btn-primary.pull-right(@click.prevent='login') vào
+              md-button.btn.btn-primary.pull-right(@click.prevent='register') đăng ký
             .row
-              p.pull-right không có tài khoản? <router-link to="/register">tạo mới</router-link>
+              p.pull-right bạn đã có? <router-link to="/login">vào luôn</router-link>
             .clearfix
     .col-md-4
 </template>
@@ -36,7 +36,7 @@
 import firebase from 'firebase'
 
 export default {
-  name: 'tkg-login',
+  name: 'tkg-register',
   data() {
     return {
       coverShow: true,
@@ -63,22 +63,21 @@ export default {
     hideGirl() {
       this.coverShow = false
     },
-    login() {
-      console.log(`Prepare login with: ${this.account.email} and ${this.account.password}`)
+    register() {
       this.error = ''
       if (!this.account.email || !this.account.password) {
         this.error = 'Missing email or password'
         return
-      } else {
-        firebase.auth().signInWithEmailAndPassword(this.account.email, this.account.password)
-          .then((user) => { this.$router.replace('test-mdl') }, (err) => { this.error = err.message })
       }
+      firebase.auth().createUserWithEmailAndPassword(this.account.email, this.account.password)
+        .then((user) => { this.$router.replace('/login') }, (err) => { this.error = err.message })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
 .content {
   margin-top: 5%;
 }

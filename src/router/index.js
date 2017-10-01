@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import TkgLanding from '@/component/page/Landing'
 import TkgLogin from '@/component/page/Login'
+import TkgRegister from '@/component/page/Register'
 import TkgBooks from '@/component/page/Books'
 import PageNotFound from '@/component/page/PageNotFound'
 import TkgDashboard from '@/component/page/dashboard'
@@ -15,9 +16,11 @@ import Icons from '@/component/page/dashboard/icons'
 import Maps from '@/component/page/dashboard/maps'
 import Notifications from '@/component/page/dashboard/notifications'
 
+import firebase from 'firebase'
+
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   routes: [
     {
@@ -26,6 +29,7 @@ export default new Router({
       component: TkgLanding
     },
     { path: '/login', name: 'Login', component: TkgLogin },
+    { path: '/register', name: 'Register', component: TkgRegister },
     { path: '/books', name: 'Xem truyen tranh', component: TkgBooks },
     {
       path: '/dashboard',
@@ -40,9 +44,20 @@ export default new Router({
         { path: 'notifications', name: 'Notifications', component: Notifications }
       ]
     },
+    { path: '/test-mdl', component: Hello, meta: { requiresAuth: true } },
     // ... other routes ...
     // and finally the default route, when none of the above matches:
-    { path: '*', component: PageNotFound },
-    { path: '/test-mdl', component: Hello }
+    { path: '*', component: PageNotFound }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  let currentUser = firebase.auth().currentUser
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+
+  console.log(`${currentUser} && ${requiresAuth}`)
+  if (requiresAuth && !currentUser) next('login')
+  else next()
+})
+
+export default router

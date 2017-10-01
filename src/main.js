@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueFire from 'vuefire'
+import firebase from 'firebase'
 import App from './App'
 import router from './router'
 
@@ -32,13 +33,18 @@ Vue.use(vClickOutside)
 
 Vue.use(VueFire)
 
+let app
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App },
-  data: {
-    Chartist
+firebase.auth().onAuthStateChanged(user => {
+  if (!app) {
+    app = new Vue({
+      el: '#app',
+      router,
+      template: '<App/>',
+      components: { App },
+      data: {
+        Chartist
+      }
+    })
   }
 })
