@@ -7,15 +7,16 @@ header.alt(id='header')
 	nav#nav: ul
 		li: a(href='/') gác
 		li
-			a.icon.fa-angle-down(href='#') xem
+			a.icon.fa-angle-down(href='#') xem sách
 			ul
 				li: a(href='/manga') hình
 				li: a(href='/book') chữ
 		li
-			a.icon.fa-angle-down(href='#') dịch
+			a.icon.fa-angle-down(href='#') ăn chơi
 			ul
-				li: a(href='/manga-tl') hình
-				li: a(href='/book-tl') chữ
+				li: a(href='/drinking') ăn nhậu
+				li: a(href='/games') chơi bời
+				li: a(href='/girls') gái gú
 		li
 			a(href='/login') đăng nhập
 			| hay
@@ -28,7 +29,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #header h6 {
 	color: inherit;
 	height: inherit;
