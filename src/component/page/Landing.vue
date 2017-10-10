@@ -87,6 +87,9 @@
 </template>
 
 <script>
+require('../../../static/assets/js/util.js')
+require('../../../static/assets/js/main.js')
+
 import TkgHeader from '../common/Header'
 import TkgBanner from '../common/Banner'
 import TkgFooter from '../common/Footer'
