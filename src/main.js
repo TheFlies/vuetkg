@@ -30,7 +30,7 @@ Object.defineProperty(Vue.prototype, '$Chartist', {
 Vue.use(CoreComponents)
 Vue.use(NotificationPlugin)
 Vue.use(vClickOutside)
-
+// Firebase
 Vue.use(VueFire)
 
 let app

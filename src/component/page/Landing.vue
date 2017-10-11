@@ -11,7 +11,7 @@
     <section id="main" class="container">
       <special-box class="box special" 
                    spanImgClass="image featured"
-                   spanImgSrc="static/images/pic011.jpg" >
+                   spanImgSrc="images/pic011.jpg" >
         <header class="major">
           <h2>Căn gác nhỏ, ngôi nhà cuối phố
           <br />
@@ -52,7 +52,7 @@
         <div class="6u 12u(narrower)">
 
           <section class="box special">
-            <span class="image featured"><img src="static/images/pic022.jpg" alt="" /></span>
+            <span class="image featured"><img src="/images/pic022.jpg" alt="" /></span>
             <h3>Dzịt giả - Truyện tranh</h3>
             <p>Dịch theo khung chữ trên hình.</p>
             <ul class="actions">
@@ -64,7 +64,7 @@
         <div class="6u 12u(narrower)">
 
           <section class="box special">
-            <span class="image featured"><img src="static/images/pic033.jpg" alt="" /></span>
+            <span class="image featured"><img src="/images/pic033.jpg" alt="" /></span>
             <h3>Dzật giả - Truyện chữ</h3>
             <p>Dịch theo từng đoạn, câu văn.</p>
             <ul class="actions">
@@ -109,5 +109,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '~/static/assets/css/main.css';
+@import '~/assets/css/main.css';
 </style>
