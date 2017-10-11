@@ -1,0 +1,28 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:debug:20170905':
+    - agenda > date.js > debug:
+        reason: None given
+        expires: '2017-11-10T10:16:46.113Z'
+  'npm:ip:20170304':
+    - nodemailer-mailgun-transport > mailgun-js > proxy-agent > pac-proxy-agent > pac-resolver > ip:
+        reason: None given
+        expires: '2017-11-10T10:16:46.113Z'
+  'npm:timespan:20170907':
+    - winston-loggly-bulk > node-loggly-bulk > timespan:
+        reason: None given
+        expires: '2017-11-10T10:16:46.113Z'
+  'npm:tunnel-agent:20170305':
+    - winston-logzio > logzio-nodejs > request > tunnel-agent:
+        reason: None given
+        expires: '2017-11-10T10:16:46.113Z'
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - nodemailer-mailgun-transport > mailgun-js > debug:
+        patched: '2017-10-11T10:14:58.524Z'
+  'npm:ms:20170412':
+    - nodemailer-mailgun-transport > mailgun-js > debug > ms:
+        patched: '2017-10-11T10:14:58.524Z'
