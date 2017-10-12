@@ -2,12 +2,6 @@
 
 > Tang Kinh Gac
 
-## Development requirement:
-``` bash
-# install dev support
-yarn global add nodejs-dashboard
-```
-
 ## Build Setup
 
 ``` bash

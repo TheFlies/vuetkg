@@ -1,5 +1,5 @@
 var path = require('path')
-var config = require('../config_old')
+var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 function resolve (dir) {
