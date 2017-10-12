@@ -86,7 +86,18 @@
 </div>
 </template>
 
-<script>
+<script scoped>
+import jquery from '../../../static/assets/js/jquery.min.js'
+global.jQuery = jquery
+global.$ = jquery
+
+require('../../../static/assets/js/jquery.dropotron.min.js')
+
+require('../../../static/assets/js/jquery.scrollgress.min.js')
+
+import skel from '../../../static/assets/js/skel.min.js'
+global.skel = skel
+
 require('../../../static/assets/js/util.js')
 require('../../../static/assets/js/main.js')
 
