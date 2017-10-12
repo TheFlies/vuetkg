@@ -16,3 +16,6 @@ selenium-debug.log
 *.sln
 
 db/
+
+yarn-error.log
+firebase-debug.log
