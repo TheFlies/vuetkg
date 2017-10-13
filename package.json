@@ -14,12 +14,9 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "buefy": "^0.5.4",
     "chartist": "^0.11.0",
     "firebase": "^4.4.0",
-    "jquery": "^3.2.1",
-    "material-components-web": "^0.21.1",
-    "pug-loader": "^2.3.0",
     "v-click-outside": "^0.1.2",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
@@ -76,6 +73,7 @@
     "ora": "^1.2.0",
     "phantomjs-prebuilt": "^2.1.14",
     "pug": "^2.0.0-rc.4",
+    "pug-loader": "^2.3.0",
     "rimraf": "^2.6.0",
     "sass-loader": "^6.0.6",
     "selenium-server": "^3.0.1",
