@@ -1,38 +1,16 @@
 <template lang="pug">
 #login.content
-  .row
-    .col-md-4
-    .col-md-4
-      .card
-        transition(name='bounce')
-          #cover.pbackground(v-if='coverShow' @mouseover='hideGirl')
-        .card-header(data-background-color='grey')
-          .ribbon
-            .txt <a href='/'>gác</a>
-          h4 Đăng nhập
-          p.category Nhập tài khoản của bạn
-        .card-content
-          form
-            .row(v-if=error)
-              .col-md-12
-                span: p(style={color: 'red'}) {{error}}
-            .row
-              .col-md-8
-                md-fg-input(label='Email', :labelFloating='true', v-model='account.email')
-            .row
-              .col-md-8
-                md-fg-input(label='Password', :labelFloating='true', type='password', v-model='account.password')
-            .row
-              .btn.btn-info.pull-right(@click.prevent='showGirl', style={backgroundColor: 'red', color: 'white'}) gái?
-              md-button.btn.btn-primary.pull-right(@click.prevent='login') vào
-            .row
-              p.pull-right không có tài khoản? <router-link to="/register">tạo mới</router-link>
-            .clearfix
-    .col-md-4
+  b-field(label='i meo')
+    b-input(value='teo_2_line')
 </template>
 
 
 <script>
+import Vue from 'vue'
+import Buefy from 'buefy'
+
+Vue.use(Buefy)
+
 import firebase from 'firebase'
 
 export default {
@@ -48,15 +26,15 @@ export default {
     }
   },
   mounted() {
-    this.initMaterial()
+    // this.initMaterial()
   },
   updated() {
-    this.initMaterial()
+    // this.initMaterial()
   },
   methods: {
-    initMaterial() {
-      $.material.init() // eslint-disable-line
-    },
+    // initMaterial() {
+    //   $.material.init() // eslint-disable-line
+    // },
     showGirl() {
       this.coverShow = true
     },
@@ -79,81 +57,113 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-  margin-top: 5%;
-}
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
 
-.btn {
-  background: #999999;
-}
+// Set your colors
+$primary: #8c67ef;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
 
-.card-header {
-  background-image: url('/static/assets/css/images/overlay.png'), url('/static/images/pic0111.jpg');
-  background-position: top right, center center;
-  background-repeat: no-repeat, no-repeat;
-  background-size: cover, cover;
-}
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+    "twitter": ($twitter, $twitter-invert)
+);
 
-.pbackground {
-  border-radius: 5px;
-  background-image: url('/static/images/login-background.png');
-  background-color: #000;
-  z-index: 1;
-  top: 0px;
-  right: 5px;
-  left: 5px;
-  bottom: 5px;
-  width: auto;
-  height: auto;
-  margin-top: -10px;
-  position: absolute;
-  display: inline-block;
-  background-position: bottom right, center center;
-  background-repeat: no-repeat, no-repeat;
-  background-size: contain, cover;
-  transition: all 0.5s ease-in-out;
-}
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
 
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
+// .content {
+//   margin-top: 5%;
+// }
 
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(0.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+// .btn {
+//   background: #999999;
+// }
 
-.ribbon {
-  -webkit-transform: rotate(-45deg); 
-     -moz-transform: rotate(-45deg); 
-      -ms-transform: rotate(-45deg); 
-       -o-transform: rotate(-45deg); 
-          transform: rotate(-45deg); 
-    border: 15px solid transparent;
-    border-bottom: 15px solid red;
-    position: absolute;
-    top: -19px;
-    left: -10px;
-    padding: 0 5px;
-    width: 80px;
-    color: white;
-    font-family: sans-serif;
-    size: 11px;
-}
-.ribbon .txt {
-    position: absolute;
-    top: -3px;
-    left: 10px;
-}
+// .card-header {
+//   background-image: url('/static/assets/css/images/overlay.png'), url('/static/images/pic0111.jpg');
+//   background-position: top right, center center;
+//   background-repeat: no-repeat, no-repeat;
+//   background-size: cover, cover;
+// }
+
+// .pbackground {
+//   border-radius: 5px;
+//   background-image: url('/static/images/login-background.png');
+//   background-color: #000;
+//   z-index: 1;
+//   top: 0px;
+//   right: 5px;
+//   left: 5px;
+//   bottom: 5px;
+//   width: auto;
+//   height: auto;
+//   margin-top: -10px;
+//   position: absolute;
+//   display: inline-block;
+//   background-position: bottom right, center center;
+//   background-repeat: no-repeat, no-repeat;
+//   background-size: contain, cover;
+//   transition: all 0.5s ease-in-out;
+// }
+
+// .bounce-enter-active {
+//   animation: bounce-in .5s;
+// }
+
+// .bounce-leave-active {
+//   animation: bounce-in .5s reverse;
+// }
+
+// @keyframes bounce-in {
+//   0% {
+//     transform: scale(0);
+//   }
+//   50% {
+//     transform: scale(0.5);
+//   }
+//   100% {
+//     transform: scale(1);
+//   }
+// }
+
+// .ribbon {
+//   -webkit-transform: rotate(-45deg); 
+//      -moz-transform: rotate(-45deg); 
+//       -ms-transform: rotate(-45deg); 
+//        -o-transform: rotate(-45deg); 
+//           transform: rotate(-45deg); 
+//     border: 15px solid transparent;
+//     border-bottom: 15px solid red;
+//     position: absolute;
+//     top: -19px;
+//     left: -10px;
+//     padding: 0 5px;
+//     width: 80px;
+//     color: white;
+//     font-family: sans-serif;
+//     size: 11px;
+// }
+// .ribbon .txt {
+//     position: absolute;
+//     top: -3px;
+//     left: 10px;
+// }
 </style>

@@ -24,24 +24,24 @@
       <special-box class="box special features">
         <div class="features-row">
           <section>
-            <span class="icon major fa-bolt accent2"></span>
+            <span class="html5up-icon major fa-bolt accent2"></span>
             <h3>Hình có chữ</h3>
             <p>Xem truyện.</p>
           </section>
           <section>
-            <span class="icon major fa-area-chart accent3"></span>
+            <span class="html5up-icon major fa-area-chart accent3"></span>
             <h3>Chữ không hình</h3>
             <p>Đọc sách.</p>
           </section>
         </div>
         <div class="features-row">
           <section>
-            <span class="icon major fa-cloud accent4"></span>
+            <span class="html5up-icon major fa-cloud accent4"></span>
             <h3>Ăn chơi</h3>
             <p>Quán xá, tụ điểm, trò chơi.</p>
           </section>
           <section>
-            <span class="icon major fa-lock accent5"></span>
+            <span class="html5up-icon major fa-lock accent5"></span>
             <h3>Không biết xếp vào đâu</h3>
             <p>Linh tinh lặt vặt.</p>
           </section>
@@ -56,7 +56,7 @@
             <h3>Dzịt giả - Truyện tranh</h3>
             <p>Dịch theo khung chữ trên hình.</p>
             <ul class="actions">
-              <li><a href="#" class="button alt">Coi thêm</a></li>
+              <li><a href="#" class="html5up-button alt">Coi thêm</a></li>
             </ul>
           </section>
 
@@ -68,7 +68,7 @@
             <h3>Dzật giả - Truyện chữ</h3>
             <p>Dịch theo từng đoạn, câu văn.</p>
             <ul class="actions">
-              <li><a href="#" class="button alt">Chi tiết</a></li>
+              <li><a href="#" class="html5up-button alt">Chi tiết</a></li>
             </ul>
           </section>
 
