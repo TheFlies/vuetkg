@@ -1,9 +1,18 @@
 <template lang="pug">
-#login.content
-  b-field(label='i meo')
-    b-input(value='teo_2_line')
+section.hero.is-fullheight.is-medium.is-bold
+  .hero-body
+    .container
+      .column.is-center
+        article.card
+          .cart-content
+            h1.title
+              img(src='https://placeholdit.imgix.net/~text?txtsize=13&txt=150%C3%9750&w=150&h=50' alt='logo' width='200')
+            b-field(label='i meo')
+              b-input(value='buom@theflies.mooo.com', type='email', icon='email', maxlength='30', v-model='account.email')
+            b-field(label='bát')
+              b-input(type='password', maxlength='30', v-model='account.password')
+            button.button.is-primary(@click.prevent='login') Vô vô
 </template>
-
 
 <script>
 import Vue from 'vue'
@@ -42,7 +51,7 @@ export default {
       this.coverShow = false
     },
     login() {
-      console.log(`Prepare login with: ${this.account.email} and ${this.account.password}`)
+      console.log(`Prepare login with: ${this.account.email} and ${this.account.email}`)
       this.error = ''
       if (!this.account.email || !this.account.password) {
         this.error = 'Missing email or password'
@@ -57,38 +66,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// Import Bulma's core
-@import "~bulma/sass/utilities/_all";
-
-// Set your colors
-$primary: #8c67ef;
-$primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
-$twitter-invert: findColorInvert($twitter);
-
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
-$colors: (
-    "white": ($white, $black),
-    "black": ($black, $white),
-    "light": ($light, $light-invert),
-    "dark": ($dark, $dark-invert),
-    "primary": ($primary, $primary-invert),
-    "info": ($info, $info-invert),
-    "success": ($success, $success-invert),
-    "warning": ($warning, $warning-invert),
-    "danger": ($danger, $danger-invert),
-    "twitter": ($twitter, $twitter-invert)
-);
-
-// Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;
-
-// Import Bulma and Buefy styles
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
-
+.card {
+  border-radius: 6px;
+  padding: 15px;
+}
 // .content {
 //   margin-top: 5%;
 // }
