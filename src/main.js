@@ -8,7 +8,6 @@ import router from './router'
 
 // Libraries
 import './assets/style.scss'
-// import 'buefy/lib/buefy.css'
 
 Vue.config.productionTip = false
 
@@ -19,8 +18,8 @@ Vue.config.productionTip = false
 //   }
 // })
 
-// import Buefy from 'buefy'
-// Vue.use(Buefy)
+import Buefy from 'buefy'
+Vue.use(Buefy)
 Vue.use(VueFire)
 
 let app

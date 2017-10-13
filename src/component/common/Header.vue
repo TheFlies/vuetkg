@@ -7,12 +7,12 @@ header#header.alt
   nav#nav: ul
     li: a(href='/') gác
     li
-      a.icon.fa-angle-down(href='#') xem sách
+      a.html5up-icon.fa-angle-down(href='#') xem sách
       ul
         li: a(href='/manga') hình
         li: a(href='/book') chữ
     li
-      a.icon.fa-angle-down(href='#') ăn chơi
+      a.html5up-icon.fa-angle-down(href='#') ăn chơi
       ul
         li: a(href='/drinking') ăn nhậu
         li: a(href='/games') chơi bời
@@ -20,7 +20,7 @@ header#header.alt
     li
       a(href='/login') đăng nhập
       | hay
-      a.button(href='/register') đăng ký
+      a.html5up-button(href='/register') đăng ký
 </template>
 
 <script>
