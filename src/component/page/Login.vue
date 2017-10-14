@@ -2,16 +2,22 @@
 section.hero.is-fullheight.is-medium.is-bold
   .hero-body
     .container
-      .column.is-center
-        article.card
-          .cart-content
-            h1.title
-              img(src='https://placeholdit.imgix.net/~text?txtsize=13&txt=150%C3%9750&w=150&h=50' alt='logo' width='200')
-            b-field(label='i meo')
-              b-input(value='buom@theflies.mooo.com', type='email', icon='email', maxlength='30', v-model='account.email')
-            b-field(label='bát')
-              b-input(type='password', maxlength='30', v-model='account.password')
-            button.button.is-primary(@click.prevent='login') Vô vô
+      .columns.is-fullwidth
+        .column.is-6.is-offset-3
+          article.card
+            .cart-content
+              h1.title
+                a(href='/')
+                  img(src='https://placeholdit.imgix.net/~text?txtsize=13&txt=150%C3%9750&w=150&h=50' alt='logo' width='200')
+              b-field(label='I Meo')
+                b-input(type='email', icon='email', v-model='account.email')
+              b-field(label='Mật khẩu')
+                b-input(type='password', v-model='account.password')
+            footer.card-footer
+              .card-footer-item
+                a.button(@click.prevent='login') vô vô
+              .card-footer-item
+                a.button.is-primary(href='/register') đăng ký
 </template>
 
 <script>
@@ -51,7 +57,7 @@ export default {
       this.coverShow = false
     },
     login() {
-      console.log(`Prepare login with: ${this.account.email} and ${this.account.email}`)
+      console.log(`Prepare login with: ${this.account.email}`)
       this.error = ''
       if (!this.account.email || !this.account.password) {
         this.error = 'Missing email or password'
