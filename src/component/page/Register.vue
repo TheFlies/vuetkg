@@ -1,34 +1,53 @@
 <template lang="pug">
-#register.content
-  .row
-    .col-md-4
-    .col-md-4
-      .card
-        transition(name='bounce')
-          #cover.pbackground(v-if='coverShow' @mouseover='hideGirl')
-        .card-header(data-background-color='grey')
-          .ribbon
-            .txt <a href='/'>gác</a>
-          h4 Đăng ký
-          p.category Tạo tài khoản mới
-        .card-content
-          form
-            .row(v-if=error)
-              .col-md-12
-                span: p(style={color: 'red'}) {{error}}
-            .row
-              .col-md-8
-                md-fg-input(label='Email', :labelFloating='true', v-model='account.email', required='true')
-            .row
-              .col-md-8
-                md-fg-input(label='Password', type='password', :labelFloating='true', v-model='account.password')
-            .row
-              .btn.btn-info.pull-right(@click.prevent='showGirl', style={backgroundColor: 'red', color: 'white'}) gái?
-              md-button.btn.btn-primary.pull-right(@click.prevent='register') đăng ký
-            .row
-              p.pull-right bạn đã có? <router-link to="/login">vào luôn</router-link>
-            .clearfix
-    .col-md-4
+section.hero.is-fullheight.is-medium.is-bold
+  .hero-body
+    .container
+      .columns.is-fullwidth
+        .column.is-6.is-offset-3
+          article.card
+            .cart-content
+              h1.title
+                a(href='/')
+                  img(src='https://placeholdit.imgix.net/~text?txtsize=13&txt=150%C3%9750&w=150&h=50' alt='logo' width='200')
+              b-field(label='I Meo')
+                b-input(type='email', icon='email', v-model='account.email')
+              b-field(label='Mật khẩu')
+                b-input(type='password', v-model='account.password')
+            footer.card-footer
+              .card-footer-item
+                a.button(@click.prevent='register') đăng ký
+              .card-footer-item
+                span.card-footer-item đã có tài khoản? <a class="button is-primary" href="/login">vào luôn</a>
+//- #register.content
+//-   .row
+//-     .col-md-4
+//-     .col-md-4
+//-       .card
+//-         transition(name='bounce')
+//-           #cover.pbackground(v-if='coverShow' @mouseover='hideGirl')
+//-         .card-header(data-background-color='grey')
+//-           .ribbon
+//-             .txt <a href='/'>gác</a>
+//-           h4 Đăng ký
+//-           p.category Tạo tài khoản mới
+//-         .card-content
+//-           form
+//-             .row(v-if=error)
+//-               .col-md-12
+//-                 span: p(style={color: 'red'}) {{error}}
+//-             .row
+//-               .col-md-8
+//-                 md-fg-input(label='Email', :labelFloating='true', v-model='account.email', required='true')
+//-             .row
+//-               .col-md-8
+//-                 md-fg-input(label='Password', type='password', :labelFloating='true', v-model='account.password')
+//-             .row
+//-               .btn.btn-info.pull-right(@click.prevent='showGirl', style={backgroundColor: 'red', color: 'white'}) gái?
+//-               md-button.btn.btn-primary.pull-right(@click.prevent='register') đăng ký
+//-             .row
+//-               p.pull-right bạn đã có? <router-link to="/login">vào luôn</router-link>
+//-             .clearfix
+//-     .col-md-4
 </template>
 
 
@@ -48,15 +67,15 @@ export default {
     }
   },
   mounted() {
-    this.initMaterial()
+    // this.initMaterial()
   },
   updated() {
-    this.initMaterial()
+    // this.initMaterial()
   },
   methods: {
-    initMaterial() {
-      $.material.init() // eslint-disable-line
-    },
+    // initMaterial() {
+    //   $.material.init() // eslint-disable-line
+    // },
     showGirl() {
       this.coverShow = true
     },
@@ -77,6 +96,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card {
+  border-radius: 6px;
+  padding: 15px;
+}
 
 .content {
   margin-top: 5%;
