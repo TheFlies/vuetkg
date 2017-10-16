@@ -17,15 +17,35 @@ header#header.alt
         li: a(href='/drinking') ăn nhậu
         li: a(href='/games') chơi bời
         li: a(href='/girls') gái gú
-    li
+    li(v-if='user')
+      a(@click.prevent="logout", href='/') đăng xuất
+    li(v-if='!user')
       a(href='/login') đăng nhập
       | hay
       a.html5up-button(href='/register') đăng ký
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
-  name: 'tkg-header'
+  name: 'tkg-header',
+  data() {
+    return {
+      user: null
+    }
+  },
+  mounted () {
+    this.user = firebase.auth().currentUser
+  },
+  methods: {
+    logout() {
+      firebase.auth().signOut().then(() => {
+        this.user = null
+        this.$router.replace('/')
+      })
+    }
+  }
 }
 </script>
 
