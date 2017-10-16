@@ -6,9 +6,6 @@ import firebase from 'firebase'
 import App from './App'
 import router from './router'
 
-// Libraries
-import './assets/style.scss'
-
 Vue.config.productionTip = false
 
 // global library setup
@@ -18,8 +15,8 @@ Vue.config.productionTip = false
 //   }
 // })
 
-import Buefy from 'buefy'
-Vue.use(Buefy)
+// import Buefy from 'buefy'
+// Vue.use(Buefy)
 Vue.use(VueFire)
 
 let app

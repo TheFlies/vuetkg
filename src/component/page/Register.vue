@@ -1,57 +1,26 @@
 <template lang="pug">
-section.hero.is-fullheight.is-medium.is-bold
-  .hero-body
-    .container
-      .columns.is-fullwidth
-        .column.is-6.is-offset-3
-          article.card
-            .cart-content
-              h1.title
-                a(href='/')
-                  img(src='https://placeholdit.imgix.net/~text?txtsize=13&txt=150%C3%9750&w=150&h=50' alt='logo' width='200')
-              b-field(label='I Meo')
-                b-input(type='email', icon='email', v-model='account.email')
-              b-field(label='Mật khẩu')
-                b-input(type='password', v-model='account.password')
-            footer.card-footer
-              .card-footer-item
-                a.button(@click.prevent='register') đăng ký
-              .card-footer-item
-                span.card-footer-item đã có tài khoản? <a class="button is-primary" href="/login">vào luôn</a>
-//- #register.content
-//-   .row
-//-     .col-md-4
-//-     .col-md-4
-//-       .card
-//-         transition(name='bounce')
-//-           #cover.pbackground(v-if='coverShow' @mouseover='hideGirl')
-//-         .card-header(data-background-color='grey')
-//-           .ribbon
-//-             .txt <a href='/'>gác</a>
-//-           h4 Đăng ký
-//-           p.category Tạo tài khoản mới
-//-         .card-content
-//-           form
-//-             .row(v-if=error)
-//-               .col-md-12
-//-                 span: p(style={color: 'red'}) {{error}}
-//-             .row
-//-               .col-md-8
-//-                 md-fg-input(label='Email', :labelFloating='true', v-model='account.email', required='true')
-//-             .row
-//-               .col-md-8
-//-                 md-fg-input(label='Password', type='password', :labelFloating='true', v-model='account.password')
-//-             .row
-//-               .btn.btn-info.pull-right(@click.prevent='showGirl', style={backgroundColor: 'red', color: 'white'}) gái?
-//-               md-button.btn.btn-primary.pull-right(@click.prevent='register') đăng ký
-//-             .row
-//-               p.pull-right bạn đã có? <router-link to="/login">vào luôn</router-link>
-//-             .clearfix
-//-     .col-md-4
+.page-wrapper
+  section#main.container
+    .row: div(class="12u")
+      special-box.box
+        .ribbon
+            a(href='/') TKG
+        h3 Đăng ký tài khoản
+        .row.uniform(class='50%')
+          div(class='12u')
+            input(type='email', name='email', value, placeholder='Email', v-model='account.email')
+          div(class='12u')
+            input(type='password', name='password', value, placeholder='Password', v-model='account.password')
+        hr
+        .row.uniform(class='50%')
+          ul.actions
+            li: a.html5up-button.alt(@click.prevent='register') đăng ký
+            li: a.html5up-button(href='/login') vào luôn
 </template>
 
 
 <script>
+import SpecialBox from '../common/SpecialBox'
 import firebase from 'firebase'
 
 export default {
@@ -72,6 +41,7 @@ export default {
   updated() {
     // this.initMaterial()
   },
+  components: { SpecialBox },
   methods: {
     // initMaterial() {
     //   $.material.init() // eslint-disable-line
@@ -96,86 +66,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
-  border-radius: 6px;
-  padding: 15px;
-}
-
-.content {
-  margin-top: 5%;
-}
-
-.btn {
-  background: #999999;
-}
-
-.card-header {
-  background-image: url('/static/assets/css/images/overlay.png'), url('/static/images/pic0111.jpg');
-  background-position: top right, center center;
-  background-repeat: no-repeat, no-repeat;
-  background-size: cover, cover;
-}
-
-.pbackground {
-  border-radius: 5px;
-  background-image: url('/static/images/login-background.png');
-  background-color: #000;
-  z-index: 1;
-  top: 0px;
-  right: 5px;
-  left: 5px;
-  bottom: 5px;
-  width: auto;
-  height: auto;
-  margin-top: -10px;
-  position: absolute;
-  display: inline-block;
-  background-position: bottom right, center center;
-  background-repeat: no-repeat, no-repeat;
-  background-size: contain, cover;
-  transition: all 0.5s ease-in-out;
-}
-
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
-
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
-
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(0.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.ribbon {
-  -webkit-transform: rotate(-45deg); 
-     -moz-transform: rotate(-45deg); 
-      -ms-transform: rotate(-45deg); 
-       -o-transform: rotate(-45deg); 
-          transform: rotate(-45deg); 
-    border: 15px solid transparent;
-    border-bottom: 15px solid red;
-    position: absolute;
-    top: -19px;
-    left: -10px;
-    padding: 0 5px;
-    width: 80px;
-    color: white;
-    font-family: sans-serif;
-    size: 11px;
-}
-.ribbon .txt {
-    position: absolute;
-    top: -3px;
-    left: 10px;
+.box {
+  background-image: url("/static/images/login-background.png");
+  background-position:	top right,						center center;
+  background-repeat:		no-repeat,							no-repeat;
+	background-size:		contain,							cover;
 }
 </style>
