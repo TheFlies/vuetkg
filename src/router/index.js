@@ -5,16 +5,16 @@ import TkgLogin from '@/component/page/Login'
 import TkgRegister from '@/component/page/Register'
 import TkgBooks from '@/component/page/Books'
 import PageNotFound from '@/component/page/PageNotFound'
-import TkgDashboard from '@/component/page/dashboard'
+// import TkgDashboard from '@/component/page/dashboard'
 import Hello from '@/component/Hello'
 
-import Typography from '@/component/page/dashboard/typography'
-import Home from '@/component/page/dashboard/home'
-import UserProfile from '@/component/page/dashboard/userprofile'
-import TableList from '@/component/page/dashboard/tablelist'
-import Icons from '@/component/page/dashboard/icons'
-import Maps from '@/component/page/dashboard/maps'
-import Notifications from '@/component/page/dashboard/notifications'
+// import Typography from '@/component/page/dashboard/typography'
+// import Home from '@/component/page/dashboard/home'
+// import UserProfile from '@/component/page/dashboard/userprofile'
+// import TableList from '@/component/page/dashboard/tablelist'
+// import Icons from '@/component/page/dashboard/icons'
+// import Maps from '@/component/page/dashboard/maps'
+// import Notifications from '@/component/page/dashboard/notifications'
 
 import firebase from 'firebase'
 
@@ -31,19 +31,19 @@ let router = new Router({
     { path: '/login', name: 'Login', component: TkgLogin },
     { path: '/register', name: 'Register', component: TkgRegister },
     { path: '/books', name: 'Xem truyen tranh', component: TkgBooks },
-    {
-      path: '/dashboard',
-      component: TkgDashboard,
-      children: [
-        { path: '', name: 'Dashboard', component: Home },
-        { path: 'person', name: 'User Profile', component: UserProfile },
-        { path: 'table', name: 'Table List', component: TableList },
-        { path: 'typography', name: 'Typography', component: Typography },
-        { path: 'icons', name: 'Icons', component: Icons },
-        { path: 'maps', name: 'Maps', component: Maps },
-        { path: 'notifications', name: 'Notifications', component: Notifications }
-      ]
-    },
+    // {
+    //   path: '/dashboard',
+    //   component: TkgDashboard,
+    //   children: [
+    //     { path: '', name: 'Dashboard', component: Home },
+    //     { path: 'person', name: 'User Profile', component: UserProfile },
+    //     { path: 'table', name: 'Table List', component: TableList },
+    //     { path: 'typography', name: 'Typography', component: Typography },
+    //     { path: 'icons', name: 'Icons', component: Icons },
+    //     { path: 'maps', name: 'Maps', component: Maps },
+    //     { path: 'notifications', name: 'Notifications', component: Notifications }
+    //   ]
+    // },
     { path: '/test-mdl', component: Hello, meta: { requiresAuth: true } },
     // ... other routes ...
     // and finally the default route, when none of the above matches:
