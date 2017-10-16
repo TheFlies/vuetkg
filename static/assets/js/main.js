@@ -4,7 +4,7 @@ html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-(function($) {
+(function ($) {
   skel.breakpoints({
     wide: '(max-width: 1680px)',
     normal: '(max-width: 1280px)',
@@ -14,7 +14,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     mobilep: '(max-width: 480px)'
   })
 
-  $(function() {
+  $(function () {
     var $window = $(window),
       $body = $('#landing'),
       $header = $('#header'),
@@ -24,7 +24,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     $('form').placeholder()
 
     // Prioritize "important" elements on narrower.
-    skel.on('+narrower -narrower', function() {
+    skel.on('+narrower -narrower', function () {
       $.prioritize(
         '.important\\28 narrower\\29',
         skel.breakpoint('narrower').active
@@ -41,17 +41,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     // Navigation Button.
     $(
       '<div id="navButton">' +
-        '<a href="#navPanel" class="toggle"></a>' +
-        '</div>'
+      '<a href="#navPanel" class="toggle"></a>' +
+      '</div>'
     ).appendTo($body)
 
     // Navigation Panel.
     $(
       '<div id="navPanel">' +
-        '<nav>' +
-        $('#nav').navList() +
-        '</nav>' +
-        '</div>'
+      '<nav>' +
+      $('#nav').navList() +
+      '</nav>' +
+      '</div>'
     )
       .appendTo($body)
       .panel({
@@ -73,15 +73,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     // to revert it back to normal styling once the user scrolls past the banner.
     // Note: This is disabled on mobile devices.
     if (!skel.vars.mobile && $header.hasClass('alt') && $banner.length > 0) {
-      $window.on('load', function() {
+      $window.on('load', function () {
         $banner.scrollwatch({
           delay: 0,
           range: 0.5,
           anchor: 'top',
-          on: function() {
+          on: function () {
             $header.addClass('alt reveal')
           },
-          off: function() {
+          off: function () {
             $header.removeClass('alt')
           }
         })

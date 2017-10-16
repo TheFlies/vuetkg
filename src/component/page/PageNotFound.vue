@@ -1,15 +1,11 @@
-<template>
-<div id="oops">
-  <!-- Banner -->
-    <section id="banner">
-      <h2>Ooops!!!</h2>
-      <p>Đây là đâu đây ta.</p>
-      <ul class="actions">
-        <li><a href="/" class="button special">GÁC</a></li>
-        <li><a href="https://google.com" class="button">Gu Gồ</a></li>
-      </ul>
-    </section>
-</div>
+<template lang="pug">
+#oops
+  section#banner
+    h2 Ooops!!!
+    p Đây là đâu đây ta.
+    ul(class='actions')
+      li: a.html5up-button.special(href='/') Tàng Kinh Gác
+      li: a.html5up-button(href='https://google.com') Gu Gồ
 </template>
 
 <script>
@@ -17,5 +13,4 @@ export default {}
 </script>
 
 <style scoped>
-@import '~/static/assets/css/main.css';
 </style>
