@@ -1,32 +1,31 @@
 <template lang="pug">
-section.hero.is-fullheight.is-medium.is-bold
-  .hero-body
-    .container
-      .columns.is-fullwidth
-        .column.is-6.is-offset-3
-          article.card
-            .cart-content
-              h1.title
-                a(href='/')
-                  img(src='https://placeholdit.imgix.net/~text?txtsize=13&txt=150%C3%9750&w=150&h=50' alt='logo' width='200')
-              b-field(label='I Meo')
-                b-input(type='email', icon='email', v-model='account.email')
-              b-field(label='Mật khẩu')
-                b-input(type='password', v-model='account.password')
-            footer.card-footer
-              .card-footer-item
-                a.button(@click.prevent='login') vô vô
-              .card-footer-item
-                a.button.is-primary(href='/register') đăng ký
+.page-wrapper
+  section#main.container
+    .row: div(class="12u")
+      special-box.box
+          .ribbon
+            a(href='/') TKG
+          h3 Đăng nhập hệ thống
+          .row.uniform(class='50%')
+            div(class='12u')
+              input(type='email', name='email', value, placeholder='Email', v-model='account.email')
+            div(class='12u')
+              input(type='password', name='password', value, placeholder='Password', v-model='account.password')
+          hr
+          .row.uniform(class='50%')
+            ul.actions
+              li: a.html5up-button.alt(@click.prevent='login') vô vô
+              li: a.html5up-button(href='/register') đăng ký
 </template>
 
 <script>
-import Vue from 'vue'
-import Buefy from 'buefy'
+// import Vue from 'vue'
+// import Buefy from 'buefy'
 
-Vue.use(Buefy)
+// Vue.use(Buefy)
 
 import firebase from 'firebase'
+import SpecialBox from '../common/SpecialBox'
 
 export default {
   name: 'tkg-login',
@@ -46,6 +45,7 @@ export default {
   updated() {
     // this.initMaterial()
   },
+  components: { SpecialBox },
   methods: {
     // initMaterial() {
     //   $.material.init() // eslint-disable-line
@@ -72,10 +72,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
-  border-radius: 6px;
-  padding: 15px;
+.box {
+  background-image: url("/static/images/login-background.png");
+  background-position:	top right,						center center;
+  background-repeat:		no-repeat,							no-repeat;
+	background-size:		contain,							cover;
 }
+// .card {
+//   border-radius: 6px;
+//   padding: 15px;
+// }
 // .content {
 //   margin-top: 5%;
 // }

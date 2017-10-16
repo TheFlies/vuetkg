@@ -30,32 +30,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#header h1 {
-  color: inherit;
-  height: inherit;
-  left: 1.25em;
-  line-height: inherit;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-}
+// #header h1 {
+//   color: inherit;
+//   height: inherit;
+//   left: 1.25em;
+//   line-height: inherit;
+//   margin: 0;
+//   padding: 0;
+//   position: absolute;
+//   top: 0;
+// }
 
-#header h1 a {
-  color: #fff;
-  font-weight: 400;
-  border: 0;
-}
+// #header h1 a {
+//   color: #fff;
+//   font-weight: 400;
+//   border: 0;
+// }
 
-#header a {
-  border-bottom: none;
-  color: #fff;
-  font-weight: 400;
-  border: 0;
-}
+// #header a {
+//   border-bottom: none;
+//   color: #fff;
+//   font-weight: 400;
+//   border: 0;
+// }
 
-#header .sub a {
-  color: #000;
-}
+// #header .sub a {
+//   color: #000;
+// }
 </style>
 

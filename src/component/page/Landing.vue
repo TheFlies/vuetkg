@@ -87,16 +87,16 @@
 </template>
 
 <script>
-import jquery from '../../../static/assets/js/jquery.min.js'
-global.jQuery = jquery
-global.$ = jquery
+// import jquery from '../../../static/assets/js/jquery.min.js'
+// global.jQuery = jquery
+// global.$ = jquery
 
-require('../../../static/assets/js/jquery.dropotron.min.js')
+// require('../../../static/assets/js/jquery.dropotron.min.js')
 
-require('../../../static/assets/js/jquery.scrollgress.min.js')
+// require('../../../static/assets/js/jquery.scrollgress.min.js')
 
-import skel from '../../../static/assets/js/skel.min.js'
-global.skel = skel
+// import skel from '../../../static/assets/js/skel.min.js'
+// global.skel = skel
 
 import TkgHeader from '../common/Header'
 import TkgBanner from '../common/Banner'
@@ -113,13 +113,13 @@ export default {
   },
   components: { TkgHeader, TkgBanner, TkgFooter, TkgCta, SpecialBox },
   mounted () {
-    require('../../../static/assets/js/util.js')
-    require('../../../static/assets/js/main.js')
+    // require('../../../static/assets/js/util.js')
+    // require('../../../static/assets/js/main.js')
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '~/static/assets/css/main.css';
+/* @import '~/static/assets/css/main.css'; */
 </style>
