@@ -7,29 +7,33 @@
 </template>
 
 <script>
-import jquery from '../static/assets/js/jquery.min.js'
-global.jQuery = jquery
-global.$ = jquery
+// import jquery from '../static/assets/js/jquery.min.js'
+// global.jQuery = jquery
+// global.$ = jquery
 
-require('../static/assets/js/jquery.dropotron.min.js')
+// require('../static/assets/js/jquery.dropotron.min.js')
 
-require('../static/assets/js/jquery.scrollgress.min.js')
+// require('../static/assets/js/jquery.scrollgress.min.js')
 
-import skel from '../static/assets/js/skel.min.js'
-global.skel = skel
+// import skel from '../static/assets/js/skel.min.js'
+// global.skel = skel
 
 export default {
   name: 'app',
   mounted () {
-    require('../static/assets/js/util.js')
-    require('../static/assets/js/main.js')
+    // require('../static/assets/js/util.js')
+    // require('../static/assets/js/main.js')
   }
 }
 </script>
 
 <style lang="scss">
+// @import './assets/pk-2.1.0/css/bootstrap.min.css';
+@import './assets/pk-2.1.0/sass/paper-kit.scss';
+
+@import './assets/pk-2.1.0/css/demo.css';
 // Libraries
-@import './assets/sass/html5up/main.scss';
+// @import './assets/sass/html5up/main.scss';
 
 // // Import Bulma's core
 // @import "~bulma/sass/utilities/all";
