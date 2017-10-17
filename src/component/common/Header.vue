@@ -23,7 +23,7 @@
 //-       a(href='/login') đăng nhập
 //-       | hay
 //-       a.html5up-button(href='/register') đăng ký
-nav.navbar.navbar-expand-md.fixed-top.navbar-transparent(color-on-scroll='500')
+nav.navbar.navbar-expand-md.fixed-top(:class="{'navbar-transparent': transparent}")
   .container
     .navbar-translate
       button.navbar-toggler.navbar-toggler.right.navbar-burger(type='button', data-toggle='collapse', data-target='#navbarToggler', aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation')
@@ -35,8 +35,10 @@ nav.navbar.navbar-expand-md.fixed-top.navbar-transparent(color-on-scroll='500')
     #navbarToggler.collapse.navbar-collapse
       ul.navbar-nav.ml-auto
         li.nav-item
-          a.nav-link(href='#') Gác
-        .nav-item.dropdown
+          a.nav-link(href='#') gác
+        nav-item-dropdown(title='xem sách', :items="[{'title':'hình','href':'/manga'},{'title':'chữ',href:'/book'}]")
+        nav-item-dropdown(title='ăn chơi', :items="[{'title':'ăn nhậu','href':'/drinking'},{'title':'chơi bời',href:'/game'},{'title':'gái gú',href:'/girl'}]")
+        //- .nav-item.dropdown
           a#dropdownMenuButton.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') xem sách
           ul.dropdown-menu.dropdown-info(aria-labelledby='dropdownMenuButton')
             a.dropdown-item(href='manga') hình
@@ -46,13 +48,18 @@ nav.navbar.navbar-expand-md.fixed-top.navbar-transparent(color-on-scroll='500')
 <script>
 import firebase from 'firebase'
 
+import NavItemDropdown from './navbar/NavItemDropdown'
+
 export default {
   name: 'tkg-header',
+  props: ['color-on-scroll'],
   data() {
     return {
-      user: null
+      user: null,
+      transparent: true
     }
   },
+  components: { NavItemDropdown },
   mounted () {
     this.user = firebase.auth().currentUser
   },
@@ -62,6 +69,22 @@ export default {
         this.user = null
         this.$router.replace('/')
       })
+    },
+    scrolling() {
+      this.transparent = window.scrollY <= this.colorOnScroll
+    },
+    show() {
+      console.log('how do i show')
+    }
+  },
+  created () {
+    if (this.colorOnScroll) {
+      window.addEventListener('scroll', this.scrolling)
+    }
+  },
+  destroyed () {
+    if (this.colorOnScroll) {
+      window.removeEventListener('scroll', this.scrolling)
     }
   }
 }
