@@ -1,28 +1,46 @@
 <template lang="pug">
-header#header.alt
-  h1
-    a(href='/') TKG
-    |
-    | by The Flies
-  nav#nav: ul
-    li: a(href='/') gác
-    li
-      a.html5up-icon.fa-angle-down(href='#') xem sách
-      ul
-        li: a(href='/manga') hình
-        li: a(href='/book') chữ
-    li
-      a.html5up-icon.fa-angle-down(href='#') ăn chơi
-      ul
-        li: a(href='/drinking') ăn nhậu
-        li: a(href='/games') chơi bời
-        li: a(href='/girls') gái gú
-    li(v-if='user')
-      a(@click.prevent="logout", href='/') đăng xuất
-    li(v-if='!user')
-      a(href='/login') đăng nhập
-      | hay
-      a.html5up-button(href='/register') đăng ký
+//- header#header.alt
+//-   h1
+//-     a(href='/') TKG
+//-     |
+//-     | by The Flies
+//-   nav#nav: ul
+//-     li: a(href='/') gác
+//-     li
+//-       a.html5up-icon.fa-angle-down(href='#') xem sách
+//-       ul
+//-         li: a(href='/manga') hình
+//-         li: a(href='/book') chữ
+//-     li
+//-       a.html5up-icon.fa-angle-down(href='#') ăn chơi
+//-       ul
+//-         li: a(href='/drinking') ăn nhậu
+//-         li: a(href='/games') chơi bời
+//-         li: a(href='/girls') gái gú
+//-     li(v-if='user')
+//-       a(@click.prevent="logout", href='/') đăng xuất
+//-     li(v-if='!user')
+//-       a(href='/login') đăng nhập
+//-       | hay
+//-       a.html5up-button(href='/register') đăng ký
+nav.navbar.navbar-expand-md.fixed-top.navbar-transparent(color-on-scroll='500')
+  .container
+    .navbar-translate
+      button.navbar-toggler.navbar-toggler.right.navbar-burger(type='button', data-toggle='collapse', data-target='#navbarToggler', aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-bar
+        span.navbar-toggler-bar
+        span.navbar-toggler-bar
+      a.navbar-brand(href='/') TKG
+        span &nbsp;by The Flies
+    #navbarToggler.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto
+        li.nav-item
+          a.nav-link(href='#') Gác
+        .nav-item.dropdown
+          a#dropdownMenuButton.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') xem sách
+          ul.dropdown-menu.dropdown-info(aria-labelledby='dropdownMenuButton')
+            a.dropdown-item(href='manga') hình
+            a.dropdown-item(href='book') chữ
 </template>
 
 <script>

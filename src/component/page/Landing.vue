@@ -1,89 +1,60 @@
-<template>
-<div id="landing" class="landing">
-  <div id="page-wrapper">
-    <!-- Header -->
-    <tkg-header></tkg-header>
+<template lang="pug">
+#landing
+  tkg-header
+  .wrapper
+    tkg-banner
+//- #landing.landing
+//-   #page-wrapper
+//-     tkg-header
+//-     tkg-banner
+//-     section#main.container
+//-       special-box.box.special(
+//-                    spanImgClass='image featured',
+//-                    spanImgSrc='static/images/pic011.jpg')
+//-         header.major
+//-           h2 Căn gác nhỏ, ngôi nhà cuối phố
+//-             | <br/>
+//-             | chẳng hiểu vì sao không khép bao giờ...
+//-           p Nơi để tìm học và đọc và chia sẻ những quyển sách,<br />
+//-             | những tập truyện hay của Việt Nam cũng như thế giới.
+//-       special-box.box.special.features
+//-         .features-row
+//-           section
+//-             span.html5up-icon.major.fa-bolt.accent2
+//-             h3 Hình có chữ
+//-             p Xem truyện.
+//-           section
+//-             span.html5up-icon.major.fa-area-chart.accent3
+//-             h3 Chữ không hình
+//-             p Đọc sách.          
+//-         .features-row
+//-           section
+//-             span.html5up-icon.major.fa-cloud.accent4
+//-             h3 Ăn chơi
+//-             p Quán xá, tụ điểm, trò chơi.
+//-           section
+//-             span.html5up-icon.major.fa-lock.accent5
+//-             h3 Không biết xếp vào đâu
+//-             p Linh tinh lặt vặt.
 
-    <!-- Banner -->
-    <tkg-banner></tkg-banner>
+//-       .row
+//-         div(class='6u 12u(narrower)')
+//-           section.box.special
+//-             span.image.featured: img(src='static/images/pic022.jpg', alt='')
+//-             h3 Dzịt giả - Truyện tranh
+//-             p Dịch theo khung chữ trên hình.
+//-             ul.actions
+//-               li: a.html5up-button.alt(href='#') Coi thêm
+//-         div(class='6u 12u(narrower)')
+//-           section.box.special
+//-             span.image.featured: img(src='static/images/pic033.jpg', alt='')
+//-             h3 Dzật giả - Truyện chữ
+//-             p Dịch theo từng đoạn, câu văn.
+//-             ul.actions
+//-               li: a.html5up-button.alt(href='#') Chi tiết
 
-    <!-- Main -->
-    <section id="main" class="container">
-      <special-box class="box special" 
-                   spanImgClass="image featured"
-                   spanImgSrc="static/images/pic011.jpg" >
-        <header class="major">
-          <h2>Căn gác nhỏ, ngôi nhà cuối phố
-          <br />
-          chẳng hiểu vì sao không khép bao giờ...</h2>
-          <p>Nơi để tìm học và đọc và chia sẻ những quyển sách,<br />
-          những tập truyện hay của Việt Nam cũng như thế giới.</p>
-        </header>
-      </special-box>
-
-      <special-box class="box special features">
-        <div class="features-row">
-          <section>
-            <span class="html5up-icon major fa-bolt accent2"></span>
-            <h3>Hình có chữ</h3>
-            <p>Xem truyện.</p>
-          </section>
-          <section>
-            <span class="html5up-icon major fa-area-chart accent3"></span>
-            <h3>Chữ không hình</h3>
-            <p>Đọc sách.</p>
-          </section>
-        </div>
-        <div class="features-row">
-          <section>
-            <span class="html5up-icon major fa-cloud accent4"></span>
-            <h3>Ăn chơi</h3>
-            <p>Quán xá, tụ điểm, trò chơi.</p>
-          </section>
-          <section>
-            <span class="html5up-icon major fa-lock accent5"></span>
-            <h3>Không biết xếp vào đâu</h3>
-            <p>Linh tinh lặt vặt.</p>
-          </section>
-        </div>
-      </special-box>
-
-      <div class="row">
-        <div class="6u 12u(narrower)">
-
-          <section class="box special">
-            <span class="image featured"><img src="static/images/pic022.jpg" alt="" /></span>
-            <h3>Dzịt giả - Truyện tranh</h3>
-            <p>Dịch theo khung chữ trên hình.</p>
-            <ul class="actions">
-              <li><a href="#" class="html5up-button alt">Coi thêm</a></li>
-            </ul>
-          </section>
-
-        </div>
-        <div class="6u 12u(narrower)">
-
-          <section class="box special">
-            <span class="image featured"><img src="static/images/pic033.jpg" alt="" /></span>
-            <h3>Dzật giả - Truyện chữ</h3>
-            <p>Dịch theo từng đoạn, câu văn.</p>
-            <ul class="actions">
-              <li><a href="#" class="html5up-button alt">Chi tiết</a></li>
-            </ul>
-          </section>
-
-        </div>
-      </div>
-
-    </section>
-
-    <!-- CTA -->
-    <tkg-cta></tkg-cta>
-
-    <!-- Footer -->
-    <tkg-footer></tkg-footer>
-  </div>
-</div>
+//-     tkg-cta
+//-     tkg-footer
 </template>
 
 <script>
