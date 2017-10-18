@@ -1,5 +1,5 @@
 <template lang="pug">
-.page-header.section-dark.withbg
+.page-header.section-dark.withbg(:style='parallax')
   .filter
   .content-center
     .container
@@ -21,7 +21,44 @@
 
 <<script>
 export default {
-  name: 'tkg-banner'
+  name: 'tkg-banner',
+  props: ['data-parallax'],
+  data() {
+    return {
+      parallax: null
+    }
+  },
+  mounted() {
+    this.scrolling()
+  },
+  methods: {
+    enableParallax(oVal, windowWidth) {
+      return {
+        'transform': 'translate3d(0,' + oVal + 'px,0)',
+        '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
+        '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
+        '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
+      }
+    },
+    scrolling() {
+      let windowWidth = window.innerWidth
+      if (this.dataParallax && windowWidth >= 768) {
+        this.parallax = this.enableParallax(document.documentElement.scrollTop / 4, windowWidth)
+      } else {
+        this.parallax = null
+      }
+    }
+  },
+  created () {
+    if (this.dataParallax) {
+      window.addEventListener('scroll', this.scrolling)
+    }
+  },
+  destroyed () {
+    if (this.dataParallax) {
+      window.removeEventListener('scroll', this.scrolling)
+    }
+  }
 }
 </script>
 

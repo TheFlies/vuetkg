@@ -2,36 +2,38 @@
 #landing
   tkg-header(color-on-scroll=500)
   .wrapper
-    tkg-banner
-    section#main.container
-      special-box.box.special(
-                   spanImgClass='image featured',
-                   spanImgSrc='static/images/pic011.jpg')
-        header.major
-          h2 Căn gác nhỏ, ngôi nhà cuối phố
-            | <br/>
-            | chẳng hiểu vì sao không khép bao giờ...
-          p Nơi để tìm học và đọc và chia sẻ những quyển sách,<br />
-            | những tập truyện hay của Việt Nam cũng như thế giới.
-      special-box.box.special.features
-        .features-row
-          section
-            span.html5up-icon.major.fa-bolt.accent2
-            h3 Hình có chữ
-            p Xem truyện.
-          section
-            span.html5up-icon.major.fa-area-chart.accent3
-            h3 Chữ không hình
-            p Đọc sách.          
-        .features-row
-          section
-            span.html5up-icon.major.fa-cloud.accent4
-            h3 Ăn chơi
-            p Quán xá, tụ điểm, trò chơi.
-          section
-            span.html5up-icon.major.fa-lock.accent5
-            h3 Không biết xếp vào đâu
-            p Linh tinh lặt vặt.
+    tkg-banner(data-parallax=true)
+    .main
+      .container
+        .section.text-center
+          special-box.box.special(
+                       spanImgClass='image featured',
+                       spanImgSrc='static/images/pic011.jpg')
+            header.major
+              h2 Căn gác nhỏ, ngôi nhà cuối phố
+                | <br/>
+                | chẳng hiểu vì sao không khép bao giờ...
+              p Nơi để tìm học và đọc và chia sẻ những quyển sách,<br />
+                | những tập truyện hay của Việt Nam cũng như thế giới.
+          special-box.box.special.features
+            .features-row
+              section
+                span.html5up-icon.major.fa-bolt.accent2
+                h3 Hình có chữ
+                p Xem truyện.
+              section
+                span.html5up-icon.major.fa-area-chart.accent3
+                h3 Chữ không hình
+                p Đọc sách.          
+            .features-row
+              section
+                span.html5up-icon.major.fa-cloud.accent4
+                h3 Ăn chơi
+                p Quán xá, tụ điểm, trò chơi.
+              section
+                span.html5up-icon.major.fa-lock.accent5
+                h3 Không biết xếp vào đâu
+                p Linh tinh lặt vặt.
 //- #landing.landing
 //-   #page-wrapper
 //-     tkg-header
@@ -105,4 +107,8 @@ export default {
 </script>
 
 <style scoped>
+.main .section:first-of-type{
+    position: relative;
+    z-index: 2;
+}
 </style>
