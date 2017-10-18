@@ -93,9 +93,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.white-text {
-  color: #ccc !important;
-}
 a.btn.btn-outline-neutral.white-text:hover {
   color: #333 !important;
 }

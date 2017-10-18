@@ -1,10 +1,8 @@
-<template>
-    <section>
-        <slot></slot>
-        <span v-if="spanImgClass" v-bind:class="spanImgClass">
-            <img v-bind:src="spanImgSrc" v-bind:alt="spanImgAlt || ''" />
-        </span>
-    </section>
+<template lang="pug">
+.section.card
+  slot
+  span(v-if="spanImgClass", :class="spanImgClass")
+    img(:src="spanImgSrc",:alt="spanImgAlt || ''")
 </template>
 
 <script>
@@ -18,13 +16,19 @@ export default {
 }
 </script>
 
-<style scoped>
-h2 {
-    font-family: 'Roboto Slab', serif;
+<style>
+.section.card p {
+	margin: 0 0 2em 0;
 }
 
-p {
-    font-family: 'Roboto', serif;
+.section.card .actions {
+    cursor: default;
+    list-style: none;
+    padding-left: 0;
+}
+
+.section.card > :last-child {
+  margin-bottom: 0;
 }
 </style>
 

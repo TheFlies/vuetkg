@@ -35,6 +35,8 @@ $font-family-sans-serif: 'Roboto', Arial, sans-serif;
 // @import './assets/pk-2.1.0/css/bootstrap.min.css';
 @import './assets/pk-2.1.0/sass/paper-kit.scss';
 
+
+
 // @import './assets/pk-2.1.0/css/demo.css';
 // Libraries
 // @import './assets/sass/html5up/main.scss';
@@ -69,14 +71,52 @@ $font-family-sans-serif: 'Roboto', Arial, sans-serif;
 
 // @import "~bulma";
 // @import "~buefy/src/scss/buefy";
+body {
+  background-color: #ddd;
+}
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
+
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0
 }
 
+.black-text {
+  color: #000 !important;
+}
+
+.white-text {
+  color: #ccc !important;
+}
+
+.card .image.featured:first-child img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  margin-top: -3em;
+	margin-bottom: 2em;
+}
+
+.card .image.featured:last-child img {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  margin-bottom: -3em;
+	margin-top: 2em;
+}
+
+.card .image.featured {
+	border-radius: 0;
+	display: block;
+	margin: 0em 0 0em -3em;
+	position: relative;
+	width: calc(100% + 6em);
+}
+
+.card .image.featured img {
+    display: block;
+    width: 100%;
+}
 
 /*угловые ленты*/
 .ribbon {
