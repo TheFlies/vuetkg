@@ -77,9 +77,6 @@ export default {
     },
     scrolling() {
       this.transparent = window.scrollY <= this.colorOnScroll
-    },
-    show() {
-      console.log('how do i show')
     }
   },
   created () {
