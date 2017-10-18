@@ -26,23 +26,30 @@
 nav.navbar.navbar-expand-md.bg-primary.fixed-top(:class="{'navbar-transparent': transparent}")
   .container-fluid
     .navbar-translate
-      button.navbar-toggler.navbar-toggler.right.navbar-burger(type='button', data-toggle='collapse', data-target='#navbarToggler', aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation')
+      button.navbar-toggler.navbar-toggler-right.navbar-burger(type='button',
+        data-toggle='collapse', data-target='#navbarToggler', 
+        :aria-controls='target.id ? target.id : target',
+        :aria-expanded="toggleState ? 'true' : 'false'",
+        @click.prevent='toggle()',
+        aria-label='Toggle navigation',
+        :class="toggleState ? ['collapsed', 'toggled']: {}"
+      )
         span.navbar-toggler-bar
         span.navbar-toggler-bar
         span.navbar-toggler-bar
       a.navbar-brand(href='/') TKG
         span &nbsp;by The Flies
-    #navbarToggler.collapse.navbar-collapse
+    #navbarToggler.collapse.navbar-collapse(:class="toggleState ? '' : 'show'")
       ul.navbar-nav.ml-auto
         li.nav-item.active
           a.nav-link(href='#') gác
-        nav-item-dropdown(title='xem sách', :items="[{'title':'hình','href':'/manga'},{'title':'chữ',href:'/book'}]")
-        nav-item-dropdown(title='ăn chơi', :items="[{'title':'ăn nhậu','href':'/drinking'},{'title':'chơi bời',href:'/game'},{'title':'gái gú',href:'/girl'}]")
+        nav-item-dropdown(title='xem sách', :items="[{'title':'hình','href':'/manga'},{'title':'chữ',href:'/book'}]", :class="toogleState?'':'ole'")
+        nav-item-dropdown(title='ăn chơi', :items="[{'title':'ăn nhậu','href':'/drinking'},{'title':'chơi bời',href:'/game'},{'title':'gái gú',href:'/girl'}]", :class="toogleState?'':'ole'")
         li.nav-item(v-if='user')
           button.btn(@click.prevent="logout") đăng xuất
         li.nav-item(v-if='!user')
-          a.btn.btn-outline-neutral.white-text(href='/login') đăng nhập
-          a.btn.btn-neutral(href='/register') đăng ký
+          a.btn.btn-outline-primary.white-text(href='/login') đăng nhập
+          a.btn.btn-primary(href='/register') đăng ký
         //- .nav-item.dropdown
           a#dropdownMenuButton.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') xem sách
           ul.dropdown-menu.dropdown-info(aria-labelledby='dropdownMenuButton')
@@ -61,7 +68,9 @@ export default {
   data() {
     return {
       user: null,
-      transparent: true
+      transparent: true,
+      target: { 'id': 'navbarToggler' },
+      toggleState: false
     }
   },
   components: { NavItemDropdown },
@@ -69,6 +78,15 @@ export default {
     this.user = firebase.auth().currentUser
   },
   methods: {
+    toggle() {
+      if (!this.toggleState) {
+        document.documentElement.className = 'nav-open'
+        this.toggleState = true
+      } else {
+        document.documentElement.className = ''
+        this.toggleState = false
+      }
+    },
     logout() {
       firebase.auth().signOut().then(() => {
         this.user = null
@@ -93,6 +111,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#navbarToggler.collapse.navbar-collapse {
+  
+}
 a.btn.btn-outline-neutral.white-text:hover {
   color: #333 !important;
 }
