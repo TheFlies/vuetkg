@@ -9,7 +9,10 @@
           img(src='../../assets/pk-2.1.0/img/fog-low.png', alt='')
         .fog-low.right
           img(src='../../assets/pk-2.1.0/img/fog-low.png', alt='')
-        h2.presentation-subtitle.text-center.blockquote.lora-font "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"<cite> - Nguyễn Bỉnh Khiêm</cite>
+        blockquote.blockquote.lora-font "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"
+          footer.blockquote-footer.white-text
+            cite(title='author') Nguyễn Bỉnh Khiêm
+        br          
   .moving-clouds.withbg
 //- section#banner
 //-   h2 Tàng Kinh Gác
@@ -43,7 +46,7 @@ export default {
     scrolling() {
       let windowWidth = window.innerWidth
       if (this.dataParallax && windowWidth >= 768) {
-        this.parallax = this.enableParallax(document.documentElement.scrollTop / 4, windowWidth)
+        this.parallax = this.enableParallax(document.documentElement.scrollTop / 8, windowWidth)
       } else {
         this.parallax = null
       }
