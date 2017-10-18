@@ -41,7 +41,7 @@ nav.navbar.navbar-expand-md.bg-primary.fixed-top(:class="{'navbar-transparent': 
         li.nav-item(v-if='user')
           button.btn(@click.prevent="logout") đăng xuất
         li.nav-item(v-if='!user')
-          a.btn.btn-outline-neutral.white-text đăng nhập
+          a.btn.btn-outline-neutral.white-text(href='/login') đăng nhập
           a.btn.btn-neutral(href='/register') đăng ký
         //- .nav-item.dropdown
           a#dropdownMenuButton.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') xem sách
