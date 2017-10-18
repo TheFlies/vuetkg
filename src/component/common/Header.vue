@@ -23,8 +23,8 @@
 //-       a(href='/login') đăng nhập
 //-       | hay
 //-       a.html5up-button(href='/register') đăng ký
-nav.navbar.navbar-expand-md.fixed-top(:class="{'navbar-transparent': transparent}")
-  .container
+nav.navbar.navbar-expand-md.bg-primary.fixed-top(:class="{'navbar-transparent': transparent}")
+  .container-fluid
     .navbar-translate
       button.navbar-toggler.navbar-toggler.right.navbar-burger(type='button', data-toggle='collapse', data-target='#navbarToggler', aria-controls='navbarTogglerDemo02' aria-expanded='false' aria-label='Toggle navigation')
         span.navbar-toggler-bar
@@ -34,10 +34,15 @@ nav.navbar.navbar-expand-md.fixed-top(:class="{'navbar-transparent': transparent
         span &nbsp;by The Flies
     #navbarToggler.collapse.navbar-collapse
       ul.navbar-nav.ml-auto
-        li.nav-item
+        li.nav-item.active
           a.nav-link(href='#') gác
         nav-item-dropdown(title='xem sách', :items="[{'title':'hình','href':'/manga'},{'title':'chữ',href:'/book'}]")
         nav-item-dropdown(title='ăn chơi', :items="[{'title':'ăn nhậu','href':'/drinking'},{'title':'chơi bời',href:'/game'},{'title':'gái gú',href:'/girl'}]")
+        li.nav-item(v-if='user')
+          button.btn(@click.prevent="logout") đăng xuất
+        li.nav-item(v-if='!user')
+          a.btn.btn-outline-neutral.white-text đăng nhập
+          a.btn.btn-neutral(href='/register') đăng ký
         //- .nav-item.dropdown
           a#dropdownMenuButton.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') xem sách
           ul.dropdown-menu.dropdown-info(aria-labelledby='dropdownMenuButton')
@@ -91,6 +96,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.white-text {
+  color: #ccc !important;
+}
+a.btn.btn-outline-neutral.white-text:hover {
+  color: #333 !important;
+}
 // #header h1 {
 //   color: inherit;
 //   height: inherit;
