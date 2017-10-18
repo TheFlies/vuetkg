@@ -2,7 +2,9 @@
   .nav-item.dropdown(:class="{'show': open}", @mouseover.prevent='collapse(true)', @mouseout='collapse(false)')
     a.nav-link.dropdown-toggle(:id='toggleid', data-toggle='dropdown',
       href='#', role='button', aria-haspopup='true', :aria-expanded="open?'true':'false'") {{title}}
-    ul.dropdown-menu.dropdown-menu-right.dropdown-danger(:aria-labelledby='toggleid', :class="{'show': open}", @mouseover='collapse(true)', @mouseout='collapse(false)')
+    ul.dropdown-menu.dropdown-menu-right.dropdown-danger(:aria-labelledby='toggleid', 
+      :class="{'show': open}", @mouseover='collapse(true)', @mouseout='collapse(false)'
+    )
       template(v-for='(item,idx) in items')
         a.dropdown-item(v-bind:href='item.href') {{item.title}}
         .dropdown-divider(v-if='idx < items.length - 1')
@@ -31,5 +33,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+/* .dropdown-menu.dropdown-menu-right.dropdown-danger.show {
+  background-color: #FFFFFF;
+} */
+
+@media (max-width: 767px){
+  .navbar .navbar-nav .dropdown-menu{
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    height: auto;
+    overflow-y: scroll;
+  }
+  .dropdown-item{
+      &:hover{
+          color: #000 !important;
+      }
+  }
+}
 </style>
