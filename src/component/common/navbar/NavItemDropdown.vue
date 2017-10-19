@@ -33,22 +33,35 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 /* .dropdown-menu.dropdown-menu-right.dropdown-danger.show {
   background-color: #FFFFFF;
 } */
 
-@media (max-width: 767px){
+@media screen and (max-width: 991px){
   .navbar .navbar-nav .dropdown-menu{
     background-color: #FFFFFF;
     border-radius: 12px;
     height: auto;
-    overflow-y: scroll;
   }
-  .dropdown-item{
-      &:hover{
-          color: #000 !important;
-      }
+  .dropdown.show .dropdown-menu .dropdown-item:hover {
+    color: #fff;
+    background-color: #f7765f;
+  }
+  .dropdown.show .dropdown-menu .dropdown-item:first-child:hover {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  .dropdown.show .dropdown-menu .dropdown-item:last-child:hover {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  .nav-item .white-text {
+    color: #000;
+  }
+
+  .nav-item:hover .white-text {
+    color: #FFF;
   }
 }
 </style>

@@ -1,17 +1,18 @@
 <template lang="pug">
 .page-header.section-dark.withbg(:style='parallax')
   .filter
+  .moving-clouds.withbg(v-if='showClouds')
   .content-center
     .container
-      .title-brand
+      .title-brand.noselect
         h1.presentation-title.dancing-font(v-if='title') {{title}}
         .fog-low(v-if='showFogs')
           img(src='../../assets/pk-2.1.0/img/fog-low.png', alt='')
         .fog-low.right(v-if='showFogs')
           img(src='../../assets/pk-2.1.0/img/fog-low.png', alt='')
         blockquote.blockquote.lora-font(v-if='quote', v-html='quote')
-        br          
-  .moving-clouds.withbg(v-if='showClouds')
+        br
+        slot
 //- section#banner
 //-   h2 Tàng Kinh Gác
 //-   blockquote "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"<cite> - Nguyễn Bỉnh Khiêm</cite>
@@ -70,9 +71,7 @@ export default {
 .lora-font {
   font-family: 'Lora', serif
 }
-/* h2 {
-  font-family: 'Dancing Script', cursive
-}
+/*
 blockquote {
   font-family: 'Lora', serif
 }

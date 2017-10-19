@@ -21,7 +21,7 @@
               h2 Căn gác nhỏ, ngôi nhà cuối phố
                 | <br/>
                 | chẳng hiểu vì sao không khép bao giờ...
-              p Nơi để tìm học và đọc và chia sẻ những quyển sách,<br />
+              p Nơi để tìm đọc và chia sẻ những quyển sách,<br />
                 | những tập truyện hay của Việt Nam cũng như thế giới.
           special-box.box.special.coloms
             .coloms-row
@@ -137,12 +137,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 #landing-man {
   margin-top: -13.5em;
 }
 .main .section:first-of-type {
     position: relative;
     z-index: 2;
+}
+h2, h3 {
+  font-family: 'Roboto Slab', serif;
+  margin-bottom: .5em;
+}
+
+p {
+  font-family: 'Roboto Slab', serif;
+}
+
+@media (max-width: 575px) {
+  #landing-man {
+    margin-top: -2em;
+  }
 }
 </style>
