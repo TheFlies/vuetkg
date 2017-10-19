@@ -1,9 +1,9 @@
-<template>
-  <div class="mdc-typography demo-body">
-    oh oh ahi hi hi {{user.email}}
-    <a href="/">Quay về thôi</a>
-    <button @click="logout">Out</button>
-  </div>
+<template lang="pug">
+#manga
+  tkg-manga-header
+  .wrapper
+    button(@click.prevent="logout")
+    tkg-footer
 </template>
 
 <script>
@@ -19,8 +19,12 @@
 //
 import firebase from 'firebase'
 
+import TkgMangaHeader from '@/component/common/MangaHeader'
+import TkgFooter from '@/component/common/Footer'
+
 export default {
   name: 'hello',
+  components: {TkgMangaHeader, TkgFooter},
   data () {
     return {
       label: 'Test Me',

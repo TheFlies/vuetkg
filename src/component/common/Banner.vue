@@ -71,6 +71,7 @@ export default {
 .lora-font {
   font-family: 'Lora', serif
 }
+
 /*
 blockquote {
   font-family: 'Lora', serif

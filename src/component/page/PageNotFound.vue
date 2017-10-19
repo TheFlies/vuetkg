@@ -4,6 +4,13 @@
   .wrapper
     tkg-banner(
       title='Đây là đâu ?!?!',
+      quote=`Lạc lối có <b>cây dừa</b> ngoài cõi<br/>
+        </b>Cầu nhỏ</b> còn ướm hỏi <b>đường mòn</b><br/>
+        Quay về <b>biển cả</b> vẹn tròn<br/>
+        <b class='orange-text'>Gu gồ</b> bát ngát khi tròn <b>mênh mông</b><br/>
+        <footer class="blockquote-footer white-text">
+          <cite title="author">thomay.vn</cite>
+        </footer>`,
       showFogs,
       showClouds
     )
@@ -40,4 +47,8 @@ export default {
   z-index: 2;
 }
 
+#oops .blockquote b {
+  font-weight: bolder;
+  color: orange;
+}
 </style>

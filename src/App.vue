@@ -303,4 +303,9 @@ header.major p {
                                   supported by Chrome and Opera */
                  cursor: default;
 }
+
+// override presentation-title padding for text like `g` 'y``
+.presentation-title {
+  padding-bottom: 10px;
+}
 </style>
