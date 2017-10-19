@@ -14,7 +14,7 @@ footer#footer
     li: a.fa.fa-google-plus(href='#')
       span.label Google+
   ul.copyright
-    li &copy;The Flies
+    li &copy;2017 by The Flies
     li Design: 
       a(href='http://html5up.net') HTML5 UP
     li Framework:

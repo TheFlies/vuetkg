@@ -82,11 +82,11 @@ body {
 }
 
 .black-text {
-  color: #000 !important;
+  color: #000;
 }
 
 .white-text {
-  color: #ccc !important;
+  color: #ccc;
 }
 
 .card .image.featured:first-child img {
@@ -291,5 +291,16 @@ header.major p {
   .card-register {
     max-width: 100%;
   }
+}
+// no selection
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+                 cursor: default;
 }
 </style>

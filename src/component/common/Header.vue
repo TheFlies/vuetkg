@@ -23,7 +23,7 @@
 //-       a(href='/login') đăng nhập
 //-       | hay
 //-       a.html5up-button(href='/register') đăng ký
-nav.navbar.navbar-expand-md.bg-primary.fixed-top(:class="{'navbar-transparent': transparent}")
+nav.navbar.navbar-expand-lg.bg-primary.fixed-top(:class="{'navbar-transparent': transparent}")
   .container-fluid
     .navbar-translate
       button.navbar-toggler.navbar-toggler-right.navbar-burger(v-if='!noMenu', type='button',
@@ -111,9 +111,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#navbarToggler.collapse.navbar-collapse {
-  
-}
 a.btn.btn-outline-neutral.white-text:hover {
   color: #333 !important;
 }

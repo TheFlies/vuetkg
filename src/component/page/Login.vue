@@ -1,6 +1,6 @@
 <template lang="pug">
 #login
-  tkg-header(color-on-scroll=500, no-menu)
+  tkg-header(no-menu)
   .wrapper
     .page-header
       .filter
