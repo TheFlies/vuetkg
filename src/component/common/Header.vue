@@ -26,7 +26,7 @@
 nav.navbar.navbar-expand-md.bg-primary.fixed-top(:class="{'navbar-transparent': transparent}")
   .container-fluid
     .navbar-translate
-      button.navbar-toggler.navbar-toggler-right.navbar-burger(type='button',
+      button.navbar-toggler.navbar-toggler-right.navbar-burger(v-if='!noMenu', type='button',
         data-toggle='collapse', data-target='#navbarToggler', 
         :aria-controls='target.id ? target.id : target',
         :aria-expanded="toggleState ? 'true' : 'false'",
@@ -38,13 +38,13 @@ nav.navbar.navbar-expand-md.bg-primary.fixed-top(:class="{'navbar-transparent': 
         span.navbar-toggler-bar
         span.navbar-toggler-bar
       a.navbar-brand(href='/') TKG
-        span &nbsp;by The Flies
-    #navbarToggler.collapse.navbar-collapse(:class="toggleState ? '' : 'show'")
+        span.label &nbsp;by The Flies
+    #navbarToggler.collapse.navbar-collapse(v-if='!noMenu', :class="toggleState ? '' : 'show'")
       ul.navbar-nav.ml-auto
         li.nav-item.active
           a.nav-link(href='#') gác
-        nav-item-dropdown(title='xem sách', :items="[{'title':'hình','href':'/manga'},{'title':'chữ',href:'/book'}]", :class="toogleState?'':'ole'")
-        nav-item-dropdown(title='ăn chơi', :items="[{'title':'ăn nhậu','href':'/drinking'},{'title':'chơi bời',href:'/game'},{'title':'gái gú',href:'/girl'}]", :class="toogleState?'':'ole'")
+        nav-item-dropdown(title='xem sách', :items="[{'title':'hình','href':'/manga'},{'title':'chữ',href:'/book'}]", :class="toggleState?'':'ole'")
+        nav-item-dropdown(title='ăn chơi', :items="[{'title':'ăn nhậu','href':'/drinking'},{'title':'chơi bời',href:'/game'},{'title':'gái gú',href:'/girl'}]", :class="toggleState?'':'ole'")
         li.nav-item(v-if='user')
           button.btn(@click.prevent="logout") đăng xuất
         li.nav-item(v-if='!user')
@@ -64,7 +64,7 @@ import NavItemDropdown from './navbar/NavItemDropdown'
 
 export default {
   name: 'tkg-header',
-  props: ['color-on-scroll'],
+  props: ['color-on-scroll', 'no-menu'],
   data() {
     return {
       user: null,
