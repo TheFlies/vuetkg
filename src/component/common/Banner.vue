@@ -4,16 +4,14 @@
   .content-center
     .container
       .title-brand
-        h1.presentation-title.dancing-font Tàng Kinh Gác
-        .fog-low
+        h1.presentation-title.dancing-font(v-if='title') {{title}}
+        .fog-low(v-if='showFogs')
           img(src='../../assets/pk-2.1.0/img/fog-low.png', alt='')
-        .fog-low.right
+        .fog-low.right(v-if='showFogs')
           img(src='../../assets/pk-2.1.0/img/fog-low.png', alt='')
-        blockquote.blockquote.lora-font "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"
-          footer.blockquote-footer.white-text
-            cite(title='author') Nguyễn Bỉnh Khiêm
+        blockquote.blockquote.lora-font(v-if='quote', v-html='quote')
         br          
-  .moving-clouds.withbg
+  .moving-clouds.withbg(v-if='showClouds')
 //- section#banner
 //-   h2 Tàng Kinh Gác
 //-   blockquote "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"<cite> - Nguyễn Bỉnh Khiêm</cite>
@@ -25,7 +23,7 @@
 <<script>
 export default {
   name: 'tkg-banner',
-  props: ['data-parallax'],
+  props: ['data-parallax', 'title', 'show-fogs', 'quote', 'show-clouds'],
   data() {
     return {
       parallax: null

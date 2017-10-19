@@ -2,7 +2,17 @@
 #landing
   tkg-header(color-on-scroll=500)
   .wrapper
-    tkg-banner(data-parallax=true)
+    tkg-banner(
+      data-parallax=true, 
+      title='Tàng Kinh Gác', 
+      quote=`
+      "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"
+      <footer class="blockquote-footer white-text">
+        <cite title="author">Nguyễn Bỉnh Khiêm</cite>
+      </footer>`,
+      show-fogs,
+      show-clouds
+    )
     .main#landing-man
       .container
         .text-center
@@ -117,7 +127,13 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  components: { TkgHeader, TkgBanner, TkgFooter, TkgCta, SpecialBox }
+  components: {
+    TkgHeader,
+    TkgBanner,
+    TkgFooter,
+    TkgCta,
+    SpecialBox
+  }
 }
 </script>
 
@@ -128,128 +144,5 @@ export default {
 .main .section:first-of-type {
     position: relative;
     z-index: 2;
-}
-
-header.major p {
-	display: inline-block;
-	border-top: solid 2px #e5e5e5;
-	color: #777;
-	margin: 1.5em 0 0 0;
-	padding: 1.5em 0 0 0;
-  font-style: normal;
-  font-size: 1.25em;
-}
-
-.major.fa {
-  background: #666;
-	border-radius: 100%;
-	color: #ffffff;
-	cursor: default;
-	display: inline-block;
-	height: 5.5em;
-	line-height: 5.5em;
-	margin: 0 0 2em 0;
-	width: 5.5em;
-}
-
-.major.fa {
-  background: #666;
-	border-radius: 100%;
-	color: #ffffff;
-	cursor: default;
-	display: inline-block;
-	height: 5.5em;
-	line-height: 5.5em;
-	margin: 0 0 2em 0;
-	width: 5.5em;
-}
-
-.major.fa:before {
-	font-size: 2.5em;
-}
-
-.major.fa.accent1 {
-	background: #666;
-	color: #ffffff;
-}
-
-.major.fa.accent2 {
-	background: #e89980;
-	color: #ffffff;
-}
-
-.major.fa.accent3 {
-	background: #7fcdb8;
-	color: #ffffff;
-}
-
-.major.fa.accent4 {
-	background: #90b0ba;
-	color: #ffffff;
-}
-
-.major.fa.accent5 {
-	background: #e5cb95;
-	color: #ffffff;
-}
-
-.section.card, .section.coloms {
-  padding: 3em;
-}
-
-.box.coloms .coloms-row {
-	border-top: solid 2px #e5e5e5;
-	position: relative;
-}
-
-.box.coloms .coloms-row:after {
-	clear: both;
-	content: '';
-	display: block;
-}
-
-.box.coloms .coloms-row section {
-	float: left;
-	padding: 3em;
-	width: 50%;
-}
-
-.box.coloms .coloms-row section :last-child {
-	margin-bottom: 0;
-}
-
-.box.coloms .coloms-row section:nth-child(2n) {
-	padding-right: 0;
-}
-
-.box.coloms .coloms-row section:nth-child(2n):before {
-	background: #e5e5e5;
-	content: '';
-	display: block;
-	height: 100%;
-	margin-left: -3em;
-	position: absolute;
-	top: 0;
-	width: 2px;
-}
-
-.box.coloms .coloms-row section:nth-child(2n-1) {
-	padding-left: 0;
-}
-
-.box.coloms .coloms-row:first-child {
-	border-top: 0;
-}
-
-.box.coloms .coloms-row:first-child section {
-	padding-top: 0;
-}
-
-.box.coloms .coloms-row:last-child {
-	padding-bottom: 0;
-}
-
-.box.coloms .coloms-row:last-child section {
-	padding-bottom: 0;
 }
 </style>
