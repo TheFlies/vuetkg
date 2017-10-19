@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import TkgLanding from '@/component/page/Landing'
 import TkgLogin from '@/component/page/Login'
 import TkgRegister from '@/component/page/Register'
-import TkgBooks from '@/component/page/Books'
+import TkgBook from '@/component/page/Book'
+import TkgManga from '@/component/page/Manga'
 import PageNotFound from '@/component/page/PageNotFound'
 // import TkgDashboard from '@/component/page/dashboard'
 import Hello from '@/component/Hello'
@@ -30,7 +31,8 @@ let router = new Router({
     },
     { path: '/login', name: 'Login', component: TkgLogin },
     { path: '/register', name: 'Register', component: TkgRegister },
-    { path: '/books', name: 'Xem truyen tranh', component: TkgBooks },
+    { path: '/book', name: 'Xem truyen chu', component: TkgBook },
+    { path: '/manga', name: 'Xem truyen tranh', component: TkgManga },
     // {
     //   path: '/dashboard',
     //   component: TkgDashboard,

@@ -14,7 +14,7 @@ import db from '../../firebase.js'
 let booksRef = db.ref('books')
 
 export default {
-  name: 'tkg-books',
+  name: 'tkg-book',
   firebase: {
     books: booksRef
   }
