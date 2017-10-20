@@ -32,7 +32,9 @@ export default {
 $primary-color: #333333;
 $font-family-sans-serif: 'Roboto', Arial, sans-serif;
 
-@import './assets/pk-2.1.0/css/bootstrap.min.css';
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+// @import './assets/pk-2.1.0/css/bootstrap.min.css';
 @import './assets/pk-2.1.0/sass/paper-kit.scss';
 
 // @import './assets/pk-2.1.0/css/demo.css';

@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+require('firebase/firestore')
 
 // Initialize Firebase
 let config = {
@@ -11,4 +12,7 @@ let config = {
 }
 let app = firebase.initializeApp(config)
 let db = app.database()
-export default db
+let dbFirestore = app.firestore()
+// Get a reference to the storage service, which is used to create references in your storage bucket
+let storage = app.storage()
+export default { db, dbFirestore, storage }
