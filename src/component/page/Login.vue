@@ -75,7 +75,7 @@ export default {
         return
       } else {
         firebase.auth().signInWithEmailAndPassword(this.account.email, this.account.password)
-          .then((user) => { this.$router.replace('test-mdl') }, (err) => { this.error = err.message })
+          .then((user) => { this.$router.replace('/') }, (err) => { this.error = err.message })
       }
     }
   }
