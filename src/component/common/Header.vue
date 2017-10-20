@@ -1,28 +1,23 @@
 <template lang="pug">
-//- header#header.alt
-//-   h1
-//-     a(href='/') TKG
-//-     |
-//-     | by The Flies
-//-   nav#nav: ul
-//-     li: a(href='/') gác
-//-     li
-//-       a.html5up-icon.fa-angle-down(href='#') xem sách
-//-       ul
-//-         li: a(href='/manga') hình
-//-         li: a(href='/book') chữ
-//-     li
-//-       a.html5up-icon.fa-angle-down(href='#') ăn chơi
-//-       ul
-//-         li: a(href='/drinking') ăn nhậu
-//-         li: a(href='/games') chơi bời
-//-         li: a(href='/girls') gái gú
-//-     li(v-if='user')
-//-       a(@click.prevent="logout", href='/') đăng xuất
-//-     li(v-if='!user')
-//-       a(href='/login') đăng nhập
-//-       | hay
-//-       a.html5up-button(href='/register') đăng ký
+//- b-navbar(toggleable='md', type='light', variant='light', fixed='top', :class="{'navbar-transparent': transparent}")
+//-   b-nav-toggle(target='nav_collapse')
+//-   b-navbar-brand TKG by The Flies
+//-   b-collapse#nav_collapse(is-nav)
+//-     b-nav(is-nav-bar)
+//-       b-nav-item(href="#") Link
+//-       b-nav-item(href="#" disabled) Disabled
+//-     b-nav.ml-auto(is-nav-bar)
+//-       b-nav-form
+//-         b-form-input(size='sm', type='text', placeholder='search')
+//-         b-button(size='sm', class='my-2 my-sm-0', type='submit') Search
+//-       b-nav-item-dropdown(text='Lang', right)
+//-         b-dropdown-item(href='#') EN
+//-         b-dropdown-item(href='#') VN
+//-       b-nav-item-dropdown(right)
+//-         template(slot='button-content')
+//-           em User
+//-         b-dropdown-item(href='#') Profile
+//-         b-dropdown-item(href='#') Signout
 nav.navbar.navbar-expand-lg.bg-primary.fixed-top(:class="{'navbar-transparent': transparent}")
   .container-fluid
     .navbar-translate
@@ -111,9 +106,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-a.btn.btn-outline-neutral.white-text:hover {
-  color: #333 !important;
-}
+// a.btn.btn-outline-neutral.white-text:hover {
+//   color: #333 !important;
+// }
 // #header h1 {
 //   color: inherit;
 //   height: inherit;

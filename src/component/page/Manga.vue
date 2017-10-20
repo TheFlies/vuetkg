@@ -2,19 +2,18 @@
 #manga
   tkg-manga-header
   .wrapper
-    .container
-      .row
-        template(v-for="(book, idx) in mangas")
-          .col-12.shelf.hidden-md.hidden-lg(v-if="idx%3==0&&idx%6!=0")
-          .col-12.shelf(v-if="idx/6!=0&&idx%6==0")
-          .col-xs-4.col-md-2
-              //- .book-wrapper
-              img(:src="book.cover.url")
-              .card
-                span.label.bg-primary {{book.title}}
-                a.mr-auto.ml-auto.book-link(href='#')
-                p hello this is a very long paragraph. hello this is a very long paragraph. hello this is a very long paragraph.
-        .col-12.shelf(v-if="books.length>0")          
+    b-container
+      //- .bookshelf--frame
+      b-row.justify-content-md-center(align-v='end')
+        template(v-for="book in books")
+          b-col.oomb-5(lg='4', sm='6', md='6')
+            //-     .book-wrapper
+            b-card.text-center.mb-2.text-uppercase(:title='book.title',
+              :sub-title='book.author',
+              :img-src='book.cover.url', :img-alt='book.title', img-top)
+              //- img.card-img-top.img-responsive(:src='book.cover.url', alt='book.title')
+              //- .card-body  
+    //- .row.shelf(v-if="books.length>0")
       //- .bookshelf--frame
         template(v-for="book in books")
           .book-wrapper
@@ -26,8 +25,9 @@
 
 <script>
 // import firebase from 'firebase'
-import db from '../../firebase.js'
-let mangasRef = db.ref('mangas')
+import fb from '../../firebase.js'
+let mangasRef = fb.dbFirestore.collection('mangas')
+let imgsRef = fb.storage.ref('manga')
 
 import TkgMangaHeader from '@/component/common/MangaHeader'
 import TkgFooter from '@/component/common/Footer'
@@ -35,9 +35,6 @@ import TkgFooter from '@/component/common/Footer'
 export default {
   name: 'tkg-manga',
   components: {TkgMangaHeader, TkgFooter},
-  firebase: {
-    mangas: mangasRef
-  },
   data () {
     return {
       label: 'Test Me',
@@ -52,26 +49,83 @@ export default {
       slideValue: 50,
       sliderDisabled: false,
       books: [
-        {
-          'title': 'Harry Potter',
-          'color': 'green',
-          'cover': {
-            'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Harry+Potter&w=300&h=500',
-            'width': 300,
-            'height': 500
-          }
-        },
-        {
-          'title': 'Hai vạn dặm dưới đáy biển',
-          'color': 'green',
-          'cover': {
-            'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
-            'width': 300,
-            'height': 500
-          }
-        }
+        // {
+        //   'title': 'Harry Potter',
+        //   'color': 'green',
+        //   'cover': {
+        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Harry+Potter&w=300&h=500',
+        //     'width': 300,
+        //     'height': 500
+        //   }
+        // },
+        // {
+        //   'title': 'Hai vạn dặm dưới đáy biển',
+        //   'color': 'green',
+        //   'cover': {
+        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=400&h=500',
+        //     'width': 400,
+        //     'height': 500
+        //   }
+        // },
+        // {
+        //   'title': 'Hai vạn dặm dưới đáy biển',
+        //   'color': 'green',
+        //   'cover': {
+        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=700&h=300',
+        //     'width': 700,
+        //     'height': 300
+        //   }
+        // },
+        // {
+        //   'title': 'Hai vạn dặm dưới đáy biển',
+        //   'color': 'green',
+        //   'cover': {
+        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
+        //     'width': 300,
+        //     'height': 500
+        //   }
+        // },
+        // {
+        //   'title': 'Hai vạn dặm dưới đáy biển',
+        //   'color': 'green',
+        //   'cover': {
+        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
+        //     'width': 300,
+        //     'height': 500
+        //   }
+        // },
+        // {
+        //   'title': 'Hai vạn dặm dưới đáy biển',
+        //   'color': 'green',
+        //   'cover': {
+        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
+        //     'width': 300,
+        //     'height': 500
+        //   }
+        // },
+        // {
+        //   'title': 'Hai vạn dặm dưới đáy biển',
+        //   'color': 'green',
+        //   'cover': {
+        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
+        //     'width': 300,
+        //     'height': 500
+        //   }
+        // },
+        // {
+        //   'title': 'Hai vạn dặm dưới đáy biển',
+        //   'color': 'green',
+        //   'cover': {
+        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
+        //     'width': 300,
+        //     'height': 500
+        //   }
+        // }
       ]
     }
+  },
+  mounted() {
+    this.getBooks()
   },
   methods: {
     bookCoverStyle(cover) {
@@ -82,6 +136,20 @@ export default {
         'width': `${cover.width}px`,
         'height': `${cover.height}px`
       }
+    },
+    getBooks() {
+      mangasRef.get().then(querySnapshot => {
+        // this.books = []
+        querySnapshot.forEach(doc => {
+          let book = doc.data()
+          let path = `/${book.title}/1/000.jpg`
+          // getting cover url
+          imgsRef.child(path).getDownloadURL().then((url) => {
+            book.cover.url = url
+            this.books.push(book)
+          })
+        })
+      })
     }
   }
 }
@@ -89,11 +157,46 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.oomb-5 {
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.oomb-5 .card-img-top {
+  max-height: 450px;
+}
+// .container {
+//   max-width: 60em;
+//   @include make-container();
+// }
+// .row {
+//   @include make-row();
+// }
+// .content-main {
+//   @include make-col-ready();
+
+//   @media (max-width: 32em) {
+//     @include make-col(6);
+//   }
+//   @media (min-width: 32.1em) {
+//     @include make-col(8);
+//   }
+// }
+// .content-secondary {
+//   @include make-col-ready();
+
+//   @media (max-width: 32em) {
+//     @include make-col(6);
+//   }
+//   @media (min-width: 32.1em) {
+//     @include make-col(4);
+//   }
+// }
 // .card {
 //   margin-bottom: 0px;
 // }
 
-// // variables
+// variables
 // $darktan: #9A8548;
 // $grad2: #373737;
 // $grad1: darken($grad2, 2);
@@ -107,7 +210,8 @@ export default {
 
 // .bookshelf--frame {
 // 	background: tan;
-// 	background: url('https://static.tumblr.com/8x9m588/C8ho55ylx/bg-wood2.png'), linear-gradient($grad1,$grad2 290px,$grad3 290px,$grad3 292px,$darktan 292px,$darktan 298px,$grad5 298px,$grad5 300px);	
+// 	background: url('https://static.tumblr.com/8x9m588/C8ho55ylx/bg-wood2.png'),
+//     linear-gradient($grad1,$grad2 290px,$grad3 290px,$grad3 292px,$darktan 292px,$darktan 298px,$grad5 298px,$grad5 300px);	
 // 	background-size: auto, 10px 300px;
 // 	border-left: 10px solid $darktan;
 // 	border-right: 10px solid $darktan;
@@ -123,16 +227,17 @@ export default {
 // 		position: relative;
 // 		margin: 10px 0;
 // 		max-width: 100%;
-//     .info, .card {
+//     border-bottom-left-radius: 6px;
+//     border-bottom-right-radius: 6px;
+//     .card {
 //       background: none;
-//       width: auto;
-//       height: auto;
 //       position: absolute;
-//       bottom: 0;
 //       left: 50%;
 //       transform: translateX(-50%);
-//       max-width: 100%;
-//       max-height: 100%;
+//       max-height: 50%;
+//       z-index: 2;
+//       bottom: 0;
+//       margin-bottom: 0;
 //     }
 // 		img {
 //       height: auto;
@@ -143,6 +248,7 @@ export default {
 //       transform: translateX(-50%);
 // 			max-height: 100%;
 // 			max-width: 100%;
+//       z-index: 1;
 // 		}
 // 	}
 // }

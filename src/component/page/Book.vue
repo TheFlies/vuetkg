@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import db from '../../firebase.js'
-let booksRef = db.ref('books')
+import fb from '../../firebase.js'
+let booksRef = fb.db.ref('books')
 
 export default {
   name: 'tkg-book',
