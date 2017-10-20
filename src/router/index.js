@@ -32,7 +32,7 @@ let router = new Router({
     { path: '/login', name: 'Login', component: TkgLogin },
     { path: '/register', name: 'Register', component: TkgRegister },
     { path: '/book', name: 'Xem truyen chu', component: TkgBook },
-    { path: '/manga', name: 'Xem truyen tranh', component: TkgManga },
+    { path: '/manga', name: 'Xem truyen tranh', component: TkgManga, meta: { requiresAuth: true } },
     // {
     //   path: '/dashboard',
     //   component: TkgDashboard,
