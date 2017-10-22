@@ -3,8 +3,8 @@
   tkg-header(color-on-scroll=500)
   .wrapper
     tkg-banner(
-      data-parallax=true, 
-      title='Tàng Kinh Gác', 
+      data-parallax=true,
+      title='Tàng Kinh Gác',
       quote=`
       "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"
       <footer class="blockquote-footer white-text">
@@ -32,7 +32,7 @@
               section
                 span.major.fa.fa-area-chart.accent3
                 h3 Chữ không hình
-                p Đọc sách.          
+                p Đọc sách.
             .coloms-row
               section
                 span.major.fa.fa-cloud.accent4
@@ -82,7 +82,7 @@
 //-           section
 //-             span.html5up-icon.major.fa-area-chart.accent3
 //-             h3 Chữ không hình
-//-             p Đọc sách.          
+//-             p Đọc sách.
 //-         .coloms-row
 //-           section
 //-             span.html5up-icon.major.fa-cloud.accent4
@@ -139,7 +139,7 @@ export default {
 
 <style lang="scss" scoped>
 #landing-man {
-  margin-top: -13.5em;
+  margin-top: -7em;
 }
 .main .section:first-of-type {
     position: relative;

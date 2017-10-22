@@ -159,11 +159,11 @@ export default {
 // }
 
 // .ribbon {
-//   -webkit-transform: rotate(-45deg); 
-//      -moz-transform: rotate(-45deg); 
-//       -ms-transform: rotate(-45deg); 
-//        -o-transform: rotate(-45deg); 
-//           transform: rotate(-45deg); 
+//   -webkit-transform: rotate(-45deg);
+//      -moz-transform: rotate(-45deg);
+//       -ms-transform: rotate(-45deg);
+//        -o-transform: rotate(-45deg);
+//           transform: rotate(-45deg);
 //     border: 15px solid transparent;
 //     border-bottom: 15px solid red;
 //     position: absolute;
