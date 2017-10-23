@@ -310,4 +310,18 @@ header.major p {
 .presentation-title {
   padding-bottom: 10px;
 }
+
+.dropdown.show .dropdown-menu .dropdown-item:hover {
+  color: #fff;
+  background-color: #f7765f;
+}
+
+@media screen and (max-width: 991px){
+  .dropdown.show .dropdown-menu,
+    .dropdown .dropdown-menu{
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    height: auto;
+  }
+}
 </style>
