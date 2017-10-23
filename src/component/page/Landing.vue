@@ -1,6 +1,6 @@
 <template lang="pug">
 #landing
-  tkg-header(color-on-scroll=500)
+  tkg-header(color-on-scroll=300)
   .wrapper
     tkg-banner(
       data-parallax=true,
