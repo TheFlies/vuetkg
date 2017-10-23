@@ -2,7 +2,7 @@
 #register
   tkg-header(no-menu)
   .wrapper
-    .page-header
+    tkg-thunder.page-header(no-rain, no-lightning)
       .filter
       .container
         .row
@@ -26,28 +26,11 @@
                 label Mật khẩu
                 input.form-control(type='password', placeholder='Password', v-model='account.password')
 
-                button.btn.btn-danger.btn-block.btn-round(@click.prevent='register') đăng ký
+                button.btn.btn-danger.btn-block.btn-round(@click.prevent='register') [|]
               .forgot
-                a.btn.btn-link.btn-danger(href='#') quên?
+                a.btn.btn-link(href='#') quên?
         .footer.register-footer.text-center
           h6 &copy;2017, made with <i class="fa fa-heart heart"></i> by The Flies
-            
-  //- section#main.container
-  //-   .row: div(class="12u")
-  //-     special-box.box
-  //-       .ribbon
-  //-           a(href='/') TKG
-  //-       h3 Đăng ký tài khoản
-  //-       .row.uniform(class='50%')
-  //-         div(class='12u')
-  //-           input(type='email', name='email', value, placeholder='Email', v-model='account.email')
-  //-         div(class='12u')
-  //-           input(type='password', name='password', value, placeholder='Password', v-model='account.password')
-  //-       hr
-  //-       .row.uniform(class='50%')
-  //-         ul.actions
-  //-           li: a.html5up-button.alt(@click.prevent='register') đăng ký
-  //-           li: a.html5up-button(href='/login') vào luôn
 </template>
 
 
@@ -56,6 +39,7 @@ import TkgHeader from '../common/Header'
 import TkgBanner from '../common/Banner'
 import TkgFooter from '../common/Footer'
 import SpecialBox from '../common/SpecialBox'
+import TkgThunder from '../common/Thunder'
 
 import firebase from 'firebase'
 
@@ -78,7 +62,7 @@ export default {
   updated() {
     // this.initMaterial()
   },
-  components: { TkgHeader, TkgFooter, TkgBanner, SpecialBox },
+  components: { TkgHeader, TkgFooter, TkgBanner, SpecialBox, TkgThunder },
   methods: {
     // initMaterial() {
     //   $.material.init() // eslint-disable-line
@@ -104,7 +88,7 @@ export default {
 
 <style lang="scss" scoped>
 #register .page-header {
-  background-image: url(../../assets/pk-2.1.0/img/login-image.jpg);
+  background-image: url(../../assets/img/haunted-house-shane-madden.png);
 }
 
 .footer {
