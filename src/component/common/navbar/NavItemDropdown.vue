@@ -1,9 +1,9 @@
 <template lang="pug">
-  .nav-item.dropdown(:class="{'show': open}", @mouseover.prevent='collapse(true)', @mouseout='collapse(false)')
+  .nav-item.dropdown(:class="{'show': open}", @click.prevent='collapse()')
     a.nav-link.dropdown-toggle(:id='toggleid', data-toggle='dropdown',
       href='#', role='button', aria-haspopup='true', :aria-expanded="open?'true':'false'") {{title}}
     ul.dropdown-menu.dropdown-menu-right.dropdown-danger(:aria-labelledby='toggleid', 
-      :class="{'show': open}", @mouseover='collapse(true)', @mouseout='collapse(false)'
+      :class="{'show': open}"
     )
       template(v-for='(item,idx) in items')
         a.dropdown-item(v-bind:href='item.href') {{item.title}}
@@ -24,10 +24,8 @@ export default {
     this.toggleid = 'nav-link-dropdown-toggle-' + this._uid
   },
   methods: {
-    collapse(show) {
-      setTimeout(() => {
-        this.open = show
-      }, 300)
+    collapse() {
+      this.open = !this.open
     }
   }
 }
