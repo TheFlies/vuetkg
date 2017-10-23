@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 /* .dropdown-menu.dropdown-menu-right.dropdown-danger.show {
   background-color: #FFFFFF;
 } */

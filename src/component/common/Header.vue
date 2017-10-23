@@ -38,8 +38,15 @@ nav.navbar.navbar-expand-lg.bg-primary.fixed-top(:class="{'navbar-transparent': 
       ul.navbar-nav.ml-auto
         li.nav-item.active
           a.nav-link(href='#') gác
-        nav-item-dropdown(title='xem sách', :items="[{'title':'hình','href':'/manga'},{'title':'chữ',href:'/book'}]", :class="toggleState?'':'ole'")
-        nav-item-dropdown(title='ăn chơi', :items="[{'title':'ăn nhậu','href':'/drinking'},{'title':'chơi bời',href:'/game'},{'title':'gái gú',href:'/girl'}]", :class="toggleState?'':'ole'")
+        //- nav-item-dropdown(title='xem sách', :items="[{'title':'hình','href':'/manga'},{'title':'chữ',href:'/book'}]", :class="toggleState?'':'ole'")
+        //- nav-item-dropdown(title='ăn chơi', :items="[{'title':'ăn nhậu','href':'/drinking'},{'title':'chơi bời',href:'/game'},{'title':'gái gú',href:'/girl'}]", :class="toggleState?'':'ole'")
+        b-nav-item-dropdown(text='xem sách')
+          b-dropdown-item(href='/manga') hình
+          b-dropdown-item(href='/manga') chữ
+        b-nav-item-dropdown(text='ăn chơi')
+          b-dropdown-item(href='/drinking') nhậu
+          b-dropdown-item(href='/game') game
+          b-dropdown-item(href='/girl') gái
         li.nav-item(v-if='user')
           button.btn(@click.prevent="logout") đăng xuất
         li.nav-item(v-if='!user')
@@ -106,6 +113,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (max-width: 991px){
+  .dropdown.show .dropdown-menu .dropdown-item:hover {
+    color: #fff;
+    background-color: #f7765f;
+  }
+  .dropdown.show .dropdown-menu .dropdown-item:first-child:hover {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  .dropdown.show .dropdown-menu .dropdown-item:last-child:hover {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  .nav-item .white-text {
+    color: #000;
+  }
+
+  .nav-item:hover .white-text {
+    color: #FFF;
+  }
+}
 // a.btn.btn-outline-neutral.white-text:hover {
 //   color: #333 !important;
 // }
