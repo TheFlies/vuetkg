@@ -1,24 +1,18 @@
 <template lang="pug">
 .page-header.section-dark.withbg(:style='parallax')
   .filter
-  .moving-clouds.withbg(v-if='showClouds')
+  .moving-clouds(v-if='showClouds')
   .content-center
     .container
       .title-brand.noselect
-        h1.presentation-title.dancing-font(v-if='title') {{title}}
+        h1.presentation-title.display-1.text-light.dancing-font(v-if='title') {{title}}
         .fog-low(v-if='showFogs')
-          img(src='../../assets/pk-2.1.0/img/fog-low.png', alt='')
+          img(src='../../assets/img/fog-low.png', alt='')
         .fog-low.right(v-if='showFogs')
-          img(src='../../assets/pk-2.1.0/img/fog-low.png', alt='')
-        blockquote.blockquote.lora-font(v-if='quote', v-html='quote')
-        br
-        slot
-//- section#banner
-//-   h2 Tàng Kinh Gác
-//-   blockquote "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"<cite> - Nguyễn Bỉnh Khiêm</cite>
-//-   ul.actions
-//-     li: a.html5up-button.special(href='/register') Đăng ký
-//-     li: a.html5up-button(href='#') Tìm hiểu thêm
+          img(src='../../assets/img/fog-low.png', alt='')
+      blockquote.blockquote.text-center.text-light.lora-font(v-if='quote', v-html='quote')
+      br
+      slot
 </template>
 
 <<script>
@@ -72,18 +66,8 @@ export default {
   font-family: 'Lora', serif
 }
 
-/*
-blockquote {
-  font-family: 'Lora', serif
-}
-
-a .button {
-  font-family: 'Roboto Slab', serif
-} */
-.section-dark.withbg {
-  background-image: url(../../assets/img/banner01.jpg)
-}
-.moving-clouds.withbg {
-  background-image: url(../../assets/pk-2.1.0/img/clouds.png)
+.blockquote {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 }
 </style>

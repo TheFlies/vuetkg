@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style>
-.section.card p {
+/* .section.card p {
 	margin: 0 0 2em 0;
 }
 
@@ -29,6 +29,6 @@ export default {
 
 .section.card > :last-child {
   margin-bottom: 0;
-}
+} */
 </style>
 

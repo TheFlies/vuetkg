@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-ol {
+/* ol {
 	list-style: decimal;
 	margin: 0 0 2em 0;
 	padding-left: 1.25em;
@@ -124,6 +124,6 @@ ul.icons li .fa:before {
 	border-left: 0;
 	margin-left: 0;
 	padding-left: 0;
-}
+} */
 
 </style>

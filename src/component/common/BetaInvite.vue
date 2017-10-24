@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style>
-#cta {
+/* #cta {
 	background: #e89980;
 	color: #f9e5df;
 	padding: 3.5em 0 4em 0;
@@ -34,6 +34,6 @@ export default {
 
 p {
 	margin: 0 0 2em 0;
-}
+} */
 
 </style>
