@@ -142,25 +142,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// #landing-man {
-//   margin-top: -7em;
-// }
-// .main .section:first-of-type {
-//     position: relative;
-//     z-index: 2;
-// }
-// h2, h3 {
-//   font-family: 'Roboto Slab', serif;
-//   margin-bottom: .5em;
-// }
+#landing-man {
+  margin-top: -7em;
+}
+.main .section:first-of-type {
+    position: relative;
+    z-index: 2;
+}
+h2, h3 {
+  font-family: 'Roboto Slab', serif;
+  margin-bottom: .5em;
+}
 
-// p {
-//   font-family: 'Roboto Slab', serif;
-// }
+p {
+  font-family: 'Roboto Slab', serif;
+}
 
-// @media (max-width: 575px) {
-//   #landing-man {
-//     margin-top: -2em;
-//   }
-// }
+@media (max-width: 575px) {
+  #landing-man {
+    margin-top: -2em;
+  }
+}
 </style>
