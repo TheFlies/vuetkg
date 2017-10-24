@@ -1,13 +1,17 @@
 <template lang="pug">
 #landing
-  tkg-header(color-on-scroll=300)
+  tkg-header(color-on-scroll=300, bg-image='/assets/img/banner01.jpg')
   .wrapper
     tkg-banner(
       data-parallax=true,
       title='Tàng Kinh Gác',
       quote=`
-      "Xa chốn ngựa xe xuân mộng đến<br/>Vui bên sách vở tuổi già ngâm"
-      <footer class="blockquote-footer white-text">
+      <p class="mb-0 white-text">
+        "Xa chốn ngựa xe xuân mộng đến
+        <br/>
+        Vui bên sách vở tuổi già ngâm"
+      </p>
+      <footer class="blockquote-footer text-light">
         <cite title="author">Nguyễn Bỉnh Khiêm</cite>
       </footer>`,
       show-fogs,
@@ -138,25 +142,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#landing-man {
-  margin-top: -7em;
-}
-.main .section:first-of-type {
-    position: relative;
-    z-index: 2;
-}
-h2, h3 {
-  font-family: 'Roboto Slab', serif;
-  margin-bottom: .5em;
-}
+// #landing-man {
+//   margin-top: -7em;
+// }
+// .main .section:first-of-type {
+//     position: relative;
+//     z-index: 2;
+// }
+// h2, h3 {
+//   font-family: 'Roboto Slab', serif;
+//   margin-bottom: .5em;
+// }
 
-p {
-  font-family: 'Roboto Slab', serif;
-}
+// p {
+//   font-family: 'Roboto Slab', serif;
+// }
 
-@media (max-width: 575px) {
-  #landing-man {
-    margin-top: -2em;
-  }
-}
+// @media (max-width: 575px) {
+//   #landing-man {
+//     margin-top: -2em;
+//   }
+// }
 </style>
