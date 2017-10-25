@@ -10,9 +10,9 @@
           img(src='../../assets/img/fog-low.png', alt='')
         .fog-low.right(v-if='showFogs')
           img(src='../../assets/img/fog-low.png', alt='')
-      blockquote.blockquote.text-center.text-light.lora-font(v-if='quote', v-html='quote')
-      br
-      slot
+        blockquote.blockquote.text-center.text-light.lora-font(v-if='quote', v-html='quote')
+        br
+        slot
 </template>
 
 <<script>
