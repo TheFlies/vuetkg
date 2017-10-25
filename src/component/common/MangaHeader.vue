@@ -7,7 +7,7 @@ b-navbar(toggleable='md', type='dark', variant='dark')
     b-nav.ml-auto(is-nav-bar)
       b-nav-item.text-center.nav-item-btn.register(@click.prevent='logout', v-if='user') đăng xuất
       template(v-if='!user')
-        b-nav-item.text-center.nav-item-btn.login(href='/login') đăng nhập
+        b-nav-item.text-center.nav-item-btn.login(@click.prevent='loginAndBack') đăng nhập
         b-nav-item.text-center.nav-item-btn.register(href='/register') đăng ký
 </template>
 
@@ -36,6 +36,10 @@ export default {
         document.documentElement.className = ''
         this.toggleState = false
       }
+    },
+    loginAndBack() {
+      let back = this.$route.path
+      this.$router.push(`/login?back=${back}`)
     },
     logout() {
       firebase.auth().signOut().then(() => {

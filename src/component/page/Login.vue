@@ -42,6 +42,7 @@ import SpecialBox from '../common/SpecialBox'
 
 export default {
   name: 'tkg-login',
+  props: ['back'],
   data() {
     return {
       coverShow: true,
@@ -66,7 +67,11 @@ export default {
           .signInWithEmailAndPassword(this.account.email, this.account.password)
           .then(
             user => {
-              this.$router.replace('/')
+              if (this.back) {
+                this.$router.replace(this.back)
+              } else {
+                this.$router.replace('/')
+              }
             },
             err => {
               this.error = err.message

@@ -29,7 +29,7 @@ let router = new Router({
       name: 'Landing',
       component: TkgLanding
     },
-    { path: '/login', name: 'Login', component: TkgLogin },
+    { path: '/login', name: 'Login', component: TkgLogin, props: (r) => ({ back: r.query.back }) },
     { path: '/register', name: 'Register', component: TkgRegister, props: (r) => ({ email: r.query.email }) },
     { path: '/book', name: 'Xem truyen chu', component: TkgBook },
     { path: '/manga', name: 'Xem truyen tranh', component: TkgManga },
