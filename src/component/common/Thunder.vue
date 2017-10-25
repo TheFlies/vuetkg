@@ -259,8 +259,7 @@ export default {
 
 
 .thunder h3 {
-  color: red;
-  font-family: Nosifer, Roboto Slab, sans-serif;
+  font-family: Dancing Script, Roboto Slab, sans-serif;
   font-weight: 600;
   font-size: 2.5rem;
 }
@@ -269,7 +268,7 @@ export default {
   border-color: black;
   background-color: #ddd;
   color: #111;
-  font-family: Nosifer, Roboto Slab, sans-serif;
+  font-family: Lora, Roboto Slab, sans-serif;
 }
 
 // lightning and rain

@@ -82,7 +82,7 @@ ul.icons li .fa:before {
 #footer {
 	background: #f0f0f0;
 	padding: 4em 0 6em 0;
-	margin: 1em 0 0 0;
+	/* margin: 1em 0 0 0; */
 	text-align: center;
 }
 

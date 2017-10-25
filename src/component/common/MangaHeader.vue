@@ -1,35 +1,18 @@
 <template lang="pug">
-nav.navbar.navbar-expand-lg.bg-primary
-  .container-fluid
-    .navbar-translate
-      button.navbar-toggler.navbar-toggler-right.navbar-burger(type='button',
-        data-toggle='collapse', data-target='#navbarToggler', 
-        :aria-controls='target.id ? target.id : target',
-        :aria-expanded="toggleState ? 'true' : 'false'",
-        @click.prevent='toggle()',
-        aria-label='Toggle navigation',
-        :class="toggleState ? ['collapsed', 'toggled']: {}"
-      )
-        span.navbar-toggler-bar
-        span.navbar-toggler-bar
-        span.navbar-toggler-bar
-      a.navbar-brand(href='/') TKG
-        span.label &nbsp;by The Flies
-    #navbarToggler.collapse.navbar-collapse(:class="toggleState ? '' : 'show'")
-      ul.navbar-nav.ml-auto
-        li.nav-item
-          a.nav-link(href='/') gác
-        li.nav-item(v-if='user')
-          button.btn(@click.prevent="logout") đăng xuất
-        li.nav-item(v-if='!user')
-          a.btn.btn-outline-primary.white-text(href='/login') đăng nhập
-          a.btn.btn-primary(href='/register') đăng ký
+b-navbar(toggleable='md', type='dark', variant='dark')
+  b-nav-toggle(target='nav_collapse')
+  b-navbar-brand(href='/') TKG
+    span.h6 &nbsp; by The Flies
+  b-collapse#nav_collapse(is-nav)
+    b-nav.ml-auto(is-nav-bar)
+      b-nav-item.text-center.nav-item-btn.register(@click.prevent='logout', v-if='user') đăng xuất
+      template(v-if='!user')
+        b-nav-item.text-center.nav-item-btn.login(href='/login') đăng nhập
+        b-nav-item.text-center.nav-item-btn.register(href='/register') đăng ký
 </template>
 
 <script>
 import firebase from 'firebase'
-
-import NavItemDropdown from './navbar/NavItemDropdown'
 
 export default {
   name: 'tkg-manga-header',
@@ -41,7 +24,6 @@ export default {
       toggleState: false
     }
   },
-  components: { NavItemDropdown },
   mounted () {
     this.user = firebase.auth().currentUser
   },
@@ -66,9 +48,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-a.btn.btn-outline-neutral.white-text:hover {
-  color: #333 !important;
-}
+// a.btn.btn-outline-neutral.white-text:hover {
+//   color: #333 !important;
+// }
 // #header h1 {
 //   color: inherit;
 //   height: inherit;

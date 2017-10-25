@@ -7,26 +7,27 @@
       .container
         .row
           .col-lg-4.col-md-6.col-sm-8.ml-auto.mr-auto
-            .card.card-register
-              h3.title Tàng Kinh Gác
-              .social-line.text-center
-                a.btn.btn-neutral.btn-facebook.btn-just-icon(href='#pablo')
-                  i.fa.fa-facebook-square
-                a.btn.btn-neutral.btn-google.btn-just-icon(href='#pablo')
-                  i.fa.fa-google-plus
-                a.btn.btn-neutral.btn-github.btn-just-icon(href='#pablo')
-                  i.fa.fa-github
-              form.register-form
-                label I meo
-                input.form-control(type='text', placeholder='Email', v-model='account.email')
+            b-card-group(deck)
+              b-card.card-register(title='Tàng Kinh Gác', text-variant='light', align='center')
+                //- h3.text-white.title Tàng Kinh Gác
+                .social-line.text-center
+                  a.btn.btn-neutral.btn-facebook.btn-just-icon(href='#pablo')
+                    i.fa.fa-facebook-square
+                  a.btn.btn-neutral.btn-google.btn-just-icon(href='#pablo')
+                    i.fa.fa-google-plus
+                  a.btn.btn-neutral.btn-github.btn-just-icon(href='#pablo')
+                    i.fa.fa-github
+                b-form.register-form
+                  b-form-group(label='I meo', label-text-align='left')
+                    b-form-input.form-control(type='text', placeholder='Email', v-model='account.email')
 
-                label Mật khẩu
-                input.form-control(type='password', placeholder='Password', v-model='account.password')
+                  b-form-group(label='Mật khẩu', label-text-align='left')
+                    b-form-input.form-control(type='password', placeholder='Password', v-model='account.password')
 
-                button.btn.btn-danger.btn-block.btn-round(@click.prevent='login') [|]
-              .forgot
-                a.btn.btn-link(href='#') quên?
-        .footer.register-footer.text-center
+                  b-button.btn.btn-danger.btn-block.btn-round(@click.prevent='login') [|]
+                .forgot
+                  a.btn.btn-link(href='/forgot') quên?
+        .footer.text-white.register-footer.text-center
           h6 &copy;2017, made with <i class="fa fa-heart heart"></i> by The Flies
 </template>
 

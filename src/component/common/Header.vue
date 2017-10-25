@@ -3,7 +3,7 @@ b-navbar(toggleable='md', type='dark', variant='dark', fixed='top', :class="{'bg
   b-nav-toggle(target='nav_collapse')
   b-navbar-brand(href='/') TKG
     span.h6 &nbsp; by The Flies
-  b-collapse#nav_collapse(is-nav)
+  b-collapse#nav_collapse(is-nav, v-if='!noMenu')
     b-nav.ml-auto(is-nav-bar)
       b-nav-item-dropdown.text-white(text='xem sách', right)
         b-dropdown-item(href='/manga') hình
@@ -12,8 +12,10 @@ b-navbar(toggleable='md', type='dark', variant='dark', fixed='top', :class="{'bg
         b-dropdown-item(href='/drinking') nhậu
         b-dropdown-item(href='/game') game
         b-dropdown-item(href='/girl') gals
-      b-nav-item.text-center.nav-item-btn.login(href='/login') đăng nhập
-      b-nav-item.text-center.nav-item-btn.register(href='/register') đăng ký
+      b-nav-item.text-center.nav-item-btn.register(@click.prevent='logout', v-if='user') đăng xuất
+      template(v-if='!user')
+        b-nav-item.text-center.nav-item-btn.login(href='/login') đăng nhập
+        b-nav-item.text-center.nav-item-btn.register(href='/register') đăng ký
 </template>
 
 <script>
