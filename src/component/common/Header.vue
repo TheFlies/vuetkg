@@ -8,12 +8,12 @@ b-navbar(toggleable='md', type='dark', variant='dark', fixed='top', :class="{'bg
       b-nav-item-dropdown.text-white(text='xem sách', right)
         b-dropdown-item(href='/manga') hình
         b-dropdown-item(href='/book') chữ
-      b-nav-item-dropdown(text='ăn chơi', right)
+      b-nav-item-dropdown.text-white(text='ăn chơi', right)
         b-dropdown-item(href='/drinking') nhậu
         b-dropdown-item(href='/game') game
         b-dropdown-item(href='/girl') gals
-      b-nav-item.nav-item-btn(href='/login') đăng nhập
-      b-nav-item.nav-item-btn.register(href='/register') đăng ký
+      b-nav-item.text-center.nav-item-btn.login(href='/login') đăng nhập
+      b-nav-item.text-center.nav-item-btn.register(href='/register') đăng ký
 </template>
 
 <script>
@@ -67,6 +67,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.nav-item-btn.login {
+  width: 8rem;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5);
+  :hover {
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5);
+  }
+}
+.nav-item-btn.register {
+  width: 8rem;
+  background-color: #e7746f !important;
+  :hover {
+    background-color: #e7746f !important;
+  }
+}
 @media screen and (max-width: 991px){
   // .dropdown.show .dropdown-menu .dropdown-item:hover {
   //   color: #fff;

@@ -17,8 +17,6 @@ footer#footer
     li &copy;2017 by The Flies
     li Design: 
       a(href='http://html5up.net') HTML5 UP
-    li Framework:
-      a(href='https://www.creative-tim.com/product/paper-kit-2') Creative Tim
 </template>
 
 <script>
@@ -28,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-/* ol {
+ol {
 	list-style: decimal;
 	margin: 0 0 2em 0;
 	padding-left: 1.25em;
@@ -84,6 +82,7 @@ ul.icons li .fa:before {
 #footer {
 	background: #f0f0f0;
 	padding: 4em 0 6em 0;
+	margin: 1em 0 0 0;
 	text-align: center;
 }
 
@@ -124,6 +123,6 @@ ul.icons li .fa:before {
 	border-left: 0;
 	margin-left: 0;
 	padding-left: 0;
-} */
+}
 
 </style>
