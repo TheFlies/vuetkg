@@ -7,7 +7,7 @@ import TkgBook from '@/component/page/Book'
 import TkgManga from '@/component/page/Manga'
 import PageNotFound from '@/component/page/PageNotFound'
 // import TkgDashboard from '@/component/page/dashboard'
-import Hello from '@/component/Hello'
+// import Hello from '@/component/Hello'
 
 // import Typography from '@/component/page/dashboard/typography'
 // import Home from '@/component/page/dashboard/home'
@@ -30,9 +30,9 @@ let router = new Router({
       component: TkgLanding
     },
     { path: '/login', name: 'Login', component: TkgLogin },
-    { path: '/register', name: 'Register', component: TkgRegister },
+    { path: '/register', name: 'Register', component: TkgRegister, props: (r) => ({ email: r.query.email }) },
     { path: '/book', name: 'Xem truyen chu', component: TkgBook },
-    { path: '/manga', name: 'Xem truyen tranh', component: TkgManga, meta: { requiresAuth: true } },
+    { path: '/manga', name: 'Xem truyen tranh', component: TkgManga },
     // {
     //   path: '/dashboard',
     //   component: TkgDashboard,
@@ -46,7 +46,7 @@ let router = new Router({
     //     { path: 'notifications', name: 'Notifications', component: Notifications }
     //   ]
     // },
-    { path: '/test-mdl', component: Hello, meta: { requiresAuth: true } },
+    // { path: '/test-mdl', component: Hello, meta: { requiresAuth: true } },
     // ... other routes ...
     // and finally the default route, when none of the above matches:
     { path: '*', component: PageNotFound }

@@ -61,7 +61,7 @@
                 p Dịch theo từng đoạn, câu văn.
                 .actions
                   a.btn.btn-outline-black.black-text(href='#') Chi tiết
-    //- tkg-cta
+    tkg-cta
     tkg-footer
 //- #landing.landing
 //-   #page-wrapper

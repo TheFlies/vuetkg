@@ -18,8 +18,10 @@
         .row
           .col-lg-4.mr-auto.ml-auto
             .d-flex.justify-content-center
-              a.btn.btn-outline-primary(href='/') Tàng kinh gác
-              a.btn.btn-primary(href='https://google.com') Gu gồ
+              .p-2
+                a.btn.btn-outline-primary(href='/') Tàng kinh gác
+              .p-2
+                a.btn.btn-primary(href='https://google.com') Gu gồ
   //- section#banner
   //-   h2 Ooops!!!
   //-   p Đây là đâu đây ta.
@@ -50,5 +52,28 @@ export default {
 #oops .blockquote b {
   font-weight: bolder;
   color: orange;
+}
+
+#oops .btn-outline-primary {
+  color: white;
+  border-color: white;
+}
+
+#oops .btn-outline-primary:hover {
+  background-color: grey;
+}
+
+#oops .btn {
+  width: 8rem;
+}
+
+#oops .btn-primary {
+  color: white;
+  background-color: grey;
+  border-color: transparent;
+}
+
+#oops .btn-primary:hover {
+  background-color: grey;
 }
 </style>
