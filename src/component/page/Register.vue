@@ -11,11 +11,11 @@
               b-card.card-register(title='Tàng Kinh Gác', text-variant='light', align='center')
                 //- h3.text-white.title Tàng Kinh Gác
                 .social-line.text-center
-                  a.btn.btn-neutral.btn-facebook.btn-just-icon(href='#pablo')
+                  a.text-white.btn(href='#pablo')
                     i.fa.fa-facebook-square
-                  a.btn.btn-neutral.btn-google.btn-just-icon(href='#pablo')
+                  a.text-white.btn(href='#pablo')
                     i.fa.fa-google-plus
-                  a.btn.btn-neutral.btn-github.btn-just-icon(href='#pablo')
+                  a.text-white.btn(href='#pablo')
                     i.fa.fa-github
                 b-form.register-form
                   b-form-group(label='I meo', label-text-align='left')
@@ -95,4 +95,5 @@ export default {
     position: relative;
     line-height: 20px;
 }
+
 </style>

@@ -53,16 +53,16 @@
                 h3 Dzịt giả - Truyện tranh
                 p Dịch theo khung chữ trên hình.
                 .actions
-                  a.btn.btn-outline-black.black-text(href='#') Coi thêm
+                  a.btn.btn-outline-primary.text-black(href='#') Coi thêm
             .col-md-6
               special-box
                 span.image.featured: img(src='static/images/pic033.jpg', alt='')
                 h3 Dzật giả - Truyện chữ
                 p Dịch theo từng đoạn, câu văn.
                 .actions
-                  a.btn.btn-outline-black.black-text(href='#') Chi tiết
+                  a.btn.btn-outline-primary.text-black(href='#') Chi tiết
     tkg-cta
-    tkg-footer
+    tkg-footer(show-design)
 //- #landing.landing
 //-   #page-wrapper
 //-     tkg-header

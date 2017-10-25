@@ -25,15 +25,20 @@ export default {
 
 <style lang="scss">
 // My customize color
-$primary-color: #333333;
+// $primary-color: #333333;
+$body-bg: #ddd;
+$body-color: #111;
 $font-family-sans-serif: 'Roboto', Arial, sans-serif;
 
-@import '~bootstrap/scss/bootstrap.scss';
+$theme-colors: (
+  "primary": #333333
+);
+
+@import '~bootstrap/scss/bootstrap';
 
 @import 'assets/style.scss';
 
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
-// @import './assets/pk-2.1.0/sass/paper-kit.scss';
 
 body {
   background-color: #ddd;

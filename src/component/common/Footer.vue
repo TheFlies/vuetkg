@@ -15,13 +15,14 @@ footer#footer
       span.label Google+
   ul.copyright
     li &copy;2017 by The Flies
-    li Design: 
+    li(v-if='showDesign') Design: 
       a(href='http://html5up.net') HTML5 UP
 </template>
 
 <script>
 export default {
-  name: 'tkg-footer'
+  name: 'tkg-footer',
+  props: ['show-design']
 }
 </script>
 
@@ -81,7 +82,7 @@ ul.icons li .fa:before {
   
 #footer {
 	background: #f0f0f0;
-	padding: 4em 0 6em 0;
+	padding: 1em 0 1em 0;
 	/* margin: 1em 0 0 0; */
 	text-align: center;
 }

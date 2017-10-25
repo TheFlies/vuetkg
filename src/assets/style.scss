@@ -1,4 +1,4 @@
-$fast-transition-time:           150ms !default;
+$fast-transition-time:           350ms !default;
 
 @mixin transition($time, $type){
   -webkit-transition: all $time $type;
@@ -6,6 +6,14 @@ $fast-transition-time:           150ms !default;
   -o-transition: all $time $type;
   -ms-transition: all $time $type;
   transition: all $time $type;
+}
+
+@mixin transitionForProp($prop, $time, $type){
+  -webkit-transition: $prop $time $type;
+  -moz-transition: $prop $time $type;
+  -o-transition: $prop $time $type;
+  -ms-transition: $prop $time $type;
+  transition: $prop $time $type;
 }
 
 // copied from paper-kit
@@ -29,6 +37,34 @@ $fast-transition-time:           150ms !default;
   100%{
     -webkit-transform:translate3d(-50%,0,0);
     transform:translate3d(-50%,0,0)
+  }
+}
+
+.social-line i
+{
+    padding: 5px 10px;
+    display: inline-block;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -moz-box-shadow: 0px 0px 2px #fff;
+    -webkit-box-shadow: 0px 0px 2px #fff;
+    box-shadow: 0px 0px 2px #fff;
+
+    @include transition($fast-transition-time, ease);
+
+    width:40px;
+    height: 27px;
+}
+
+.social-line a {
+  color: #fff;
+}
+
+.social-line a {
+  :hover {
+    background-color: #fff;
+    color: #000;
   }
 }
 
@@ -131,6 +167,7 @@ $fast-transition-time:           150ms !default;
   background: none;
   margin-right: 8px;
   margin-left: 8px;
+  @include transition($fast-transition-time, linear);
   :hover {
     border-radius: 6px;
     background: grey;
@@ -145,7 +182,7 @@ $fast-transition-time:           150ms !default;
 
 // animation
 .navbar {
-  transition: background-color $fast-transition-time ease;
+  @include transition($fast-transition-time, ease)
 }
 
 // paper-kit fog

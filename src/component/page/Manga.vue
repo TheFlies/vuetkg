@@ -2,10 +2,13 @@
 #manga
   tkg-manga-header
   .wrapper
-    b-container
-      b-row.justify-content-md-center(align-v='end')
+    b-container#shelves(fluid)
+      b-row
+        b-col
+          tkg-flip-book
+      b-row.d-flex.align-items-end.justify-content-md-center(align-v='end')
         template(v-for="book in books")
-          b-col.oomb-5(lg='4', sm='6', md='6', @click.prevent='openBook(book)')
+          b-col.oomb-5(xl='2', lg='3', sm='6', md='4', @click.prevent='openBook(book)')
             b-card.text-center.mb-2.text-uppercase(:title='book.title',
               :sub-title='book.author',
               :img-src='book.cover.url', :img-alt='book.title', img-top)
@@ -20,10 +23,11 @@ let imgsRef = fb.storage.ref('manga')
 
 import TkgMangaHeader from '@/component/common/MangaHeader'
 import TkgFooter from '@/component/common/Footer'
+import TkgFlipBook from '@/component/common/FlipBook'
 
 export default {
   name: 'tkg-manga',
-  components: {TkgMangaHeader, TkgFooter},
+  components: {TkgMangaHeader, TkgFooter, TkgFlipBook},
   data () {
     return {
       label: 'Test Me',
@@ -160,4 +164,18 @@ export default {
 .oomb-5 .card-img-top {
   max-height: 450px;
 }
+
+$header: 56px;
+$footer: 109px;
+
+#shelves {
+  max-height: 1024px;
+  height: calc(100vh - #{$header} - #{$footer});
+  overflow-y: auto;
+}
+
+// #footer {
+//   // bottom: 0;
+//   width: 100%;
+// }
 </style>
