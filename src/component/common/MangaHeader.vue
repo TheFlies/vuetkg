@@ -16,6 +16,7 @@ import firebase from 'firebase'
 
 export default {
   name: 'tkg-manga-header',
+  props: ['page-watch'],
   data() {
     return {
       user: null,

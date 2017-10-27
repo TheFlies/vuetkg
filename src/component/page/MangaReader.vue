@@ -1,17 +1,12 @@
 <template lang="pug">
 #manga
-  tkg-manga-header
+  tkg-manga-header(page-num)
   .wrapper
     b-container#shelves(fluid)
-      b-row
-        b-col
-          tkg-flip-book
-      b-row.d-flex.align-items-end.justify-content-md-center(align-v='end')
-        template(v-for="book in books")
-          b-col.oomb-5(xl='2', lg='3', sm='6', md='4', @click.prevent='openBook(book)')
-            b-card.text-center.mb-2.text-uppercase(:title='book.title',
-              :sub-title='book.author',
-              :img-src='book.cover.url', :img-alt='book.title', img-top)
+      b-row(v-if='pages', v-for='page in pages', :key='page.num')
+        b-col(sm='12')
+          .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
+            img(:src='page.path')
     tkg-footer
 </template>
 
@@ -26,10 +21,13 @@ import TkgFooter from '@/component/common/Footer'
 import TkgFlipBook from '@/component/common/FlipBook'
 
 export default {
-  name: 'tkg-manga',
+  name: 'tkg-manga-reader',
   components: {TkgMangaHeader, TkgFooter, TkgFlipBook},
   data () {
     return {
+      volume: null,
+      chapter: null,
+      pages: [],
       label: 'Test Me',
       alignEnd: false,
       checked: true,
@@ -41,6 +39,7 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       slideValue: 50,
       sliderDisabled: false,
+      book: null,
       books: [
         // {
         //   'title': 'Harry Potter',
@@ -118,39 +117,40 @@ export default {
     }
   },
   mounted() {
-    this.getBooks()
+    this.volume = this.$route.params.volume
+    this.chapter = this.$route.params.chapter
+
+    this.getBook(this.$route.params.id)
   },
   methods: {
     bookCoverStyle(cover) {
-      // console.log(`[{ 'background-image': '${cover.url}'}, {'width': '${cover.width}'}, {'height': '${cover.height}'} ]`)
-      // return `[{ 'background-image': '${cover.url}'}, {'width': '${cover.width}'}, {'height': '${cover.height}'} ]`
       return {
         'background-image': `url(${cover.url})`,
         'width': `${cover.width}px`,
         'height': `${cover.height}px`
       }
     },
-    getBooks() {
-      mangasRef.get().then(querySnapshot => {
-        // this.books = []
-        querySnapshot.forEach(doc => {
-          let book = doc.data()
-          book.id = doc.id
-          // latest vol
-          let latestVol = book.latestVol ? book.latestVol.id || 1 : 1
-          let path = `/${book.title}/${latestVol}/000.jpg`
-          // getting cover url
-          imgsRef.child(path).getDownloadURL().then((url) => {
-            book.cover.url = url
-            this.books.push(book)
+    getBook(id) {
+      let bookRef = mangasRef.doc(id)
+      bookRef.get().then(book => {
+        if (book.exists) {
+          this.book = book.data()
+          this.book.id = book.id
+          let currentVol = this.volume || 1
+          let volumeRef = bookRef.collection('volumes').doc(currentVol)
+          volumeRef.collection('pages').orderBy('num').get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              let page = doc.data()
+              imgsRef.child(`/${this.book.title}/${currentVol}/${page.file}`).getDownloadURL().then((url) => {
+                page.path = url
+                this.pages.splice(page.num - 1, 0, page)
+              })
+            })
+          }).catch(error => {
+            console.log('Error getting documents: ', error)
           })
-        })
+        }
       })
-    },
-    openBook(book) {
-      console.log('open ' + book.title + ' id: ' + book.id)
-      let currentVol = book.reading || 1
-      this.$router.push(`/manga/${book.id}/${currentVol}`)
     }
   }
 }
