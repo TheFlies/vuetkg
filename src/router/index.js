@@ -5,6 +5,7 @@ import TkgLogin from '@/component/page/Login'
 import TkgRegister from '@/component/page/Register'
 import TkgBook from '@/component/page/Book'
 import TkgManga from '@/component/page/Manga'
+import TkgMangaReader from '@/component/page/MangaReader'
 import PageNotFound from '@/component/page/PageNotFound'
 // import TkgDashboard from '@/component/page/dashboard'
 // import Hello from '@/component/Hello'
@@ -31,8 +32,9 @@ let router = new Router({
     },
     { path: '/login', name: 'Login', component: TkgLogin, props: (r) => ({ back: r.query.back }) },
     { path: '/register', name: 'Register', component: TkgRegister, props: (r) => ({ email: r.query.email }) },
-    { path: '/book', name: 'Xem truyen chu', component: TkgBook },
-    { path: '/manga', name: 'Xem truyen tranh', component: TkgManga },
+    { path: '/book', name: 'Danh sach truyen chu', component: TkgBook },
+    { path: '/manga', name: 'Danh sach truyen tranh', component: TkgManga },
+    { path: '/manga/:id/:volume/:chapter?', name: 'Xem truyen tranh', component: TkgMangaReader },
     // {
     //   path: '/dashboard',
     //   component: TkgDashboard,
