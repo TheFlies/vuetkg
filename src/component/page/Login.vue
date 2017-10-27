@@ -39,6 +39,8 @@ import TkgThunder from '../common/Thunder'
 
 import firebase from 'firebase'
 import SpecialBox from '../common/SpecialBox'
+import fb from '../../firebase.js'
+let usersRef = fb.dbFirestore.collection('users')
 
 export default {
   name: 'tkg-login',
@@ -67,6 +69,8 @@ export default {
           .signInWithEmailAndPassword(this.account.email, this.account.password)
           .then(
             user => {
+              // getting user infor
+              this.currentUser(user.email)
               if (this.back) {
                 this.$router.replace(this.back)
               } else {
@@ -78,6 +82,18 @@ export default {
             }
           )
       }
+    },
+    currentUser(email) {
+      console.log(JSON.stringify(email))
+      usersRef.doc(email).get().then(user => {
+        if (user.exists) {
+          console.log('User information: ', JSON.stringify(user.data()))
+        } else {
+          console.log('User not existed')
+        }
+      }).catch(error => {
+        console.error('Get user error: ', error)
+      })
     }
   }
 }
