@@ -24,6 +24,38 @@
 </template>
 
 <script>
+
+function Region() {
+  this.left = 999999
+  this.top = 999999
+  this.right = 0
+  this.bottom = 0
+}
+Region.prototype.reset = function() {
+  this.left = 999999
+  this.top = 999999
+  this.right = 0
+  this.bottom = 0
+}
+Region.prototype.inflate = function(x, y) {
+  this.left = Math.min(this.left, x)
+  this.top = Math.min(this.top, y)
+  this.right = Math.max(this.right, x)
+  this.bottom = Math.max(this.bottom, y)
+}
+Region.prototype.contains = function(x, y) {
+  return x > this.left && x < this.right && y > this.top && y < this.bottom
+}
+Region.prototype.toRectangle = function(padding) {
+  padding |= 0
+  return {
+    x: this.left - padding,
+    y: this.top - padding,
+    width: this.right - this.left + (padding * 2),
+    height: this.bottom - this.top + (padding * 2)
+  }
+}
+
 export default {
   name: 'tkg-flip-book',
   props: {
@@ -31,16 +63,44 @@ export default {
       default: 830,
       type: Number
     },
-    pageWidth: {
-      default: 400,
-      type: Number
-    },
     bookHeight: {
       default: 260,
       type: Number
     },
+    pageWidth: {
+      default: 400,
+      type: Number
+    },
     pageHeight: {
       default: 250,
+      type: Number
+    },
+    pageMinWidth: {
+      default: 1000,
+      type: Number
+    },
+    pageMinHeight: {
+      default: 680,
+      type: Number
+    },
+    pageMarginX: {
+      default: 32,
+      type: Number
+    },
+    pageMarginY: {
+      default: 10,
+      type: Number
+    },
+    bookOffsetX: {
+      default: 5,
+      type: Number
+    },
+    canvasVerticalPadding: {
+      default: 80,
+      type: Number
+    },
+    canvasHorizontalPadding: {
+      default: 20,
       type: Number
     }
   },
@@ -50,14 +110,28 @@ export default {
       canvas: null,
       context: null,
       canvasPadding: 60,
+      mouseOverWidth: 60,
       page: 0,
       mouse: { x: 0, y: 0 },
-      flips: []
+      flips: [],
+      frameRate: 30,
+      clickFrequency: 350,
+      pages: [],
+      dirtyRegion: new Region()
     }
   },
   computed: {
     pageY() {
       return (this.bookHeight - this.pageHeight) / 2
+    },
+    bookWidthClosed() {
+      return (this.bookWidth / 2)
+    },
+    canvasWidth() {
+      return this.bookWidth + (this.canvasHorizontalPadding * 2)
+    },
+    canvasHeight() {
+      return this.bookHeight + (this.canvasVerticalPadding * 2)
     }
   },
   mounted() {
@@ -80,7 +154,8 @@ export default {
         // The page DOM element related to this flip
         page: pages[i],
         // True while the page is being dragged
-        dragging: false
+        dragging: false,
+        over: false
       })
     }
 
@@ -100,9 +175,23 @@ export default {
       // Offset mouse position so that the top of the spine is 0,0
       this.mouse.x = event.clientX - this.book.offsetLeft - (this.bookWidth / 2)
       this.mouse.y = event.clientY - this.book.offsetTop
+
+      if (Math.abs(this.mouse.x) < this.pageWidth && this.mouse.x > (this.pageWidth - this.mouseOverWidth)) {
+        if (this.page + 1 < this.flips.length) {
+          this.flips[this.page].over = true
+        }
+      } else {
+        // animate this back to normal
+        if (this.flips[this.page]) {
+          if (this.flips[this.page].over) {
+            this.flips[this.page].target = 1
+            this.flips[this.page].over = false
+          }
+        }
+      }
     },
     mouseDownHandler(event) {
-      if (Math.abs(this.mouse.x) < this.pageWidth && (this.mouse.x > 370 || this.mouse.x < 0)) {
+      if (Math.abs(this.mouse.x) < this.pageWidth && (this.mouse.x > (this.pageWidth - this.mouseOverWidth) || this.mouse.x < 0)) {
         if (this.mouse.x < 0 && this.page - 1 >= 0) {
           this.flips[this.page - 1].dragging = true
         } else if (this.mouse.x > 0 && this.page + 1 < this.flips.length) {
@@ -139,14 +228,14 @@ export default {
       for (let i = 0; i < this.flips.length; i++) {
         let flip = this.flips[i]
 
-        if (flip.dragging) {
+        if (flip.dragging || flip.over) {
           flip.target = Math.max(Math.min(this.mouse.x / this.pageWidth, 1), -1)
         }
 
         flip.progress += (flip.target - flip.progress) * 0.2
 
         // If the flip is being dragged or is somewhere in the middle of the book, render it
-        if (flip.dragging || Math.abs(flip.progress) < 0.997) {
+        if (flip.dragging || flip.over || Math.abs(flip.progress) < 0.997) {
           this.canvas.style.zIndex = 1010
           this.drawFlip(flip)
         }
@@ -245,10 +334,7 @@ export default {
   position: relative;
   width: 830px;
   height: 260px;
-  // left: 50%;
-  // top: 50%;
-  // margin-left: -400px;
-  // margin-top: -125px;
+  margin-top: 25px;
 }
 
 #pages section {
