@@ -1,12 +1,15 @@
 <template lang="pug">
 #manga
-  tkg-manga-header(page-num)
+  tkg-manga-header(page-num, :total-page='pages.length')
   .wrapper
     b-container#shelves(fluid)
+      b-row(v-if='pageLoading')
+        b-col(sm='12')
+          b-img(:src='loadingUrl', center)
       b-row(v-if='pages', v-for='page in pages', :key='page.num')
         b-col(sm='12')
-          .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
-            img(:src='page.path')
+          //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
+          b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)')
     tkg-footer
 </template>
 
@@ -25,6 +28,7 @@ export default {
   components: {TkgMangaHeader, TkgFooter, TkgFlipBook},
   data () {
     return {
+      loadingUrl: '/static/images/img-loading.gif',
       volume: null,
       chapter: null,
       pages: [],
@@ -113,7 +117,8 @@ export default {
         //     'height': 500
         //   }
         // }
-      ]
+      ],
+      pageLoading: false
     }
   },
   mounted() {
@@ -121,6 +126,7 @@ export default {
     this.chapter = this.$route.params.chapter
 
     this.getBook(this.$route.params.id)
+    this.pageLoading = true
   },
   methods: {
     bookCoverStyle(cover) {
@@ -145,6 +151,9 @@ export default {
                 page.path = url
                 this.pages.splice(page.num - 1, 0, page)
               })
+              if (this.pageLoading) {
+                this.pageLoading = false
+              }
             })
           }).catch(error => {
             console.log('Error getting documents: ', error)

@@ -5,6 +5,7 @@ import VueFire from 'vuefire'
 import firebase from 'firebase'
 import App from './App'
 import router from './router'
+import store from './store'
 
 import BoostrapVue from 'bootstrap-vue'
 
@@ -40,6 +41,7 @@ firebase.auth().onAuthStateChanged(user => {
     app = new Vue({
       el: '#app',
       router,
+      store,
       template: '<App/>',
       components: { App },
       data: {

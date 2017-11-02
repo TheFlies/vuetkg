@@ -36,11 +36,9 @@ import TkgHeader from '../common/Header'
 import TkgBanner from '../common/Banner'
 import TkgFooter from '../common/Footer'
 import TkgThunder from '../common/Thunder'
-
-import firebase from 'firebase'
 import SpecialBox from '../common/SpecialBox'
-import fb from '../../firebase.js'
-let usersRef = fb.dbFirestore.collection('users')
+
+import auth from '../../service/auth'
 
 export default {
   name: 'tkg-login',
@@ -58,42 +56,18 @@ export default {
   components: { TkgHeader, TkgFooter, TkgBanner, SpecialBox, TkgThunder },
   methods: {
     login() {
-      console.log(`Prepare login with: ${this.account.email}`)
-      this.error = ''
-      if (!this.account.email || !this.account.password) {
-        this.error = 'Missing email or password'
-        return
-      } else {
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(this.account.email, this.account.password)
-          .then(
-            user => {
-              // getting user infor
-              this.currentUser(user.email)
-              if (this.back) {
-                this.$router.replace(this.back)
-              } else {
-                this.$router.replace('/')
-              }
-            },
-            err => {
-              this.error = err.message
-            }
-          )
-      }
-    },
-    currentUser(email) {
-      console.log(JSON.stringify(email))
-      usersRef.doc(email).get().then(user => {
-        if (user.exists) {
-          console.log('User information: ', JSON.stringify(user.data()))
-        } else {
-          console.log('User not existed')
-        }
-      }).catch(error => {
-        console.error('Get user error: ', error)
-      })
+      auth
+        .login(this.account)
+        .then(() => {
+          if (this.back) {
+            this.$router.replace(this.back)
+          } else {
+            this.$router.replace('/')
+          }
+        })
+        .catch(err => {
+          this.err = err.message
+        })
     }
   }
 }

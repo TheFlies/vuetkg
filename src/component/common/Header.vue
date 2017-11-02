@@ -12,28 +12,45 @@ b-navbar(toggleable='md', type='dark', variant='dark', fixed='top', :class="{'bg
         b-dropdown-item(href='/drinking') nhậu
         b-dropdown-item(href='/game') game
         b-dropdown-item(href='/girl') gals
-      b-nav-item.text-center.nav-item-btn.register(@click.prevent='logout', v-if='user') đăng xuất
-      template(v-if='!user')
+      b-nav-item-dropdown(v-if='isAdmin', text='admin')
+        b-dropdown-item(href='/admin/manga') manga
+        b-dropdown-item(href='/admin/book') book
+        b-dropdown-item(href='/admin/user') user
+      b-nav-item.text-center.nav-item-btn.register(@click.prevent='logout', v-if='email') đăng xuất
+      template(v-if='!email')
         b-nav-item.text-center.nav-item-btn.login(href='/login') đăng nhập
         b-nav-item.text-center.nav-item-btn.register(href='/register') đăng ký
 </template>
 
 <script>
 import firebase from 'firebase'
+import { mapGetters } from 'vuex'
+
+import auth from '../../service/auth'
 
 export default {
   name: 'tkg-header',
   props: ['color-on-scroll', 'no-menu'],
   data() {
     return {
-      user: null,
+      email: null,
       transparent: true,
       target: { 'id': 'navbarToggler' },
       toggleState: false
     }
   },
   mounted () {
-    this.user = firebase.auth().currentUser
+    this.email = (firebase.auth().currentUser || {}).email
+    if (!this.user && this.email) {
+      // we loggedIn but no user state, update the user state by email
+      auth.currentUser(this.email)
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'isAdmin',
+      'user'
+    ])
   },
   methods: {
     toggle() {
@@ -46,8 +63,8 @@ export default {
       }
     },
     logout() {
-      firebase.auth().signOut().then(() => {
-        this.user = null
+      auth.logout().then(() => {
+        this.email = null
         this.$router.replace('/')
       })
     },
@@ -69,40 +86,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-item-btn.login {
-  width: 8rem;
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5);
-  :hover {
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .5);
-  }
-}
-.nav-item-btn.register {
-  width: 8rem;
-  background-color: #e7746f !important;
-  :hover {
-    background-color: #e7746f !important;
-  }
-}
-@media screen and (max-width: 991px){
-  // .dropdown.show .dropdown-menu .dropdown-item:hover {
-  //   color: #fff;
-  //   background-color: #f7765f;
-  // }
-  // .dropdown.show .dropdown-menu .dropdown-item:first-child:hover {
-  //   border-top-left-radius: 12px;
-  //   border-top-right-radius: 12px;
-  // }
-  // .dropdown.show .dropdown-menu .dropdown-item:last-child:hover {
-  //   border-bottom-left-radius: 12px;
-  //   border-bottom-right-radius: 12px;
-  // }
-  // .nav-item .white-text {
-  //   color: #000;
-  // }
-
-  // .nav-item:hover .white-text {
-  //   color: #FFF;
-  // }
-}
 </style>
 
