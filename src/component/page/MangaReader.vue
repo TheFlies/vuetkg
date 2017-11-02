@@ -205,7 +205,7 @@ export default {
         let br = cp.getBoundingClientRect()
         let top = br.top - 56
         let bottom = br.bottom
-        let clientHeight = document.documentElement.clientHeight - 56 - 109
+        let clientHeight = document.documentElement.clientHeight - 56 - 91.39
 
         if (bottom <= Math.round(clientHeight / 2)) {
           if (this.currentPage < this.pages.length) {
@@ -258,7 +258,7 @@ export default {
 }
 
 $header: 56px;
-$footer: 109px;
+$footer: 91.39px;
 
 #shelves {
   max-height: 1024px;

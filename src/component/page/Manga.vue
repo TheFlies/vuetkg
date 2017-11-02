@@ -169,7 +169,7 @@ export default {
 }
 
 $header: 56px;
-$footer: 109px;
+$footer: 91.39px;
 
 #shelves {
   max-height: 1024px;
