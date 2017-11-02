@@ -135,9 +135,9 @@ export default {
         // this.books = []
         querySnapshot.forEach(doc => {
           let book = doc.data()
-          book.id = doc.id
+          book.id = parseInt(doc.id)
           // latest vol
-          let latestVol = book.latestVol ? book.latestVol.id || 1 : 1
+          let latestVol = (book.latestVol || {}).id || 1
           let path = `/${book.title}/${latestVol}/000.jpg`
           // getting cover url
           imgsRef.child(path).getDownloadURL().then((url) => {
@@ -148,9 +148,10 @@ export default {
       })
     },
     openBook(book) {
-      console.log('open ' + book.title + ' id: ' + book.id)
-      let currentVol = book.reading || 1
-      this.$router.push(`/manga/${book.id}/${currentVol}`)
+      let readingStatus = this.$store.state.user.reading.find(b => b.manga === book.id)
+      let currentVol = (readingStatus || {}).volume || 1
+      let currentPage = (readingStatus || {}).page || 1
+      this.$router.push(`/manga/${book.id}/${currentVol}?p=${currentPage}`)
     }
   }
 }
