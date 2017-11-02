@@ -959,6 +959,10 @@ better-assert@~1.0.0:
   dependencies:
     callsite "1.0.0"
 
+bezier-easing@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/bezier-easing/-/bezier-easing-2.0.3.tgz#cb493fddb7f8920ecca00973344ce0518885f17e"
+
 big.js@^3.1.3:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
@@ -6429,6 +6433,12 @@ vue-loader@^13.0.4:
 vue-router@^2.7.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.8.1.tgz#9833c9ee57ac83beb0269056fefee71713f20695"
+
+vue-scrollto@^2.7.9:
+  version "2.7.9"
+  resolved "https://registry.yarnpkg.com/vue-scrollto/-/vue-scrollto-2.7.9.tgz#59d902247861dff9ac33c01c9dc628a00896a6ff"
+  dependencies:
+    bezier-easing "^2.0.3"
 
 vue-style-loader@^3.0.0, vue-style-loader@^3.0.1:
   version "3.0.3"

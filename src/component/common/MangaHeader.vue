@@ -5,7 +5,11 @@ b-navbar(toggleable='md', type='dark', variant='dark')
     span.h6 &nbsp; by The Flies
   b-collapse#nav_collapse(is-nav)
     b-nav(is-nav-bar, v-if='pageNum')
-      b-nav-item(href='#') {{currentPage || 1}}/{{ totalPage || 1 }}
+      b-nav-item(href='#', @click.prevent='editPage')
+        a {{pageNum || 1}}
+        | /{{ totalPage || 1 }}
+      b-nav-form(v-if='changingPage', disabled, @submit.prevent='done')
+        b-form-input(size='sm', class='ml-sm-1', type='text', placeholder='insert page', v-model='currentPage', v-click-outside='done')
     b-nav.ml-auto(is-nav-bar)
       b-nav-item-dropdown(v-if='isAdmin', text='admin')
         b-dropdown-item(href='/admin/manga') manga
@@ -28,6 +32,7 @@ export default {
   props: ['page-num', 'total-page'],
   data() {
     return {
+      changingPage: false,
       currentPage: 1,
       email: null,
       transparent: true,
@@ -36,7 +41,6 @@ export default {
     }
   },
   mounted () {
-    console.log(' displaying page num on the header: ' + this.pageNum)
     this.email = (firebase.auth().currentUser || {}).email
     if (!this.user && this.email) {
       // update currentUser by email
@@ -50,6 +54,13 @@ export default {
     ])
   },
   methods: {
+    done() {
+      this.changingPage = false
+      this.$emit('changePage', this.currentPage)
+    },
+    editPage() {
+      this.changingPage = true
+    },
     toggle() {
       if (!this.toggleState) {
         document.documentElement.className = 'nav-open'
