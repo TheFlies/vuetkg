@@ -1,12 +1,12 @@
 <template lang="pug">
 #manga
-  tkg-manga-header(page-num, :total-page='pages.length')
+  tkg-manga-header(:page-num='currentPage', :total-page='pages.length', v-on:changePage='scrollTo')
   .wrapper
     b-container#shelves(fluid)
       b-row(v-if='pageLoading')
         b-col(sm='12')
           b-img(:src='loadingUrl', center)
-      b-row(v-if='pages', v-for='page in pages', :key='page.num')
+      b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
         b-col(sm='12')
           //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
           b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)')
@@ -23,6 +23,23 @@ import TkgMangaHeader from '@/component/common/MangaHeader'
 import TkgFooter from '@/component/common/Footer'
 import TkgFlipBook from '@/component/common/FlipBook'
 
+import VueScrollTo from 'vue-scrollto'
+
+let options = {
+  container: '#shelves',
+  easing: 'ease-in',
+  offset: 0,
+  cancelable: false,
+  onDone: function() {
+    // scrolling is done
+  },
+  onCancel: function() {
+    // scrolling has been interrupted
+  },
+  x: false,
+  y: true
+}
+
 export default {
   name: 'tkg-manga-reader',
   components: {TkgMangaHeader, TkgFooter, TkgFlipBook},
@@ -32,6 +49,7 @@ export default {
       volume: null,
       chapter: null,
       pages: [],
+      currentPage: 1,
       label: 'Test Me',
       alignEnd: false,
       checked: true,
@@ -127,6 +145,13 @@ export default {
 
     this.getBook(this.$route.params.id)
     this.pageLoading = true
+
+    let shelves = document.getElementById('shelves')
+    shelves.addEventListener('scroll', this.updatePage)
+  },
+  updated() {
+    let shelves = document.getElementById('shelves')
+    shelves.addEventListener('scroll', this.updatePage)
   },
   methods: {
     bookCoverStyle(cover) {
@@ -147,9 +172,11 @@ export default {
           volumeRef.collection('pages').orderBy('num').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
               let page = doc.data()
+              this.pages.push(page)
+              let idx = this.pages.length - 1
               imgsRef.child(`/${this.book.title}/${currentVol}/${page.file}`).getDownloadURL().then((url) => {
                 page.path = url
-                this.pages.splice(page.num - 1, 0, page)
+                this.pages.splice(idx, 1, page)
               })
               if (this.pageLoading) {
                 this.pageLoading = false
@@ -160,7 +187,60 @@ export default {
           })
         }
       })
+    },
+    // Finds y value of given object
+    // findPos(obj) {
+    //   var curtop = 0
+    //   if (obj.offsetParent) {
+    //     do {
+    //       curtop += obj.offsetTop
+    //       obj = obj.offsetParent
+    //     } while (obj)
+    //     return [curtop]
+    //   }
+    // },
+    updatePage() {
+      let cp = document.getElementById(`page_${this.currentPage}`)
+      if (cp) {
+        let br = cp.getBoundingClientRect()
+        let top = br.top - 56
+        let bottom = br.bottom
+        let clientHeight = document.documentElement.clientHeight - 56 - 109
+
+        if (bottom <= Math.round(clientHeight / 2)) {
+          if (this.currentPage < this.pages.length) {
+            this.currentPage++
+          }
+        } else {
+          if (top >= clientHeight) {
+            if (this.currentPage > 1) {
+              this.currentPage--
+            }
+          }
+        }
+      }
+    },
+    scrollTo(page) {
+      if (page !== this.currentPage) {
+        // console.log('scroll to ' + page)
+        // let shelves = document.getElementById('shelves')
+        let cp = document.getElementById(`page_${page}`)
+        if (cp) {
+          // shelves.scrollTo(0, this.findPos(cp))
+          VueScrollTo.scrollTo(cp, 500, options)
+        }
+      }
     }
+  },
+  created() {
+    // console.log('scrolling initialized')
+    // let shelves = document.getElementById('shelves')
+    // shelves.addEventListener('scroll', this.updatePage)
+  },
+  beforeDestroyed() {
+    console.log('scrolling removed')
+    let shelves = document.getElementById('shelves')
+    shelves.removeEventListener('scroll', this.updatePage)
   }
 }
 </script>
