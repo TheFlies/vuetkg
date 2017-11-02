@@ -59,6 +59,7 @@ export default {
       this.$emit('changePage', this.currentPage)
     },
     editPage() {
+      this.currentPage = this.pageNum
       this.changingPage = true
     },
     toggle() {

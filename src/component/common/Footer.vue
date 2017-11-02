@@ -39,7 +39,7 @@ ol li {
 
 ul {
 	list-style: disc;
-	margin: 0 0 2em 0;
+	margin: 0 0 .5em 0;
 	padding-left: 1em;
 }
   
@@ -103,7 +103,7 @@ ul.icons li .fa:before {
 	color: #999;
 	font-size: 0.9em;
 	line-height: 1em;
-	margin: 2em 0 0 0;
+	margin: 1em 0 0 0;
 	padding: 0;
 	text-align: center;
 }
