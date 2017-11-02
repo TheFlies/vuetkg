@@ -4,29 +4,50 @@ b-navbar(toggleable='md', type='dark', variant='dark')
   b-navbar-brand(href='/') TKG
     span.h6 &nbsp; by The Flies
   b-collapse#nav_collapse(is-nav)
+    b-nav(is-nav-bar, v-if='pageNum')
+      b-nav-item(href='#') {{currentPage || 1}}/{{ totalPage || 1 }}
     b-nav.ml-auto(is-nav-bar)
-      b-nav-item.text-center.nav-item-btn.register(@click.prevent='logout', v-if='user') đăng xuất
-      template(v-if='!user')
+      b-nav-item-dropdown(v-if='isAdmin', text='admin')
+        b-dropdown-item(href='/admin/manga') manga
+        b-dropdown-item(href='/admin/book') book
+        b-dropdown-item(href='/admin/user') user
+      b-nav-item.text-center.nav-item-btn.register(@click.prevent='logout', v-if='email') đăng xuất
+      template(v-if='!email')
         b-nav-item.text-center.nav-item-btn.login(@click.prevent='loginAndBack') đăng nhập
         b-nav-item.text-center.nav-item-btn.register(href='/register') đăng ký
 </template>
 
 <script>
 import firebase from 'firebase'
+import { mapGetters } from 'vuex'
+
+import auth from '../../service/auth'
 
 export default {
   name: 'tkg-manga-header',
-  props: ['page-watch'],
+  props: ['page-num', 'total-page'],
   data() {
     return {
-      user: null,
+      currentPage: 1,
+      email: null,
       transparent: true,
       target: { 'id': 'navbarToggler' },
       toggleState: false
     }
   },
   mounted () {
-    this.user = firebase.auth().currentUser
+    console.log(' displaying page num on the header: ' + this.pageNum)
+    this.email = (firebase.auth().currentUser || {}).email
+    if (!this.user && this.email) {
+      // update currentUser by email
+      auth.currentUser(this.email)
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'isAdmin',
+      'user'
+    ])
   },
   methods: {
     toggle() {
@@ -43,8 +64,8 @@ export default {
       this.$router.push(`/login?back=${back}`)
     },
     logout() {
-      firebase.auth().signOut().then(() => {
-        this.user = null
+      auth.logout().then(() => {
+        this.email = null
         this.$router.replace('/')
       })
     }
@@ -53,35 +74,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// a.btn.btn-outline-neutral.white-text:hover {
-//   color: #333 !important;
-// }
-// #header h1 {
-//   color: inherit;
-//   height: inherit;
-//   left: 1.25em;
-//   line-height: inherit;
-//   margin: 0;
-//   padding: 0;
-//   position: absolute;
-//   top: 0;
-// }
-
-// #header h1 a {
-//   color: #fff;
-//   font-weight: 400;
-//   border: 0;
-// }
-
-// #header a {
-//   border-bottom: none;
-//   color: #fff;
-//   font-weight: 400;
-//   border: 0;
-// }
-
-// #header .sub a {
-//   color: #000;
-// }
 </style>
 
