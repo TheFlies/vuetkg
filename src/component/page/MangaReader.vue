@@ -10,7 +10,8 @@
         b-col(sm='12')
           //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
           b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)')
-    tkg-footer
+      b-row
+        tkg-footer(style='width:100%; height:100%')
 </template>
 
 <script>
@@ -205,7 +206,7 @@ export default {
         let br = cp.getBoundingClientRect()
         let top = br.top - 56
         let bottom = br.bottom
-        let clientHeight = document.documentElement.clientHeight - 56 - 91.39
+        let clientHeight = document.documentElement.clientHeight - 56 // - 91.39
 
         if (bottom <= Math.round(clientHeight / 2)) {
           if (this.currentPage < this.pages.length) {
@@ -258,11 +259,11 @@ export default {
 }
 
 $header: 56px;
-$footer: 91.39px;
+// $footer: 91.39px;
 
 #shelves {
   max-height: 1024px;
-  height: calc(100vh - #{$header} - #{$footer});
+  height: calc(100vh - #{$header});
   overflow-y: auto;
 }
 
