@@ -34,7 +34,7 @@ let router = new Router({
     { path: '/register', name: 'Register', component: TkgRegister, props: (r) => ({ email: r.query.email }) },
     { path: '/book', name: 'Danh sach truyen chu', component: TkgBook },
     { path: '/manga', name: 'Danh sach truyen tranh', component: TkgManga },
-    { path: '/manga/:id/:volume/:chapter?', name: 'Xem truyen tranh', component: TkgMangaReader },
+    { path: '/manga/:id(\\d+)/:volume(\\d+)/:chapter(\\d+)?', name: 'Xem truyen tranh', component: TkgMangaReader },
     // {
     //   path: '/dashboard',
     //   component: TkgDashboard,

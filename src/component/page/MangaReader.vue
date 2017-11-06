@@ -9,7 +9,11 @@
       b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
         b-col(sm='12')
           //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
-          b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)')
+          //- b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)', @load.native='imgLoaded(page.num)')
+          p-canvas.mx-auto.d-block(:id="'can_'+page.num",
+            :style="{'background-image': 'url(\\''+page.path+'\\')'}",
+            :width='page.width', :height='page.height'
+          )
       b-row
         tkg-footer(style='width:100%; height:100%')
 </template>
@@ -24,7 +28,11 @@ import TkgMangaHeader from '@/component/common/MangaHeader'
 import TkgFooter from '@/component/common/Footer'
 import TkgFlipBook from '@/component/common/FlipBook'
 
+import PCanvas from '@/component/common/PCanvas'
+
 import VueScrollTo from 'vue-scrollto'
+
+// import fabric from 'fabric'
 
 let options = {
   container: '#shelves',
@@ -43,7 +51,7 @@ let options = {
 
 export default {
   name: 'tkg-manga-reader',
-  components: {TkgMangaHeader, TkgFooter, TkgFlipBook},
+  components: {TkgMangaHeader, TkgFooter, TkgFlipBook, PCanvas},
   data () {
     return {
       loadingUrl: '/static/images/img-loading.gif',
@@ -63,86 +71,29 @@ export default {
       slideValue: 50,
       sliderDisabled: false,
       book: null,
-      books: [
-        // {
-        //   'title': 'Harry Potter',
-        //   'color': 'green',
-        //   'cover': {
-        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Harry+Potter&w=300&h=500',
-        //     'width': 300,
-        //     'height': 500
-        //   }
-        // },
-        // {
-        //   'title': 'Hai vạn dặm dưới đáy biển',
-        //   'color': 'green',
-        //   'cover': {
-        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=400&h=500',
-        //     'width': 400,
-        //     'height': 500
-        //   }
-        // },
-        // {
-        //   'title': 'Hai vạn dặm dưới đáy biển',
-        //   'color': 'green',
-        //   'cover': {
-        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=700&h=300',
-        //     'width': 700,
-        //     'height': 300
-        //   }
-        // },
-        // {
-        //   'title': 'Hai vạn dặm dưới đáy biển',
-        //   'color': 'green',
-        //   'cover': {
-        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
-        //     'width': 300,
-        //     'height': 500
-        //   }
-        // },
-        // {
-        //   'title': 'Hai vạn dặm dưới đáy biển',
-        //   'color': 'green',
-        //   'cover': {
-        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
-        //     'width': 300,
-        //     'height': 500
-        //   }
-        // },
-        // {
-        //   'title': 'Hai vạn dặm dưới đáy biển',
-        //   'color': 'green',
-        //   'cover': {
-        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
-        //     'width': 300,
-        //     'height': 500
-        //   }
-        // },
-        // {
-        //   'title': 'Hai vạn dặm dưới đáy biển',
-        //   'color': 'green',
-        //   'cover': {
-        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
-        //     'width': 300,
-        //     'height': 500
-        //   }
-        // },
-        // {
-        //   'title': 'Hai vạn dặm dưới đáy biển',
-        //   'color': 'green',
-        //   'cover': {
-        //     'url': 'https://placeholdit.imgix.net/~text?txtsize=33&txt=hai+van+dam+duoi+day+bien&w=300&h=500',
-        //     'width': 300,
-        //     'height': 500
-        //   }
-        // }
-      ],
-      pageLoading: false
+      books: [],
+      pageLoading: false,
+      p: null
     }
   },
   mounted() {
+    // let canvas = new fabric.Canvas('can_1', { backgroundColor: '#000' })
+
+    // let rect = new fabric.Rect({
+    //   left: 15,
+    //   top: 15,
+    //   width: 20,
+    //   height: 20,
+    //   fill: 'black',
+    //   stroke: 'green',
+    //   strokeWidth: 2
+    // })
+
+    // canvas.add(rect)
+
     this.volume = this.$route.params.volume
     this.chapter = this.$route.params.chapter
+    this.p = parseInt(this.$route.query.p)
 
     this.getBook(this.$route.params.id)
     this.pageLoading = true
@@ -188,6 +139,11 @@ export default {
           })
         }
       })
+    },
+    imgLoaded(page) {
+      if (this.p && this.p === page) {
+        this.scrollTo(this.p)
+      }
     },
     // Finds y value of given object
     // findPos(obj) {
