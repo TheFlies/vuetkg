@@ -20,3 +20,5 @@ db/
 yarn-error.log
 firebase-debug.log
 debug.log
+
+.yarnrc
