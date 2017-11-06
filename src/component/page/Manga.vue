@@ -148,7 +148,8 @@ export default {
       })
     },
     openBook(book) {
-      let readingStatus = this.$store.state.user.reading.find(b => b.manga === book.id)
+      let user = this.$store.state.user
+      let readingStatus = ((user || {}).reading || []).find(b => b.manga === book.id)
       let currentVol = (readingStatus || {}).volume || 1
       let currentPage = (readingStatus || {}).page || 1
       this.$router.push(`/manga/${book.id}/${currentVol}?p=${currentPage}`)
