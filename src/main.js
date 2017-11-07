@@ -7,6 +7,9 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+import Fabric from './fabric'
+Vue.use(Fabric)
+
 import BoostrapVue from 'bootstrap-vue'
 
 // FIX-ME: work around for bootstrap-vue bug

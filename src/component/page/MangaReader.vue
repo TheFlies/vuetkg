@@ -11,8 +11,9 @@
           //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
           //- b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)', @load.native='imgLoaded(page.num)')
           p-canvas.mx-auto.d-block(:id="'can_'+page.num",
-            :style="{'background-image': 'url(\\''+page.path+'\\')'}",
-            :width='page.width', :height='page.height'
+            :imgSrc='page.path'
+            :width='page.width', :height='page.height',
+            v-if='page.num===1'
           )
       b-row
         tkg-footer(style='width:100%; height:100%')
