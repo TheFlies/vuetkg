@@ -11,7 +11,6 @@ export default {
     return {
       canvas: null,
       drawing: false,
-      nodraw: false,
       x: null,
       y: null,
       square: null,
@@ -24,14 +23,19 @@ export default {
     this.canvas.on('mouse:move', this.draw)
     this.canvas.on('mouse:up', this.stopDraw)
     this.canvas.selection = false
+
+    let square = new fabric.Rect({width: 100, height: 100, left: 10, top: 15, fill: 'white'})
+    this.canvas.add(square)
+    this.boxes.push(square)
   },
   updated() {
     // if (!this.canvas) {
-    this.canvas = new fabric.Canvas(this.$el)
-    this.canvas.on('mouse:down', this.startDraw)
-    this.canvas.on('mouse:move', this.draw)
-    this.canvas.on('mouse:up', this.stopDraw)
-    this.canvas.selection = false
+    // this.canvas = new fabric.Canvas(this.$el)
+    // this.canvas.on('mouse:down', this.startDraw)
+    // this.canvas.on('mouse:move', this.draw)
+    // this.canvas.on('mouse:up', this.stopDraw)
+    // this.canvas.selection = false
+    this.canvas.renderAll()
   },
   watch: {
     imgSrc: function(val) {
@@ -40,47 +44,39 @@ export default {
   },
   methods: {
     startDraw(options) {
-      if (!this.nodraw) {
-        let mouse = this.canvas.getPointer(options.e)
-
-        console.log(options.target)
-
-        console.log(JSON.stringify(this.boxes, null, 2))
-        if (this.boxes.filter(b => {
-          b.containsPoint({x: options.e.clientX, y: options.e.clientY})
-        }).length > 0) {
-          return false
-        }
-
-        this.drawing = true
-        this.x = mouse.x
-        this.y = mouse.y
-
-        let square = new fabric.Rect({
-          width: 0,
-          height: 0,
-          left: this.x,
-          top: this.y,
-          fill: 'white'
-        })
-
-        square.on('mouseover', (options) => {
-          this.nodraw = true
-        })
-
-        square.on('mouseout', (options) => {
-          this.nodraw = false
-        })
-
-        this.canvas.add(square)
-        this.canvas.renderAll()
-        this.canvas.setActiveObject(square)
-
-        this.boxes.push(square)
+      if (options.target) {
+        return false
       }
+      this.drawing = true
+      let mouse = this.canvas.getPointer(options.e)
+
+      // // console.log(JSON.stringify(this.boxes, null, 2))
+      if (this.boxes.filter(b => {
+        // console.log('contained: ' + this.canvas.containsPoint(null, b, mouse))
+        return b.containsPoint(mouse)
+      }).length > 0) {
+        return false
+      }
+
+      // this.drawing = true
+      this.x = mouse.x
+      this.y = mouse.y
+
+      let square = new fabric.Rect({
+        width: 0,
+        height: 0,
+        left: this.x,
+        top: this.y,
+        fill: 'white',
+        hasRotatingPoint: false
+      })
+      // square.per
+      this.canvas.add(square)
+      this.canvas.renderAll()
+      this.canvas.setActiveObject(square)
     },
     draw(options) {
-      if (!this.drawing || this.nodraw) {
+      if (!this.drawing) {
         return false
       }
       let mouse = this.canvas.getPointer(options.e)
@@ -93,12 +89,18 @@ export default {
 
       let square = this.canvas.getActiveObject()
       square.set('width', w).set('height', h)
+      square.set('hasRotatingPoint', false)
+      this.canvas.add(square)
       this.canvas.renderAll()
     },
     stopDraw() {
       if (this.drawing) {
         this.drawing = false
       }
+    },
+    deleteActiveObject() {
+      console.log('delete')
+      this.canvas.getActiveObject().remove()
     }
   }
 }
