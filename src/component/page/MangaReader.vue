@@ -10,11 +10,10 @@
         b-col(sm='12')
           //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
           //- b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)', @load.native='imgLoaded(page.num)')
-          p-canvas.mx-auto.d-block(:id="'can_'+page.num",
+          p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
             :imgSrc='page.path'
-            :width='page.width', :height='page.height',
-            v-if='page.num===1'
-          )
+            :width='page.width', :height='page.height'
+        )
       b-row
         tkg-footer(style='width:100%; height:100%')
 </template>
@@ -91,14 +90,6 @@ export default {
     // })
 
     // canvas.add(rect)
-
-    this.volume = this.$route.params.volume
-    this.chapter = this.$route.params.chapter
-    this.p = parseInt(this.$route.query.p)
-
-    this.getBook(this.$route.params.id)
-    this.pageLoading = true
-
     let shelves = document.getElementById('shelves')
     shelves.addEventListener('scroll', this.updatePage)
   },
@@ -191,9 +182,12 @@ export default {
     }
   },
   created() {
-    // console.log('scrolling initialized')
-    // let shelves = document.getElementById('shelves')
-    // shelves.addEventListener('scroll', this.updatePage)
+    this.volume = this.$route.params.volume
+    this.chapter = this.$route.params.chapter
+    this.p = parseInt(this.$route.query.p)
+
+    this.getBook(this.$route.params.id)
+    this.pageLoading = true
   },
   beforeDestroyed() {
     console.log('scrolling removed')

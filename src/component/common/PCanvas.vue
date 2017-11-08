@@ -1,5 +1,6 @@
 <template lang="pug">
-  canvas(:width='width', :height='height', ref='canvas')
+  div
+    canvas(:width='width', :height='height', :id="'realcan' + _uid")
 </template>
 
 <script>
@@ -13,33 +14,34 @@ export default {
       drawing: false,
       x: null,
       y: null,
-      square: null,
-      boxes: []
+      square: null
     }
   },
   mounted() {
-    this.canvas = new fabric.Canvas(this.$el)
+    this.canvas = new fabric.Canvas('realcan' + this._uid)
     this.canvas.on('mouse:down', this.startDraw)
     this.canvas.on('mouse:move', this.draw)
     this.canvas.on('mouse:up', this.stopDraw)
     this.canvas.selection = false
-
-    let square = new fabric.Rect({width: 100, height: 100, left: 10, top: 15, fill: 'white'})
-    this.canvas.add(square)
-    this.boxes.push(square)
+    if (this.imgSrc) {
+      this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
+    }
   },
   updated() {
-    // if (!this.canvas) {
-    // this.canvas = new fabric.Canvas(this.$el)
-    // this.canvas.on('mouse:down', this.startDraw)
-    // this.canvas.on('mouse:move', this.draw)
-    // this.canvas.on('mouse:up', this.stopDraw)
-    // this.canvas.selection = false
-    this.canvas.renderAll()
+    this.canvas = new fabric.Canvas('realcan' + this._uid)
+    this.canvas.on('mouse:down', this.startDraw)
+    this.canvas.on('mouse:move', this.draw)
+    this.canvas.on('mouse:up', this.stopDraw)
+    this.canvas.selection = false
+    if (this.imgSrc) {
+      this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
+    }
   },
   watch: {
     imgSrc: function(val) {
-      this.canvas.setBackgroundImage(val, this.canvas.renderAll.bind(this.canvas))
+      if (this.canvas) {
+        this.canvas.setBackgroundImage(val, this.canvas.renderAll.bind(this.canvas))
+      }
     }
   },
   methods: {
@@ -49,16 +51,6 @@ export default {
       }
       this.drawing = true
       let mouse = this.canvas.getPointer(options.e)
-
-      // // console.log(JSON.stringify(this.boxes, null, 2))
-      if (this.boxes.filter(b => {
-        // console.log('contained: ' + this.canvas.containsPoint(null, b, mouse))
-        return b.containsPoint(mouse)
-      }).length > 0) {
-        return false
-      }
-
-      // this.drawing = true
       this.x = mouse.x
       this.y = mouse.y
 
@@ -106,3 +98,9 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.canvas-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
