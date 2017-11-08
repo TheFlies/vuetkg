@@ -1,16 +1,16 @@
 <template lang="pug">
-b-navbar(toggleable='md', type='dark', variant='dark')
-  b-nav-toggle(target='nav_collapse')
+b-navbar(toggleable='md', type='dark', variant='dark', fixed='top')
+  b-navbar-toggle(target='nav_collapse')
   b-navbar-brand(href='/') TKG
     span.h6 &nbsp; by The Flies
   b-collapse#nav_collapse(is-nav)
-    b-nav(is-nav-bar, v-if='pageNum')
+    b-navbar-nav(v-if='pageNum')
       b-nav-item(href='#', @click.prevent='editPage')
         a {{pageNum || 1}}
         | /{{ totalPage || 1 }}
       b-nav-form(v-if='changingPage', disabled, @submit.prevent='done')
         b-form-input(size='sm', class='ml-sm-1', type='text', placeholder='insert page', v-model='currentPage', v-click-outside='done')
-    b-nav.ml-auto(is-nav-bar)
+    b-navbar-nav.ml-auto
       b-nav-item-dropdown(v-if='isAdmin', text='admin')
         b-dropdown-item(href='/admin/manga') manga
         b-dropdown-item(href='/admin/book') book

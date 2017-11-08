@@ -2,18 +2,27 @@
 #manga
   tkg-manga-header(:page-num='currentPage', :total-page='pages.length', v-on:changePage='scrollTo')
   .wrapper
-    b-container#shelves(fluid)
-      b-row(v-if='pageLoading')
-        b-col(sm='12')
-          b-img(:src='loadingUrl', center)
-      b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
-        b-col(sm='12')
-          //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
-          //- b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)', @load.native='imgLoaded(page.num)')
-          p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
-            :imgSrc='page.path'
-            :width='page.width', :height='page.height'
-        )
+    b-container(fluid)
+      b-row
+        b-col(sm='1')
+          b-nav.w-25(vertical, fixed='top', id='side')
+            b-nav-item rect
+            b-nav-item circle
+            b-nav-item free style
+        b-col(sm='11')
+          b-container#shelves(fluid)
+            b-row(v-if='pageLoading')
+              b-col(sm='12')
+                b-img(:src='loadingUrl', center)
+            b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
+              b-col(sm='12')
+                //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
+                //- b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)', @load.native='imgLoaded(page.num)')
+                p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
+                  :imgSrc='page.path'
+                  :width='page.width', :height='page.height',
+                  @imgLoaded='imgLoaded(page.num)'
+              )
       b-row
         tkg-footer(style='width:100%; height:100%')
 </template>
@@ -35,7 +44,7 @@ import VueScrollTo from 'vue-scrollto'
 // import fabric from 'fabric'
 
 let options = {
-  container: '#shelves',
+  container: 'body',
   easing: 'ease-in',
   offset: 0,
   cancelable: false,
@@ -90,12 +99,12 @@ export default {
     // })
 
     // canvas.add(rect)
-    let shelves = document.getElementById('shelves')
-    shelves.addEventListener('scroll', this.updatePage)
+    // let shelves = document.getElementById('shelves')
+    document.addEventListener('scroll', this.updatePage)
   },
   updated() {
-    let shelves = document.getElementById('shelves')
-    shelves.addEventListener('scroll', this.updatePage)
+    // let shelves = document.getElementById('shelves')
+    document.addEventListener('scroll', this.updatePage)
   },
   methods: {
     bookCoverStyle(cover) {
@@ -137,17 +146,6 @@ export default {
         this.scrollTo(this.p)
       }
     },
-    // Finds y value of given object
-    // findPos(obj) {
-    //   var curtop = 0
-    //   if (obj.offsetParent) {
-    //     do {
-    //       curtop += obj.offsetTop
-    //       obj = obj.offsetParent
-    //     } while (obj)
-    //     return [curtop]
-    //   }
-    // },
     updatePage() {
       let cp = document.getElementById(`page_${this.currentPage}`)
       if (cp) {
@@ -189,10 +187,8 @@ export default {
     this.getBook(this.$route.params.id)
     this.pageLoading = true
   },
-  beforeDestroyed() {
-    console.log('scrolling removed')
-    let shelves = document.getElementById('shelves')
-    shelves.removeEventListener('scroll', this.updatePage)
+  destroyed() {
+    document.removeEventListener('scroll', this.updatePage)
   }
 }
 </script>
@@ -209,14 +205,22 @@ export default {
   max-height: 450px;
 }
 
-$header: 56px;
+// $header: 56px;
 // $footer: 91.39px;
 
-#shelves {
-  max-height: 1024px;
-  height: calc(100vh - #{$header});
-  overflow-y: auto;
+#side {
+  position: fixed;
 }
+
+.wrapper {
+  margin-top: 56px;
+}
+
+// #shelves {
+//   max-height: 1024px;
+//   height: calc(100vh);
+//   overflow-y: auto;
+// }
 
 // #footer {
 //   // bottom: 0;

@@ -1,10 +1,10 @@
 <template lang="pug">
 b-navbar(toggleable='md', type='dark', variant='dark', fixed='top', :class="{'bg-transparent': transparent}")
-  b-nav-toggle(target='nav_collapse')
+  b-navbar-toggle(target='nav_collapse')
   b-navbar-brand(href='/') TKG
     span.h6 &nbsp; by The Flies
   b-collapse#nav_collapse(is-nav, v-if='!noMenu')
-    b-nav.ml-auto(is-nav-bar)
+    b-navbar-nav.ml-auto
       b-nav-item-dropdown.text-white(text='xem sách', right)
         b-dropdown-item(href='/manga') hình
         b-dropdown-item(href='/book') chữ
