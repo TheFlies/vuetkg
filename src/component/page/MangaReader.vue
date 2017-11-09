@@ -5,10 +5,13 @@
     b-container(fluid)
       b-row
         b-col(sm='1')
-          b-nav.w-25(vertical, fixed='top', id='side')
-            b-nav-item rect
-            b-nav-item circle
-            b-nav-item free style
+          b-nav.w-25(vertical, fixed='top', id='side', pills)
+            b-nav-item(:active='this.drawEnabled')
+              b-button(@click.prevent='toggleDrawing') rect
+            b-nav-item 
+              b-button(@click.prevent='toggleDrawing') circle
+            b-nav-item
+              b-button(@click.prevent='toggleDrawing') free style
         b-col(sm='11')
           b-container#shelves(fluid)
             b-row(v-if='pageLoading')
@@ -21,14 +24,14 @@
                 p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
                   :imgSrc='page.path'
                   :width='page.width', :height='page.height',
-                  @imgLoaded='imgLoaded(page.num)'
+                  :drawEnabled='drawEnabled'
+                  @imgloaded='imgLoaded(page.num)'
               )
       b-row
         tkg-footer(style='width:100%; height:100%')
 </template>
 
 <script>
-// import firebase from 'firebase'
 import fb from '../../firebase.js'
 let mangasRef = fb.dbFirestore.collection('mangas')
 let imgsRef = fb.storage.ref('manga')
@@ -40,8 +43,6 @@ import TkgFlipBook from '@/component/common/FlipBook'
 import PCanvas from '@/component/common/PCanvas'
 
 import VueScrollTo from 'vue-scrollto'
-
-// import fabric from 'fabric'
 
 let options = {
   container: 'body',
@@ -68,45 +69,24 @@ export default {
       chapter: null,
       pages: [],
       currentPage: 1,
-      label: 'Test Me',
-      alignEnd: false,
-      checked: true,
-      changeCount: 0,
-      favorited: true,
-      favoritedLabel: 'Remove from favorites',
-      showIcon: true,
-      showLabel: 'Hide icon toggle',
-      msg: 'Welcome to Your Vue.js App',
-      slideValue: 50,
-      sliderDisabled: false,
       book: null,
       books: [],
       pageLoading: false,
-      p: null
+      p: null,
+      drawEnabled: false
     }
   },
   mounted() {
-    // let canvas = new fabric.Canvas('can_1', { backgroundColor: '#000' })
-
-    // let rect = new fabric.Rect({
-    //   left: 15,
-    //   top: 15,
-    //   width: 20,
-    //   height: 20,
-    //   fill: 'black',
-    //   stroke: 'green',
-    //   strokeWidth: 2
-    // })
-
-    // canvas.add(rect)
-    // let shelves = document.getElementById('shelves')
+    this.p = parseInt(this.$route.query.p)
     document.addEventListener('scroll', this.updatePage)
   },
   updated() {
-    // let shelves = document.getElementById('shelves')
     document.addEventListener('scroll', this.updatePage)
   },
   methods: {
+    toggleDrawing() {
+      this.drawEnabled = !this.drawEnabled
+    },
     bookCoverStyle(cover) {
       return {
         'background-image': `url(${cover.url})`,
@@ -177,6 +157,11 @@ export default {
           VueScrollTo.scrollTo(cp, 500, options)
         }
       }
+    },
+    keyboardHandler(evt) {
+      if (evt.keyCode === 46) {
+        console.log('go delete current active')
+      }
     }
   },
   created() {
@@ -186,9 +171,12 @@ export default {
 
     this.getBook(this.$route.params.id)
     this.pageLoading = true
+
+    document.addEventListener('keyup', this.keyboardHandler)
   },
   destroyed() {
     document.removeEventListener('scroll', this.updatePage)
+    document.removeEventListener('keyup', this.keyboardHandler)
   }
 }
 </script>
