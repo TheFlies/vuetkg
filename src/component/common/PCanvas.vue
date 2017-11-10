@@ -6,15 +6,43 @@
 <script>
 import {fabric} from 'fabric'
 
+let dr = (x, y) => new fabric.Rect({
+  width: 0,
+  height: 0,
+  left: x,
+  top: y,
+  fill: 'white',
+  hasRotatingPoint: false
+})
+
+let ddr = (w, h) => {
+  return { width: w, height: h }
+}
+
+let dde = (rx, ry) => {
+  return { rx: rx / 2, ry: ry / 2 }
+}
+
+let de = (x, y) => new fabric.Ellipse({
+  width: 0,
+  height: 0,
+  left: x,
+  top: y,
+  originX: 'left',
+  originY: 'top',
+  fill: 'white',
+  hasRotatingPoint: false
+})
+
 export default {
-  props: ['width', 'height', 'data', 'imgSrc', 'draw-enabled'],
+  props: ['width', 'height', 'data', 'imgSrc', 'draw-rect-enabled', 'draw-ellipse-enabled'],
   data() {
     return {
       canvas: null,
       drawing: false,
-      x: null,
-      y: null,
-      square: null
+      square: null,
+      drawFunc: null,
+      drawUpdateResultFunc: null
     }
   },
   mounted() {
@@ -56,63 +84,70 @@ export default {
         })
       }
     },
-    drawEnabled: function(val) {
+    drawRectEnabled: function(val) {
+      this.drawPreparing(val, dr, ddr)
+    },
+    drawEllipseEnabled: function(val) {
+      this.drawPreparing(val, de, dde)
+    }
+  },
+  methods: {
+    drawPreparing(val, df, drf) {
+      if (val) {
+        this.drawFunc = df
+        this.drawUpdateResultFunc = drf
+      } else {
+        this.drawFunc = this.drawUpdateResultFunc = null
+      }
+      this.drawing = val
       this.canvas.getObjects().forEach(obj => {
         obj.selectable = val
       })
       this.canvas.renderAll()
-    }
-  },
-  methods: {
+    },
     startDraw(options) {
-      if (!this.drawEnabled || options.target) {
+      if (!this.drawFunc || options.target) {
         return false
       }
       this.drawing = true
       let mouse = this.canvas.getPointer(options.e)
-      this.x = mouse.x
-      this.y = mouse.y
+      let square = this.drawFunc(mouse.x, mouse.y)
 
-      let square = new fabric.Rect({
-        width: 0,
-        height: 0,
-        left: this.x,
-        top: this.y,
-        fill: 'white',
-        hasRotatingPoint: false
-      })
       // square.per
       this.canvas.add(square)
       this.canvas.renderAll()
       this.canvas.setActiveObject(square)
     },
     removeDraw(options) {
-      if (!this.drawing || !this.drawEnabled) {
+      if (!this.drawing) {
         return false
       }
       let square = this.canvas.getActiveObject()
-      let w = square.get('width')
-      let h = square.get('height')
-      if (w === 0 && h === 0) {
-        this.canvas.remove(square)
+      if (square) {
+        let w = square.get('width')
+        let h = square.get('height')
+        if (w === 0 && h === 0) {
+          this.canvas.remove(square)
+        }
       }
     },
     draw(options) {
-      if (!this.drawing || !this.drawEnabled) {
+      if (!this.drawing) {
         return false
       }
       let mouse = this.canvas.getPointer(options.e)
-      let w = Math.abs(mouse.x - this.x)
-      let h = Math.abs(mouse.y - this.y)
-
-      if (!w || !h) {
-        return false
-      }
       let square = this.canvas.getActiveObject()
-      square.set('width', w).set('height', h)
-      square.set('hasRotatingPoint', false)
-      this.canvas.add(square)
-      this.canvas.renderAll()
+      if (square) {
+        let w = Math.abs(mouse.x - square.get('left'))
+        let h = Math.abs(mouse.y - square.get('top'))
+
+        if (!w || !h) {
+          return false
+        }
+        square.set(this.drawUpdateResultFunc(w, h))
+        this.canvas.add(square)
+        this.canvas.renderAll()
+      }
     },
     stopDraw() {
       if (this.drawing) {

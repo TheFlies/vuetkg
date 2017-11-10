@@ -11,9 +11,9 @@
             b-collapse.mt-2(id='toolbar')
               b-button-toolbar(key-nav, aria-label='drawing tools')
                 b-button-group.mx-1(vertical)
-                  b-btn
+                  b-btn(@click.prevent='toggleRectDrawing')
                     i.fa.fa-square-o
-                  b-btn
+                  b-btn(@click.prevent='toggleEllipseDrawing')
                     i.fa.fa-circle-o
                   b-btn
                     i.fa.fa-pencil
@@ -29,7 +29,8 @@
                 p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
                   :imgSrc='page.path'
                   :width='page.width', :height='page.height',
-                  :drawEnabled='drawEnabled',
+                  :drawRectEnabled='drawRectEnabled',
+                  :drawEllipseEnabled='drawEllipseEnabled',
                   @imgloaded='imgLoaded(page.num)'
               )
       b-row
@@ -78,7 +79,8 @@ export default {
       books: [],
       pageLoading: false,
       p: null,
-      drawEnabled: false
+      drawRectEnabled: false,
+      drawEllipseEnabled: false
     }
   },
   mounted() {
@@ -89,8 +91,11 @@ export default {
     document.addEventListener('scroll', this.updatePage)
   },
   methods: {
-    toggleDrawing() {
-      this.drawEnabled = !this.drawEnabled
+    toggleRectDrawing() {
+      this.drawRectEnabled = !this.drawRectEnabled
+    },
+    toggleEllipseDrawing() {
+      this.drawEllipseEnabled = !this.drawEllipseEnabled
     },
     bookCoverStyle(cover) {
       return {
