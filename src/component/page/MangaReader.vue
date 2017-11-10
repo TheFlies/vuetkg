@@ -3,28 +3,33 @@
   tkg-manga-header(:page-num='currentPage', :total-page='pages.length', v-on:changePage='scrollTo')
   .wrapper
     b-container(fluid)
-      b-row
-        b-col(sm='1')
-          b-nav.w-25(vertical, fixed='top', id='side', pills)
-            b-nav-item(:active='this.drawEnabled')
-              b-button(@click.prevent='toggleDrawing') rect
-            b-nav-item 
-              b-button(@click.prevent='toggleDrawing') circle
-            b-nav-item
-              b-button(@click.prevent='toggleDrawing') free style
+      b-row(align-h='center')
+        b-col.bg-white(sm='1')
+          #side.mx-auto
+            b-btn(v-b-toggle="'toolbar'", variant='primary')
+              i.fa.fa-file
+            b-collapse.mt-2(id='toolbar')
+              b-button-toolbar(key-nav, aria-label='drawing tools')
+                b-button-group.mx-1(vertical)
+                  b-btn
+                    i.fa.fa-square-o
+                  b-btn
+                    i.fa.fa-circle-o
+                  b-btn
+                    i.fa.fa-pencil
         b-col(sm='11')
           b-container#shelves(fluid)
             b-row(v-if='pageLoading')
               b-col(sm='12')
                 b-img(:src='loadingUrl', center)
             b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
-              b-col(sm='12')
-                //- .d-flex.justify-content-center.align-items-center(:id="'page_'+page.num")
-                //- b-img-lazy(:src='page.path', center, blank-color='rgba(128,255,255,0.5)', @load.native='imgLoaded(page.num)')
+              b-col(sm='2')
+                p(contenteditable) text and thing, like bookmark notes, selected translated text here
+              b-col(sm='10')
                 p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
                   :imgSrc='page.path'
                   :width='page.width', :height='page.height',
-                  :drawEnabled='drawEnabled'
+                  :drawEnabled='drawEnabled',
                   @imgloaded='imgLoaded(page.num)'
               )
       b-row
@@ -196,8 +201,12 @@ export default {
 // $header: 56px;
 // $footer: 91.39px;
 
-#side {
-  position: fixed;
+.col-sm-1 {
+  #side {
+    position: fixed;
+    left: 5px;
+    top: 61px;
+  }
 }
 
 .wrapper {
