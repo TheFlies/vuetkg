@@ -1,18 +1,18 @@
 <template lang='pug'>
 .section#cta
-  .container.text-center
+  b-container.text-center(fluid)
     h2 Thích thì đăng ký chơi
     p Mà được hay không thì do hên xui nhe :D.
-    .row.center
+    b-row.center
         b-form
           b-form-row
-            .col-md-8
+            b-col(md='8')
               b-form-input.form-control(type="email", name="email", id="email", placeholder="I Meo", v-model='email', required,
                 :state='mailState'
                 aria-describedby="input-feeback"
               )
               b-form-feedback#feedback có imeo <b>đúng</b> mới đăng ký được nha.
-            .col-md-4
+            b-col(md='4')
               b-button.bg-white.form-control(type="button", class="fit", variant='light', @click.prevent='register') Chơi luôn
 </template>
 

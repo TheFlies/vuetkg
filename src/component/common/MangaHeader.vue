@@ -1,5 +1,5 @@
 <template lang="pug">
-b-navbar(toggleable='md', type='dark', variant='dark', fixed='top')
+b-navbar(toggleable='md', type='dark', variant='dark', :fixed='fixed')
   b-navbar-toggle(target='nav_collapse')
   b-navbar-brand(href='/') TKG
     span.h6 &nbsp; by The Flies
@@ -29,7 +29,7 @@ import auth from '../../service/auth'
 
 export default {
   name: 'tkg-manga-header',
-  props: ['page-num', 'total-page'],
+  props: ['page-num', 'total-page', 'fixed'],
   data() {
     return {
       changingPage: false,

@@ -444,6 +444,19 @@ header.major p {
   }
 }
 
+body {
+  padding-right:0px !important;
+  margin-right:0px !important;
+}
+
+nav {
+  padding-right: 1rem !important;
+}
+
+body.modal-open {
+  overflow: auto;
+}
+
 @media (max-width: 991px) {
   .wrapper {
     //    @include transform-translate-x(0px);

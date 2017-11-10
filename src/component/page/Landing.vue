@@ -1,7 +1,7 @@
 <template lang="pug">
 #landing
   tkg-header(color-on-scroll=300, bg-image='/assets/img/banner01.jpg')
-  .wrapper
+  b-container.p-0(fluid)
     tkg-banner(
       data-parallax=true,
       title='Tàng Kinh Gác',
@@ -18,8 +18,7 @@
       show-clouds
     )
     .main#landing-man
-      .container
-        .text-center
+      b-container.text-center
           special-box(spanImgClass='image featured', spanImgSrc='static/images/pic011.jpg')
             header.major
               h2 Căn gác nhỏ, ngôi nhà cuối phố
@@ -46,21 +45,23 @@
                 span.major.fa.fa-lock.accent5
                 h3 Không biết xếp vào đâu
                 p Linh tinh lặt vặt.
-          .row
-            .col-md-6
+          b-row
+            b-col(md='6')
               special-box
                 span.image.featured: img(src='static/images/pic022.jpg', alt='')
                 h3 Dzịt giả - Truyện tranh
                 p Dịch theo khung chữ trên hình.
                 .actions
-                  a.btn.btn-outline-primary.text-black(href='#') Coi thêm
-            .col-md-6
+                  b-btn.btn-outline-primary.text-black(v-b-modal="'translator'") Coi thêm
+            b-col(md='6')
               special-box
                 span.image.featured: img(src='static/images/pic033.jpg', alt='')
                 h3 Dzật giả - Truyện chữ
                 p Dịch theo từng đoạn, câu văn.
                 .actions
-                  a.btn.btn-outline-primary.text-black(href='#') Chi tiết
+                  b-btn.btn-outline-primary.text-black(v-b-modal="'translator'") Chi tiết
+    b-modal(id='translator', center)
+      p Này nhấn đăng ký để dịch
     tkg-cta
     tkg-footer(show-design)
 //- #landing.landing
