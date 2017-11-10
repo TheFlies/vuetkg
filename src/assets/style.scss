@@ -444,18 +444,18 @@ header.major p {
   }
 }
 
-body {
-  padding-right:0px !important;
-  margin-right:0px !important;
-}
+// body {
+//   padding-right:0px !important;
+//   margin-right:0px !important;
+// }
 
-nav {
-  padding-right: 1rem !important;
-}
+// nav {
+//   padding-right: 1rem !important;
+// }
 
-body.modal-open {
-  overflow: auto;
-}
+// body.modal-open {
+//   overflow: auto;
+// }
 
 @media (max-width: 991px) {
   .wrapper {

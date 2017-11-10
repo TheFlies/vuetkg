@@ -60,10 +60,10 @@
                 p Dịch theo từng đoạn, câu văn.
                 .actions
                   b-btn.btn-outline-primary.text-black(v-b-modal="'translator'") Chi tiết
-    b-modal(id='translator', center)
-      p Này nhấn đăng ký để dịch
-    tkg-cta
-    tkg-footer(show-design)
+  b-modal(id='translator', center)
+    p Này nhấn đăng ký để dịch
+  tkg-cta
+  tkg-footer(show-design)
 //- #landing.landing
 //-   #page-wrapper
 //-     tkg-header
