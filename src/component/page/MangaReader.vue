@@ -1,6 +1,6 @@
 <template lang="pug">
 #manga
-  tkg-manga-header(:page-num='currentPage', :total-page='pages.length', v-on:changePage='scrollTo')
+  tkg-manga-header(:page-num='currentPage', :total-page='pages.length', v-on:changePage='scrollTo', fixed='top')
   .wrapper
     b-container(fluid)
       b-row(align-h='center')
