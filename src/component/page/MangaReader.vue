@@ -170,7 +170,8 @@ export default {
     },
     keyboardHandler(evt) {
       if (evt.keyCode === 46) {
-        console.log('go delete current active')
+        // emit delete on current page
+        this.$emit('delete', 'can_' + this.currentPage)
       }
     }
   },

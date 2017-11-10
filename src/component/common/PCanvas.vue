@@ -46,6 +46,8 @@ export default {
     }
   },
   mounted() {
+    this.$parent.$on('delete', this.deleteActiveObject)
+
     this.canvas = new fabric.Canvas('realcan' + this._uid)
     this.canvas.on('mouse:down', this.startDraw)
     this.canvas.on('mouse:up', this.removeDraw)
@@ -60,6 +62,8 @@ export default {
     }
   },
   updated() {
+    this.$parent.$on('delete', this.deleteActiveObject)
+
     this.canvas = new fabric.Canvas('realcan' + this._uid)
     this.canvas.on('mouse:down', this.startDraw)
     this.canvas.on('mouse:up', this.removeDraw)
@@ -154,9 +158,20 @@ export default {
         this.drawing = false
       }
     },
-    deleteActiveObject() {
-      console.log('delete')
-      this.canvas.getActiveObject().remove()
+    deleteActiveObject(cp) {
+      if (cp === this.$el.id) {
+        if (this.canvas) {
+          let ao = this.canvas.getActiveObject() || { get: () => {} }
+          // remove all active things based on the top+left position
+          this.canvas
+            .getObjects()
+            .filter(o => o.get('top') === ao.get('top') && o.get('left') === ao.get('left'))
+            .forEach(o => {
+              this.canvas.remove(o)
+              o.remove()
+            })
+        }
+      }
     }
   }
 }
