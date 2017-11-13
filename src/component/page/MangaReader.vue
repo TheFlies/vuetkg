@@ -44,7 +44,7 @@ let imgsRef = fb.storage.ref('manga')
 
 import TkgMangaHeader from '@/component/common/MangaHeader'
 import TkgFooter from '@/component/common/Footer'
-import TkgFlipBook from '@/component/common/FlipBook'
+// import TkgFlipBook from '@/component/common/FlipBook'
 
 import PCanvas from '@/component/common/PCanvas'
 
@@ -53,7 +53,7 @@ import VueScrollTo from 'vue-scrollto'
 let options = {
   container: 'body',
   easing: 'ease-in',
-  offset: 0,
+  offset: -56,
   cancelable: false,
   onDone: function() {
     // scrolling is done
@@ -67,7 +67,12 @@ let options = {
 
 export default {
   name: 'tkg-manga-reader',
-  components: {TkgMangaHeader, TkgFooter, TkgFlipBook, PCanvas},
+  components: {
+    TkgMangaHeader,
+    TkgFooter,
+    // TkgFlipBook,
+    PCanvas
+  },
   data () {
     return {
       loadingUrl: '/static/images/img-loading.gif',
