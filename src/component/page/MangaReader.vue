@@ -4,7 +4,7 @@
   .wrapper
     b-container(fluid)
       b-row(align-h='center')
-        b-col.bg-white(sm='1')
+        b-col.bg-white.bgimg(sm='1')
           #side.mx-auto
             b-btn(v-b-toggle="'toolbar'", variant='primary')
               i.fa.fa-file
@@ -23,15 +23,16 @@
               b-col(sm='12')
                 b-img(:src='loadingUrl', center)
             b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
-              b-col(sm='2')
-                p(contenteditable) text and thing, like bookmark notes, selected translated text here
-              b-col(sm='10')
-                p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
-                  :imgSrc='page.path'
-                  :width='page.width', :height='page.height',
-                  :drawRectEnabled='drawRectEnabled',
-                  :drawEllipseEnabled='drawEllipseEnabled',
-                  @imgloaded='imgLoaded(page.num)'
+              b-row
+                b-col(sm='2')
+                  p(contenteditable) text and thing, like bookmark notes, selected translated text here
+                b-col(sm='10')
+                  p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
+                    :imgSrc='page.path'
+                    :width='page.width', :height='page.height',
+                    :drawRectEnabled='drawRectEnabled',
+                    :drawEllipseEnabled='drawEllipseEnabled',
+                    @imgloaded='imgLoaded(page.num)'
               )
       b-row
         tkg-footer(style='width:100%; height:100%')
@@ -222,6 +223,13 @@ export default {
 
 .wrapper {
   margin-top: 56px;
+}
+
+.bgimg {
+  // background-image: url("/static/images/wood.jpg");
+  // background-position: top left;
+  // background-repeat: repeat repeat;
+  // background-size: auto;
 }
 
 // #shelves {
