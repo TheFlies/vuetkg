@@ -17,8 +17,13 @@
                     i.fa.fa-circle-o
                   b-btn
                     i.fa.fa-pencil
-        b-col(sm='11')
+        b-col.m-0.p-0(sm='11')
           b-container#shelves(fluid)
+            b-row(v-if='pageLoading')
+              b-col(sm='12')
+                b-img(:src='loadingUrl', center)
+          page-reader(v-if='pages', v-for='page in pages', :page='page')
+          //- b-container#shelves(fluid)
             b-row(v-if='pageLoading')
               b-col(sm='12')
                 b-img(:src='loadingUrl', center)
@@ -48,6 +53,7 @@ import TkgFooter from '@/component/common/Footer'
 // import TkgFlipBook from '@/component/common/FlipBook'
 
 import PCanvas from '@/component/common/PCanvas'
+import PageReader from '@/component/common/PageReader'
 
 import VueScrollTo from 'vue-scrollto'
 
@@ -71,6 +77,7 @@ export default {
   components: {
     TkgMangaHeader,
     TkgFooter,
+    PageReader,
     // TkgFlipBook,
     PCanvas
   },
