@@ -6,6 +6,8 @@
 <script>
 import {fabric} from 'fabric'
 
+import EventBus from '@/event-bus'
+
 let dr = (x, y) => new fabric.Rect({
   width: 0,
   height: 0,
@@ -46,13 +48,13 @@ export default {
     }
   },
   mounted() {
-    this.$parent.$on('delete', this.deleteActiveObject)
+    EventBus.$on('pr:delete', this.deleteActiveObject)
 
     this.canvas = new fabric.Canvas('realcan' + this._uid)
-    this.canvas.on('mouse:down', this.startDraw)
-    this.canvas.on('mouse:up', this.removeDraw)
-    this.canvas.on('mouse:move', this.draw)
-    this.canvas.on('mouse:up', this.stopDraw)
+    this.canvas.on('mouse:down', this.onMouseDown)
+    this.canvas.on('mouse:up', this.onMouseUp)
+    this.canvas.on('mouse:move', this.onMouseMove)
+    this.canvas.on('object:moving', this.onMouseUp)
     this.canvas.selection = false
     if (this.imgSrc) {
       fabric.Image.fromURL(this.imgSrc, (fimg) => {
@@ -61,17 +63,20 @@ export default {
       })
     }
   },
+  destroyed() {
+    EventBus.$off('pr:delete')
+  },
   updated() {
-    this.$parent.$on('delete', this.deleteActiveObject)
+    EventBus.$on('pr:delete', this.deleteActiveObject)
 
     this.canvas = new fabric.Canvas('realcan' + this._uid)
-    this.canvas.on('mouse:down', this.startDraw)
-    this.canvas.on('mouse:up', this.removeDraw)
-    this.canvas.on('mouse:move', this.draw)
-    this.canvas.on('mouse:up', this.stopDraw)
+    this.canvas.on('mouse:down', this.onMouseDown)
+    this.canvas.on('mouse:up', this.onMouseUp)
+    this.canvas.on('mouse:move', this.onMouseMove)
+    this.canvas.on('object:moving', this.onMouseUp)
+
     this.canvas.selection = false
     if (this.imgSrc) {
-      // this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
       fabric.Image.fromURL(this.imgSrc, (fimg) => {
         this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
         this.$emit('imgloaded')
@@ -81,7 +86,6 @@ export default {
   watch: {
     imgSrc: function(val) {
       if (this.canvas) {
-        // this.canvas.setBackgroundImage(val, this.canvas.renderAll.bind(this.canvas))
         fabric.Image.fromURL(this.imgSrc, (fimg) => {
           this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
           this.$emit('imgloaded')
@@ -109,33 +113,30 @@ export default {
       })
       this.canvas.renderAll()
     },
-    startDraw(options) {
+    onMouseDown(options) {
       if (!this.drawFunc || options.target) {
         return false
       }
       this.drawing = true
+
       let mouse = this.canvas.getPointer(options.e)
       let square = this.drawFunc(mouse.x, mouse.y)
-
-      // square.per
-      this.canvas.add(square)
-      this.canvas.renderAll()
-      this.canvas.setActiveObject(square)
+      this.canvas.add(square).setActiveObject(square)
     },
-    removeDraw(options) {
-      if (!this.drawing) {
-        return false
+    onMouseUp(options) {
+      if (this.drawing) {
+        this.drawing = false
       }
-      let square = this.canvas.getActiveObject()
-      if (square) {
-        let w = square.get('width')
-        let h = square.get('height')
+      this.canvas.getObjects().forEach(o => {
+        let w = o.get('width')
+        let h = o.get('height')
         if (w === 0 && h === 0) {
-          this.canvas.remove(square)
+          console.log('remove the unusable object')
+          this.canvas.remove(o)
         }
-      }
+      })
     },
-    draw(options) {
+    onMouseMove(options) {
       if (!this.drawing) {
         return false
       }
@@ -149,27 +150,15 @@ export default {
           return false
         }
         square.set(this.drawUpdateResultFunc(w, h))
-        this.canvas.add(square)
+        square.setCoords()
         this.canvas.renderAll()
-      }
-    },
-    stopDraw() {
-      if (this.drawing) {
-        this.drawing = false
       }
     },
     deleteActiveObject(cp) {
       if (cp === this.$el.id) {
         if (this.canvas) {
           let ao = this.canvas.getActiveObject() || { get: () => {} }
-          // remove all active things based on the top+left position
-          this.canvas
-            .getObjects()
-            .filter(o => o.get('top') === ao.get('top') && o.get('left') === ao.get('left'))
-            .forEach(o => {
-              this.canvas.remove(o)
-              o.remove()
-            })
+          this.canvas.remove(ao)
         }
       }
     }

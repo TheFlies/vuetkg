@@ -2,199 +2,27 @@
   b-container(fluid)
     b-row
       b-col(sm='9')
-        p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
-          :imgSrc='page.path'
-          :width='page.width', :height='page.height',
-          :drawRectEnabled='drawRectEnabled',
-          :drawEllipseEnabled='drawEllipseEnabled',
-          @imgloaded='imgLoaded(page.num)'
-        )
+        slot
       b-col(sm='3')
         .drawing
           p text box appear on top when a box drawed
+          b-form-textarea(v-model='currentText', placeholder='rawed', rows=3, max-rows=5)
         .historical
           p comment on translated box, raw text here next
 </template>
 
 <script>
-import {fabric} from 'fabric'
 import PCanvas from '@/component/common/PCanvas'
-
-let dr = (x, y) => new fabric.Rect({
-  width: 0,
-  height: 0,
-  left: x,
-  top: y,
-  fill: 'white',
-  hasRotatingPoint: false
-})
-
-let ddr = (w, h) => {
-  return { width: w, height: h }
-}
-
-let dde = (rx, ry) => {
-  return { rx: rx / 2, ry: ry / 2 }
-}
-
-let de = (x, y) => new fabric.Ellipse({
-  width: 0,
-  height: 0,
-  left: x,
-  top: y,
-  originX: 'left',
-  originY: 'top',
-  fill: 'white',
-  hasRotatingPoint: false
-})
-
 export default {
-  props: ['width', 'height', 'data', 'imgSrc', 'draw-rect-enabled', 'draw-ellipse-enabled', 'page'],
+  props: [],
   components: { PCanvas },
   data() {
     return {
-      canvas: null,
-      drawing: false,
-      square: null,
-      drawFunc: null,
-      drawUpdateResultFunc: null
-    }
-  },
-  mounted() {
-    this.$parent.$on('delete', this.deleteActiveObject)
-
-    this.canvas = new fabric.Canvas('realcan' + this._uid)
-    this.canvas.on('mouse:down', this.startDraw)
-    this.canvas.on('mouse:up', this.removeDraw)
-    this.canvas.on('mouse:move', this.draw)
-    this.canvas.on('mouse:up', this.stopDraw)
-    this.canvas.selection = false
-    if (this.imgSrc) {
-      fabric.Image.fromURL(this.imgSrc, (fimg) => {
-        this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
-        this.$emit('imgloaded')
-      })
-    }
-  },
-  updated() {
-    this.$parent.$on('delete', this.deleteActiveObject)
-
-    this.canvas = new fabric.Canvas('realcan' + this._uid)
-    this.canvas.on('mouse:down', this.startDraw)
-    this.canvas.on('mouse:up', this.removeDraw)
-    this.canvas.on('mouse:move', this.draw)
-    this.canvas.on('mouse:up', this.stopDraw)
-    this.canvas.selection = false
-    if (this.imgSrc) {
-      // this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
-      fabric.Image.fromURL(this.imgSrc, (fimg) => {
-        this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
-        this.$emit('imgloaded')
-      })
-    }
-  },
-  watch: {
-    imgSrc: function(val) {
-      if (this.canvas) {
-        // this.canvas.setBackgroundImage(val, this.canvas.renderAll.bind(this.canvas))
-        fabric.Image.fromURL(this.imgSrc, (fimg) => {
-          this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
-          this.$emit('imgloaded')
-        })
-      }
-    },
-    drawRectEnabled: function(val) {
-      this.drawPreparing(val, dr, ddr)
-    },
-    drawEllipseEnabled: function(val) {
-      this.drawPreparing(val, de, dde)
-    }
-  },
-  methods: {
-    drawPreparing(val, df, drf) {
-      if (val) {
-        this.drawFunc = df
-        this.drawUpdateResultFunc = drf
-      } else {
-        this.drawFunc = this.drawUpdateResultFunc = null
-      }
-      this.drawing = val
-      this.canvas.getObjects().forEach(obj => {
-        obj.selectable = val
-      })
-      this.canvas.renderAll()
-    },
-    startDraw(options) {
-      if (!this.drawFunc || options.target) {
-        return false
-      }
-      this.drawing = true
-      let mouse = this.canvas.getPointer(options.e)
-      let square = this.drawFunc(mouse.x, mouse.y)
-
-      // square.per
-      this.canvas.add(square)
-      this.canvas.renderAll()
-      this.canvas.setActiveObject(square)
-    },
-    removeDraw(options) {
-      if (!this.drawing) {
-        return false
-      }
-      let square = this.canvas.getActiveObject()
-      if (square) {
-        let w = square.get('width')
-        let h = square.get('height')
-        if (w === 0 && h === 0) {
-          this.canvas.remove(square)
-        }
-      }
-    },
-    draw(options) {
-      if (!this.drawing) {
-        return false
-      }
-      let mouse = this.canvas.getPointer(options.e)
-      let square = this.canvas.getActiveObject()
-      if (square) {
-        let w = Math.abs(mouse.x - square.get('left'))
-        let h = Math.abs(mouse.y - square.get('top'))
-
-        if (!w || !h) {
-          return false
-        }
-        square.set(this.drawUpdateResultFunc(w, h))
-        this.canvas.add(square)
-        this.canvas.renderAll()
-      }
-    },
-    stopDraw() {
-      if (this.drawing) {
-        this.drawing = false
-      }
-    },
-    deleteActiveObject(cp) {
-      if (cp === this.$el.id) {
-        if (this.canvas) {
-          let ao = this.canvas.getActiveObject() || { get: () => {} }
-          // remove all active things based on the top+left position
-          this.canvas
-            .getObjects()
-            .filter(o => o.get('top') === ao.get('top') && o.get('left') === ao.get('left'))
-            .forEach(o => {
-              this.canvas.remove(o)
-              o.remove()
-            })
-        }
-      }
+      currentText: null
     }
   }
 }
 </script>
 
 <style lang="scss">
-.canvas-container {
-  margin-left: auto;
-  margin-right: auto;
-}
 </style>

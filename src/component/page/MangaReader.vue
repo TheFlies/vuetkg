@@ -22,7 +22,14 @@
             b-row(v-if='pageLoading')
               b-col(sm='12')
                 b-img(:src='loadingUrl', center)
-          page-reader(v-if='pages', v-for='page in pages', :page='page')
+          page-reader(v-if='pages', v-for='page in pages', :page='page', :key='page.num', :id="'page_'+page.num")
+            p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
+              :imgSrc='page.path'
+              :width='page.width', :height='page.height',
+              :drawRectEnabled='drawRectEnabled',
+              :drawEllipseEnabled='drawEllipseEnabled',
+              @imgloaded='imgLoaded(page.num)'
+            )
           //- b-container#shelves(fluid)
             b-row(v-if='pageLoading')
               b-col(sm='12')
@@ -56,6 +63,8 @@ import PCanvas from '@/component/common/PCanvas'
 import PageReader from '@/component/common/PageReader'
 
 import VueScrollTo from 'vue-scrollto'
+
+import EventBus from '@/event-bus'
 
 let options = {
   container: 'body',
@@ -184,6 +193,7 @@ export default {
     keyboardHandler(evt) {
       if (evt.keyCode === 46) {
         // emit delete on current page
+        EventBus.$emit('pr:delete', 'can_' + this.currentPage)
         this.$emit('delete', 'can_' + this.currentPage)
       }
     }
