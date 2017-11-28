@@ -8,21 +8,13 @@ import {fabric} from 'fabric'
 
 import EventBus from '@/event-bus'
 
-const makeTextClass = (Clazz, type) => {
-  return fabric.util.createClass(fabric.Group, {
+const makeTextClass = (clazz, type) => {
+  return fabric.util.createClass(clazz, {
     type: type,
     initialize: function(options) {
       options || (options = {})
-
-      let items = []
-      items[0] = new fabric.Text('', {
-        fontSize: 16
-      })
-      items[1] = new Clazz(options)
-
       this.callSuper('initialize', options)
-      this.addWithUpdate(items[0])
-      this.addWithUpdate(items[1])
+      this.set('text', options.text || '')
     },
     toObject: function() {
       return fabric.util.object.extend(this.callSuper('toObject'), {
@@ -31,10 +23,12 @@ const makeTextClass = (Clazz, type) => {
     },
     _render: function(ctx) {
       this.callSuper('_render', ctx)
-      // ctx.font = '20px Helvetica'
-      // ctx.textAlign = 'center'
-      // ctx.fillStyle = '#333'
-      // ctx.fillText(this.text, 0, 0) // -this.width / 2, -this.height / 2 + 20)
+      if (this.text) {
+        ctx.font = '20px Helvetica'
+        ctx.textAlign = 'center'
+        ctx.fillStyle = '#333'
+        ctx.fillText(this.text, 0, 0) // -this.width / 2, -this.height / 2 + 20)
+      }
     }
   })
 }
@@ -211,10 +205,9 @@ export default {
       let r = this.canvas.getActiveObject()
       if (r) {
         console.log('pos: x:' + r.top + ' y:' + r.left + ' w:' + r.width + ' h:' + r.height)
-        r.set('text', this.currentText)
-        r.setCoords()
-        this.canvas.renderAll()
-        this.$parent.$emit('pr:box:created')
+        let text = r.get('text')
+        // this.canvas.renderAll()
+        this.$parent.$emit('pr:box:selected', text)
       }
     },
     onMouseMove(options) {

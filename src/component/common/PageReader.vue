@@ -33,9 +33,13 @@ export default {
     }
   },
   methods: {
-    handleBoxCreated() {
-      this.currentText = 'tessting test test'
-      console.log('a box created')
+    handleBoxCreated(txt) {
+      console.log(txt)
+      if (txt) {
+        this.currentText = txt
+      } else {
+        this.currentText = ''
+      }
     }
   },
   mounted() {
@@ -44,7 +48,7 @@ export default {
     })
   },
   created() {
-    this.$on('pr:box:created', this.handleBoxCreated)
+    this.$on('pr:box:selected', this.handleBoxCreated)
   },
   destroyed() {
     this.$off()
