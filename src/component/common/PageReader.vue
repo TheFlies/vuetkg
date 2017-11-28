@@ -34,12 +34,7 @@ export default {
   },
   methods: {
     handleBoxCreated(txt) {
-      console.log(txt)
-      if (txt) {
-        this.currentText = txt
-      } else {
-        this.currentText = ''
-      }
+      this.currentText = txt
     }
   },
   mounted() {
