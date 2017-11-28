@@ -6,17 +6,17 @@
       b-row(align-h='center')
         b-col.bg-white.bgimg(sm='1')
           #side.mx-auto
-            b-btn(v-b-toggle="'toolbar'", variant='primary')
+            //- b-btn(v-b-toggle="'toolbar'", variant='primary')
               i.fa.fa-file
-            b-collapse.mt-2(id='toolbar')
+            //- b-collapse.mt-2(id='toolbar')
               b-button-toolbar(key-nav, aria-label='drawing tools')
                 b-button-group.mx-1(vertical)
-                  b-btn(@click.prevent='toggleRectDrawing')
+                  //- b-btn(@click.prevent='toggleRectDrawing')
                     i.fa.fa-square-o
-                  b-btn(@click.prevent='toggleEllipseDrawing')
+                  //- b-btn(@click.prevent='toggleEllipseDrawing')
                     i.fa.fa-circle-o
-                  b-btn
-                    i.fa.fa-pencil
+            b-btn(@click.prevent='toggleRectDrawing')
+              i.fa.fa-pencil
         b-col.m-0.p-0(sm='11')
           b-container#shelves(fluid)
             b-row(v-if='pageLoading')

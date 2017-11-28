@@ -33,23 +33,32 @@ const makeTextClass = (clazz, type) => {
   })
 }
 
-const TextRect = makeTextClass(fabric.Rect, 'textRect')
+// const TextRect = makeTextClass(fabric.Rect, 'textRect')
 const TextEllipse = makeTextClass(fabric.Ellipse, 'textEllipse')
 
-let dr = (x, y) => new TextRect({
-  width: 0,
-  height: 0,
-  left: x,
-  top: y,
-  // originX: 'center',
-  // originY: 'center',
-  fill: 'white',
-  objectCaching: false,
-  opacity: 0,
-  // fill: 'rgba(255,255,255,0)',
-  hasRotatingPoint: false
-  // stroke: 'rgba(100,200,200,0.5)'
-})
+let dr = (x, y) => {
+  let r = new fabric.Rect({
+    width: 0,
+    height: 0,
+    left: x,
+    top: y,
+    originX: 'start',
+    originY: 'start',
+    fill: 'white',
+    objectCaching: false,
+    opacity: 1,
+    // fill: 'rgba(255,255,255,0)',
+    hasRotatingPoint: false
+    // stroke: 'rgba(100,200,200,0.5)'
+  })
+  let t = new fabric.Text('', {
+    top: y - 10,
+    left: x,
+    fontSize: 16,
+    fillStyle: '#333'
+  })
+  return new fabric.Group([r, t])
+}
 
 let ddr = (w, h) => {
   return { width: w, height: h }
@@ -65,7 +74,7 @@ let de = (x, y) => new TextEllipse({
   left: x,
   top: y,
   originX: 'left',
-  originY: 'top',
+  originY: 'start',
   // fill: 'white',
   fill: 'rgba(255,255,255,0)',
   hasRotatingPoint: false
@@ -97,6 +106,7 @@ export default {
     this.canvas.on('mouse:up', this.onMouseUp)
     this.canvas.on('mouse:move', this.onMouseMove)
     this.canvas.on('object:moving', this.onMouseUp)
+    this.canvas.on('object:scaling', this.onObjectScale)
     this.canvas.on('mouse:over', this.onMouseOver)
     this.canvas.on('mouse:out', this.onMouseOut)
     this.canvas.selection = false
@@ -167,8 +177,7 @@ export default {
     drawText(txt) {
       let ao = this.canvas.getActiveObject()
       if (ao) {
-        console.log('update the text pleasssse!!!!')
-        ao.set('text', txt)
+        ao._objects[1].set('text', txt)
         ao.setCoords()
         this.canvas.renderAll()
       }
@@ -204,9 +213,37 @@ export default {
       })
       let r = this.canvas.getActiveObject()
       if (r) {
-        console.log('pos: x:' + r.top + ' y:' + r.left + ' w:' + r.width + ' h:' + r.height)
-        let text = r.get('text')
-        // this.canvas.renderAll()
+        let obj = r
+        let w = obj.width * obj.scaleX
+        let h = obj.height * obj.scaleY
+        // let s = obj.strokeWidth
+
+        obj._objects[0].set({
+          'height': obj.height,
+          'width': obj.width,
+          'scaleX': 1,
+          'scaleY': 1,
+          h: h,
+          w: w
+          // top: 1,
+          // left: 1,
+        })
+
+        obj._objects[1].set({
+          'height': obj.height,
+          'width': obj.width,
+          'scaleX': 1,
+          'scaleY': 1,
+          'textAlign': 'left',
+          'originX': 'center',
+          'originY': 'start',
+          h: h,
+          w: w,
+          top: 0,
+          left: 0
+        })
+
+        let text = r._objects[1].get('text')
         this.$parent.$emit('pr:box:selected', text)
       }
     },
@@ -241,18 +278,18 @@ export default {
         //     op.target.setCoords()
         //   }
         // })
-        fabric.util.animate({
-          startValue: op.target.get('opacity'),
-          endValue: 1,
-          duration: 100,
-          onChange: (val) => {
-            op.target.set('opacity', val)
-            this.canvas.renderAll()
-          },
-          onComplete: () => {
-            // op.target.setCoords()
-          }
-        })
+        // fabric.util.animate({
+        //   startValue: op.target.get('opacity'),
+        //   endValue: 1,
+        //   duration: 100,
+        //   onChange: (val) => {
+        //     op.target.set('opacity', val)
+        //     this.canvas.renderAll()
+        //   },
+        //   onComplete: () => {
+        //     // op.target.setCoords()
+        //   }
+        // })
       }
     },
     onMouseOut(op) {
@@ -269,18 +306,18 @@ export default {
         //     op.target.setCoords()
         //   }
         // })
-        fabric.util.animate({
-          startValue: op.target.get('opacity'),
-          endValue: 0,
-          duration: 100,
-          onChange: (val) => {
-            op.target.set('opacity', val)
-            this.canvas.renderAll()
-          },
-          onComplete: () => {
-            // op.target.setCoords()
-          }
-        })
+        // fabric.util.animate({
+        //   startValue: op.target.get('opacity'),
+        //   endValue: 0,
+        //   duration: 100,
+        //   onChange: (val) => {
+        //     op.target.set('opacity', val)
+        //     this.canvas.renderAll()
+        //   },
+        //   onComplete: () => {
+        //     // op.target.setCoords()
+        //   }
+        // })
       }
     },
     onObjectScale(op) {
