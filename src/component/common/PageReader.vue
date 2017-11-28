@@ -2,7 +2,13 @@
   b-container(fluid)
     b-row
       b-col(sm='9')
-        slot
+        p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
+          :imgSrc='imgSrc'
+          :width='page.width', :height='page.height',
+          :drawRectEnabled='dre', :drawEllipseEnabled='dee',
+          :currentText='currentText'
+        )
+        //- slot(v-bind='currentText')
       b-col(sm='3')
         .drawing
           p text box appear on top when a box drawed
@@ -13,13 +19,35 @@
 
 <script>
 import PCanvas from '@/component/common/PCanvas'
+
+import fb from '../../firebase.js'
+let imgsRef = fb.storage.ref('manga')
+
 export default {
-  props: [],
+  props: ['page', 'dre', 'dee'],
   components: { PCanvas },
   data() {
     return {
-      currentText: null
+      currentText: null,
+      imgSrc: null
     }
+  },
+  methods: {
+    handleBoxCreated() {
+      this.currentText = 'tessting test test'
+      console.log('a box created')
+    }
+  },
+  mounted() {
+    imgsRef.child(this.page.imgRef).getDownloadURL().then((url) => {
+      this.imgSrc = url
+    })
+  },
+  created() {
+    this.$on('pr:box:created', this.handleBoxCreated)
+  },
+  destroyed() {
+    this.$off()
   }
 }
 </script>
