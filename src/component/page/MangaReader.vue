@@ -22,14 +22,20 @@
             b-row(v-if='pageLoading')
               b-col(sm='12')
                 b-img(:src='loadingUrl', center)
-          page-reader(v-if='pages', v-for='page in pages', :page='page', :key='page.num', :id="'page_'+page.num")
-            p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
+          page-reader(v-if='pages', v-for='page in pages', :page='page', :key='page.num', :id="'page_'+page.num",
+            :imgSrc='page.path'
+            :width='page.width', :height='page.height',
+            :dre='drawRectEnabled',
+            :dee='drawEllipseEnabled',
+            @imgloaded='imgLoaded(page.num)',
+          )
+            //- p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
               :imgSrc='page.path'
               :width='page.width', :height='page.height',
               :drawRectEnabled='drawRectEnabled',
               :drawEllipseEnabled='drawEllipseEnabled',
               @imgloaded='imgLoaded(page.num)'
-            )
+            //- )
           //- b-container#shelves(fluid)
             b-row(v-if='pageLoading')
               b-col(sm='12')
@@ -53,7 +59,7 @@
 <script>
 import fb from '../../firebase.js'
 let mangasRef = fb.dbFirestore.collection('mangas')
-let imgsRef = fb.storage.ref('manga')
+// let imgsRef = fb.storage.ref('manga')
 
 import TkgMangaHeader from '@/component/common/MangaHeader'
 import TkgFooter from '@/component/common/Footer'
@@ -114,6 +120,7 @@ export default {
   },
   methods: {
     toggleRectDrawing() {
+      console.log('toggle drawing rect')
       this.drawRectEnabled = !this.drawRectEnabled
     },
     toggleEllipseDrawing() {
@@ -137,12 +144,8 @@ export default {
           volumeRef.collection('pages').orderBy('num').get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
               let page = doc.data()
+              page.imgRef = `/${this.book.title}/${currentVol}/${page.file}`
               this.pages.push(page)
-              let idx = this.pages.length - 1
-              imgsRef.child(`/${this.book.title}/${currentVol}/${page.file}`).getDownloadURL().then((url) => {
-                page.path = url
-                this.pages.splice(idx, 1, page)
-              })
               if (this.pageLoading) {
                 this.pageLoading = false
               }
