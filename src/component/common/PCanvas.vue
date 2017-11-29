@@ -1,6 +1,6 @@
 <template lang="pug">
-  div
-    canvas(:width='width', :height='height', :id="'realcan' + _uid")
+div
+  canvas(:width='width', :height='height', :id="'realcan' + _uid")
 </template>
 
 <script>

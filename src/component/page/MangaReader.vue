@@ -4,8 +4,8 @@
   .wrapper
     b-container(fluid)
       b-row(align-h='center')
-        b-col.bg-white.bgimg(sm='1')
-          #side.mx-auto
+        //- b-col.bg-white.bgimg(sm='1')
+        #side.mx-auto
             //- b-btn(v-b-toggle="'toolbar'", variant='primary')
               i.fa.fa-file
             //- b-collapse.mt-2(id='toolbar')
@@ -17,41 +17,42 @@
                     i.fa.fa-circle-o
             b-btn(@click.prevent='toggleRectDrawing')
               i.fa.fa-pencil
-        b-col.m-0.p-0(sm='11')
-          b-container#shelves(fluid)
-            b-row(v-if='pageLoading')
-              b-col(sm='12')
-                b-img(:src='loadingUrl', center)
-          page-reader(v-if='pages', v-for='page in pages', :page='page', :key='page.num', :id="'page_'+page.num",
-            :imgSrc='page.path'
-            :width='page.width', :height='page.height',
-            :dre='drawRectEnabled',
-            :dee='drawEllipseEnabled',
-            @imgloaded='imgLoaded(page.num)',
-          )
-            //- p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
+        b-container.main(fluid)
+          b-col.m-0.p-0(sm='11')
+            b-container#shelves(fluid)
+              b-row(v-if='pageLoading')
+                b-col(sm='12')
+                  b-img(:src='loadingUrl', center)
+            page-reader(v-if='pages', v-for='page in pages', :page='page', :key='page.num', :id="'page_'+page.num",
               :imgSrc='page.path'
               :width='page.width', :height='page.height',
-              :drawRectEnabled='drawRectEnabled',
-              :drawEllipseEnabled='drawEllipseEnabled',
-              @imgloaded='imgLoaded(page.num)'
-            //- )
-          //- b-container#shelves(fluid)
-            b-row(v-if='pageLoading')
-              b-col(sm='12')
-                b-img(:src='loadingUrl', center)
-            b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
-              b-row
-                b-col(sm='2')
-                  p(contenteditable) text and thing, like bookmark notes, selected translated text here
-                b-col(sm='10')
-                  p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
-                    :imgSrc='page.path'
-                    :width='page.width', :height='page.height',
-                    :drawRectEnabled='drawRectEnabled',
-                    :drawEllipseEnabled='drawEllipseEnabled',
-                    @imgloaded='imgLoaded(page.num)'
-              )
+              :dre='drawRectEnabled',
+              :dee='drawEllipseEnabled',
+              @imgloaded='imgLoaded(page.num)',
+            )
+              //- p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
+                :imgSrc='page.path'
+                :width='page.width', :height='page.height',
+                :drawRectEnabled='drawRectEnabled',
+                :drawEllipseEnabled='drawEllipseEnabled',
+                @imgloaded='imgLoaded(page.num)'
+              //- )
+            //- b-container#shelves(fluid)
+              b-row(v-if='pageLoading')
+                b-col(sm='12')
+                  b-img(:src='loadingUrl', center)
+              b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
+                b-row
+                  b-col(sm='2')
+                    p(contenteditable) text and thing, like bookmark notes, selected translated text here
+                  b-col(sm='10')
+                    p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
+                      :imgSrc='page.path'
+                      :width='page.width', :height='page.height',
+                      :drawRectEnabled='drawRectEnabled',
+                      :drawEllipseEnabled='drawEllipseEnabled',
+                      @imgloaded='imgLoaded(page.num)'
+                )
       b-row
         tkg-footer(style='width:100%; height:100%')
 </template>
@@ -232,13 +233,16 @@ export default {
 
 // $header: 56px;
 // $footer: 91.39px;
+#side {
+  position: fixed;
+  float: left;
+  left: 10px;
+  top: 61px;
+  width: 45px;
+}
 
-.col-sm-1 {
-  #side {
-    position: fixed;
-    left: 5px;
-    top: 61px;
-  }
+.main {
+  padding-left: 45px;
 }
 
 .wrapper {
