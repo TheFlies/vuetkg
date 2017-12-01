@@ -4,17 +4,7 @@
   .wrapper
     b-container(fluid)
       b-row(align-h='center')
-        //- b-col.bg-white.bgimg(sm='1')
         #side.mx-auto
-            //- b-btn(v-b-toggle="'toolbar'", variant='primary')
-              i.fa.fa-file
-            //- b-collapse.mt-2(id='toolbar')
-              b-button-toolbar(key-nav, aria-label='drawing tools')
-                b-button-group.mx-1(vertical)
-                  //- b-btn(@click.prevent='toggleRectDrawing')
-                    i.fa.fa-square-o
-                  //- b-btn(@click.prevent='toggleEllipseDrawing')
-                    i.fa.fa-circle-o
             b-btn(@click.prevent='toggleRectDrawing')
               i.fa.fa-pencil
         b-container.main(fluid)
@@ -30,29 +20,6 @@
               :dee='drawEllipseEnabled',
               @imgloaded='imgLoaded(page.num)',
             )
-              //- p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
-                :imgSrc='page.path'
-                :width='page.width', :height='page.height',
-                :drawRectEnabled='drawRectEnabled',
-                :drawEllipseEnabled='drawEllipseEnabled',
-                @imgloaded='imgLoaded(page.num)'
-              //- )
-            //- b-container#shelves(fluid)
-              b-row(v-if='pageLoading')
-                b-col(sm='12')
-                  b-img(:src='loadingUrl', center)
-              b-row(v-if='pages', v-for='page in pages', :key='page.num', :id="'page_'+page.num")
-                b-row
-                  b-col(sm='2')
-                    p(contenteditable) text and thing, like bookmark notes, selected translated text here
-                  b-col(sm='10')
-                    p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
-                      :imgSrc='page.path'
-                      :width='page.width', :height='page.height',
-                      :drawRectEnabled='drawRectEnabled',
-                      :drawEllipseEnabled='drawEllipseEnabled',
-                      @imgloaded='imgLoaded(page.num)'
-                )
       b-row
         tkg-footer(style='width:100%; height:100%')
 </template>
@@ -60,11 +27,9 @@
 <script>
 import fb from '../../firebase.js'
 let mangasRef = fb.dbFirestore.collection('mangas')
-// let imgsRef = fb.storage.ref('manga')
 
 import TkgMangaHeader from '@/component/common/MangaHeader'
 import TkgFooter from '@/component/common/Footer'
-// import TkgFlipBook from '@/component/common/FlipBook'
 
 import PCanvas from '@/component/common/PCanvas'
 import PageReader from '@/component/common/PageReader'

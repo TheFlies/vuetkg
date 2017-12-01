@@ -8,34 +8,6 @@ import {fabric} from 'fabric'
 
 import EventBus from '@/event-bus'
 
-const makeTextClass = (clazz, type) => {
-  return fabric.util.createClass(clazz, {
-    type: type,
-    initialize: function(options) {
-      options || (options = {})
-      this.callSuper('initialize', options)
-      this.set('text', options.text || '')
-    },
-    toObject: function() {
-      return fabric.util.object.extend(this.callSuper('toObject'), {
-        text: this.get('text')
-      })
-    },
-    _render: function(ctx) {
-      this.callSuper('_render', ctx)
-      if (this.text) {
-        ctx.font = '20px Helvetica'
-        ctx.textAlign = 'center'
-        ctx.fillStyle = '#333'
-        ctx.fillText(this.text, 0, 0) // -this.width / 2, -this.height / 2 + 20)
-      }
-    }
-  })
-}
-
-// const TextRect = makeTextClass(fabric.Rect, 'textRect')
-const TextEllipse = makeTextClass(fabric.Ellipse, 'textEllipse')
-
 let dr = (x, y) => {
   let r = new fabric.Rect({
     width: 0,
@@ -54,7 +26,7 @@ let dr = (x, y) => {
   let t = new fabric.Text('', {
     top: y - 10,
     left: x,
-    fontSize: 16,
+    fontSize: 20,
     fillStyle: '#333'
   })
   return new fabric.Group([r, t])
@@ -64,35 +36,13 @@ let ddr = (w, h) => {
   return { width: w, height: h }
 }
 
-let dde = (rx, ry) => {
-  return { rx: rx / 2, ry: ry / 2 }
-}
-
-let de = (x, y) => new TextEllipse({
-  width: 0,
-  height: 0,
-  left: x,
-  top: y,
-  originX: 'left',
-  originY: 'start',
-  // fill: 'white',
-  fill: 'rgba(255,255,255,0)',
-  hasRotatingPoint: false
-  // stroke: 'rgba(100,200,200,0.5)'
-})
-
-// let dtext = (text) => new fabric.Text(text, {
-//   fontSize: 16,
-//   originX: 'center',
-//   originY: 'center'
-// })
-
 export default {
   props: ['width', 'height', 'data', 'imgSrc', 'draw-rect-enabled', 'draw-ellipse-enabled', 'current-text'],
   data() {
     return {
       canvas: null,
       drawing: false,
+      mp: {},
       square: null,
       drawFunc: null,
       drawUpdateResultFunc: null
@@ -153,9 +103,6 @@ export default {
     drawRectEnabled: function(val) {
       this.drawPreparing(val, dr, ddr)
     },
-    drawEllipseEnabled: function(val) {
-      this.drawPreparing(val, de, dde)
-    },
     currentText: function(val) {
       this.drawText(val)
     }
@@ -187,64 +134,51 @@ export default {
         return false
       }
       this.drawing = true
-
       let mouse = this.canvas.getPointer(options.e)
-      let square = this.drawFunc(mouse.x, mouse.y)
-      // if (this.currentText) {
-      //   console.log(this.currentText)
-      //   let text = dtext(this.currentText, mouse)
-      //   let group = new fabric.Group([square, text])
-      //   this.canvas.add(group).setActiveObject(group)
-      // } else {
-      this.canvas.add(square).setActiveObject(square)
-      // }
+      this.mp = mouse
+
+      let group = this.drawFunc(mouse.x, mouse.y)
+      this.canvas.add(group).setActiveObject(group)
     },
     onMouseUp(options) {
       if (this.drawing) {
         this.drawing = false
       }
-      this.canvas.getObjects().forEach(o => {
-        let w = o.get('width')
-        let h = o.get('height')
-        if (w === 0 && h === 0) {
-          console.log('remove the unusable object')
-          this.canvas.remove(o)
-        }
-      })
       let r = this.canvas.getActiveObject()
       if (r) {
-        let obj = r
-        let w = obj.width * obj.scaleX
-        let h = obj.height * obj.scaleY
-        // let s = obj.strokeWidth
+        let mouse = this.canvas.getPointer(options.e)
+        if (mouse.x === this.mp.x && mouse.y === this.mp.y) {
+          this.canvas.remove(r)
+        } else {
+          let obj = r
+          let w = obj.width * obj.scaleX
+          let h = obj.height * obj.scaleY
+          obj._objects[0].set({
+            'height': obj.height,
+            'width': obj.width,
+            'scaleX': 1,
+            'scaleY': 1,
+            h: h,
+            w: w
+          })
 
-        obj._objects[0].set({
-          'height': obj.height,
-          'width': obj.width,
-          'scaleX': 1,
-          'scaleY': 1,
-          h: h,
-          w: w
-          // top: 1,
-          // left: 1,
-        })
+          obj._objects[1].set({
+            'height': obj.height,
+            'width': obj.width,
+            'scaleX': 1,
+            'scaleY': 1,
+            'textAlign': 'left',
+            'originX': 'center',
+            'originY': 'start',
+            h: h,
+            w: w,
+            top: 0,
+            left: 0
+          })
 
-        obj._objects[1].set({
-          'height': obj.height,
-          'width': obj.width,
-          'scaleX': 1,
-          'scaleY': 1,
-          'textAlign': 'left',
-          'originX': 'center',
-          'originY': 'start',
-          h: h,
-          w: w,
-          top: 0,
-          left: 0
-        })
-
-        let text = r._objects[1].get('text')
-        this.$parent.$emit('pr:box:selected', text)
+          let text = r._objects[1].get('text')
+          this.$parent.$emit('pr:box:selected', text)
+        }
       }
     },
     onMouseMove(options) {

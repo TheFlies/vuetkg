@@ -1,21 +1,20 @@
 <template lang="pug">
   div
-    b-container.main(fluid)
+    b-container(fluid)
       b-row
-        b-col(sm='12')
+        b-col(md='10')
           p-canvas.mr-auto.ml-auto.d-block(:id="'can_'+page.num",
             :imgSrc='imgSrc'
             :width='page.width', :height='page.height',
             :drawRectEnabled='dre', :drawEllipseEnabled='dee',
             :currentText='currentText'
           )
-          //- slot(v-bind='currentText')
-    .rside
-      .drawing
-        p text box appear on top when a box drawed
-        b-form-textarea(v-model='currentText', placeholder='rawed', rows=3, max-rows=5)
-      .historical
-        p comment on translated box, raw text here next
+        b-col(md='2')
+          .drawing
+            p text box appear on top when a box drawed
+            b-form-textarea(v-model='currentText', placeholder='rawed', rows=3, max-rows=5)
+          .historical
+            p comment on translated box, raw text here next
 </template>
 
 <script>
@@ -53,12 +52,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.rside {
-  float: right;
-  width: 260px;
-}
-
-.main {
-  padding-right: 260px;
-}
 </style>
