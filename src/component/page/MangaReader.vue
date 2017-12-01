@@ -8,18 +8,20 @@
             b-btn(@click.prevent='toggleRectDrawing')
               i.fa.fa-pencil
         b-container.main(fluid)
-          b-col.m-0.p-0(sm='11')
+          b-col.m-0.p-0(sm='12')
             b-container#shelves(fluid)
               b-row(v-if='pageLoading')
                 b-col(sm='12')
                   b-img(:src='loadingUrl', center)
             page-reader(v-if='pages', v-for='page in pages', :page='page', :key='page.num', :id="'page_'+page.num",
-              :imgSrc='page.path'
-              :width='page.width', :height='page.height',
+              :imgSrc='page.path',
               :dre='drawRectEnabled',
               :dee='drawEllipseEnabled',
+              :currentText='currentText',
               @imgloaded='imgLoaded(page.num)',
             )
+            .drawing
+              b-form-textarea(v-model='currentText', placeholder='rawed', rows=3, max-rows=5, ref='inpt')
       b-row
         tkg-footer(style='width:100%; height:100%')
 </template>
@@ -74,7 +76,8 @@ export default {
       pageLoading: false,
       p: null,
       drawRectEnabled: false,
-      drawEllipseEnabled: false
+      drawEllipseEnabled: false,
+      currentText: null
     }
   },
   mounted() {
@@ -231,4 +234,10 @@ export default {
 //   // bottom: 0;
 //   width: 100%;
 // }
+.drawing {
+  position: fixed;
+  width: 260px;
+  bottom: 15px;
+  right: 5px;
+}
 </style>
