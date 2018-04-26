@@ -13,6 +13,7 @@ let config = {
 let app = firebase.initializeApp(config)
 let db = app.database()
 let dbFirestore = app.firestore()
+dbFirestore.settings({timestampsInSnapshots: true})
 // Get a reference to the storage service, which is used to create references in your storage bucket
 let storage = app.storage()
 export default { db, dbFirestore, storage }
