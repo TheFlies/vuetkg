@@ -11020,6 +11020,11 @@ vue@^2.5.17:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.18.tgz#885586eda5c8efc77140a497500b73620e53c1dd"
   integrity sha512-j4oT4jQdhBf3dUxzu1ogjkhzMU44AtwqtLz7oq/u7340/lmUUogTG6/D6P4/J2cCosoM21MqMIUsQchPKS4elg==
 
+vuefire@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/vuefire/-/vuefire-1.4.5.tgz#2f31028b18f25e0f581bb68fb94b88302d62ebf8"
+  integrity sha512-lYk0Yk7ExwGN8G/datDMKxNeLLxfkL/cCU/B5Dw5ggNabCPwKnUEv3OE3ShMwberDDN+9wzm8AEPiLvI9aG/9Q==
+
 vuex@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"

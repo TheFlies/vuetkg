@@ -1,4 +1,7 @@
 import Vue from 'vue'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -8,8 +11,17 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+let app
+/* eslint-disable no-new */
+firebase.auth().onAuthStateChanged(user => {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App),
+      data: {
+        // Chartist
+      }
+    }).$mount('#app')
+  }
+})
