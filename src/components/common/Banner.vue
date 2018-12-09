@@ -31,7 +31,6 @@ export default {
     }
   },
   mounted() {
-    console.log(typeof this.showFogs, this.showClouds)
     this.scrolling()
   },
   methods: {

@@ -45,21 +45,21 @@ export default {
 
 <style>
 #cta {
-	background: #e89980;
-	color: #f9e5df;
+  background: #e89980;
+  color: #f9e5df;
   padding: 3.5em 0 4em 0;
   margin-top: 1em;
-	text-align: center;
+  text-align: center;
 }
 
 #cta form {
-	margin: 0 auto;
-	max-width: 100%;
-	width: 25em;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 25em;
 }
 
 p {
-	margin: 0 0 2em 0;
+  margin: 0 0 2em 0;
 }
 
 #feedback {
