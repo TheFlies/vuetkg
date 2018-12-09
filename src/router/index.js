@@ -14,6 +14,18 @@ export default new Router({
       name: 'landing',
       component: Landing
     },
+    {
+      path: '/register',
+      name: 'Register',
+      props: (r) => ({ email: r.query.email }),
+      component: () => import(/* webpackChunkName: "about" */ '@/views/Register.vue')
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import(/* webpackChunkName: "about" */ '@/views/Login.vue'),
+      props: (r) => ({ back: r.query.back })
+    },
     { path: '*', component: PageNotFound
     // {
     //   path: '/about',
