@@ -26,10 +26,11 @@ let auth = {
           .auth()
           .signInWithEmailAndPassword(account.email, account.password)
           .then(
-            user => {
+            data => {
+              console.log(data.user)
               // getting user infor
-              currentUser(user.email)
-              resolve(user)
+              currentUser(data.user.email)
+              resolve(data.user)
             },
             err => {
               reject(err)

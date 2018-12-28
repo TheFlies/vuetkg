@@ -16,6 +16,7 @@
                     i.fa.fa-google-plus
                   a.btn.btn-neutral.btn-github.btn-just-icon(href='#pablo')
                     i.fa.fa-github
+                b-alert(v-if="error" :show="error !== ''" dismissible variant="danger" @dismissed="error=''") {{this.error}}
                 b-form.register-form
                   b-form-group(label='I meo', label-text-align='left')
                     b-form-input.form-control(type='text', placeholder='Email', v-model='account.email')
@@ -23,7 +24,7 @@
                   b-form-group(label='Mật khẩu', label-text-align='left')
                     b-form-input.form-control(type='password', placeholder='Password', v-model='account.password')
 
-                  b-button.btn.btn-danger.btn-block.btn-round(@click.prevent='login') [|]
+                  b-button.btn.btn-danger.btn-block.btn-round(@click.prevent='login' :disabled="waiting") [|]
                 .forgot
                   a.btn.btn-link(href='/forgot') quên?
         .footer.text-white.register-footer.text-center
@@ -49,15 +50,19 @@ export default {
         email: '',
         password: ''
       },
-      error: ''
+      error: '',
+      waiting: false
     }
   },
   components: { TkgHeader, TkgFooter, TkgBanner, SpecialBox, TkgThunder },
   methods: {
     login() {
+      this.waiting = true
+      this.error = ''
       auth
         .login(this.account)
         .then(() => {
+          this.waiting = false
           if (this.back) {
             this.$router.replace(this.back)
           } else {
@@ -65,7 +70,8 @@ export default {
           }
         })
         .catch(err => {
-          this.err = err.message
+          this.waiting = false
+          this.error = err.message
         })
     }
   }
