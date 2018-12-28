@@ -74,7 +74,7 @@ import TkgCta from '@/components/common/BetaInvite'
 import SpecialBox from '@/components/common/SpecialBox'
 
 // we need this to resolve the expression
-import '@/assets//img/landing/pic011.jpg'
+import '@/assets/img/landing/pic011.jpg'
 
 export default {
   name: 'tkg-landing',

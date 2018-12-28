@@ -21,19 +21,26 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ '@/views/Register.vue')
     },
     {
+      path: '/book',
+      name: 'Book Shelves',
+      component: () => import(/* webpackChunkName: "book" */ '@/views/Book.vue')
+    },
+    {
+      path: '/manga',
+      name: 'Manga Shelves',
+      component: () => import(/* webpackChunkName: "manga" */ '@/views/Manga.vue')
+    },
+    {
+      path: '/manga/:id(\\d+)/:volume(\\d+)/:chapter(\\d+)?',
+      name: 'Xem truyen tranh',
+      component: () => import(/* webpackChunkName: "manga-reader" */ '@/views/MangaReader.vue')
+    },
+    {
       path: '/login',
       name: 'Login',
       component: () => import(/* webpackChunkName: "about" */ '@/views/Login.vue'),
       props: (r) => ({ back: r.query.back })
     },
-    { path: '*', component: PageNotFound
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (about.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+    { path: '*', component: PageNotFound }
   ]
 })
