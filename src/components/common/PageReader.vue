@@ -19,7 +19,7 @@ div
 
 <script>
 import PCanvas from '@/components/common/PCanvas'
-import fb from '@/modules/firebase.js'
+import fb from '@/modules/fbase.js'
 let imgsRef = fb.storage.ref('manga')
 export default {
   props: ['page', 'dre', 'dee', 'current-text'],
