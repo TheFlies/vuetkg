@@ -46,15 +46,15 @@
                 h3 Không biết xếp vào đâu
                 p Linh tinh lặt vặt.
           b-row
-            b-col(md='6')
-              special-box
+            b-col(md='6' style="margin-bottom: 30px")
+              special-box(style="height: 100%")
                 span.image.featured: img(src='@/assets/img/landing/pic022.jpg', alt='')
                 h3 Dzịt giả - Truyện tranh
                 p Dịch theo khung chữ trên hình.
                 .actions
                   b-btn.btn-outline-primary.text-black(v-b-modal="'translator'") Coi thêm
-            b-col(md='6')
-              special-box
+            b-col(md='6' style="margin-bottom: 30px")
+              special-box(style="height: 100%")
                 span.image.featured: img(src='@/assets/img/landing/pic033.jpg', alt='')
                 h3 Dzật giả - Truyện chữ
                 p Dịch theo từng đoạn, câu văn.
