@@ -209,12 +209,12 @@ export default {
 .wrapper {
   margin-top: 56px;
 }
-.bgimg {
+// .bgimg {
   // background-image: url("/static/images/wood.jpg");
   // background-position: top left;
   // background-repeat: repeat repeat;
   // background-size: auto;
-}
+// }
 // #shelves {
 //   max-height: 1024px;
 //   height: calc(100vh);
