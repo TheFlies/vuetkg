@@ -1,5 +1,6 @@
-import firebase from 'firebase'
-import fb from '../firebase.js'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import fb from '@/modules/firebase.js'
 import store from '../store'
 
 let usersRef = fb.dbFirestore.collection('users')
@@ -19,21 +20,22 @@ let auth = {
     return new Promise((resolve, reject) => {
       if (!account.email || !account.password) {
         this.error = 'Missing email or password'
-        reject()
+        reject(new Error(this.error))
       } else {
         firebase
           .auth()
           .signInWithEmailAndPassword(account.email, account.password)
           .then(
-            user => {
+            data => {
+              console.log(data.user)
               // getting user infor
-              currentUser(user.email)
-              resolve(user)
+              currentUser(data.user.email)
+              resolve(data.user)
             },
             err => {
               reject(err)
             })
-         .catch(err => reject(err))
+          .catch(err => reject(err))
       }
     })
   },

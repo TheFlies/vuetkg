@@ -1,70 +1,27 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import VueFire from 'vuefire'
-import firebase from 'firebase'
-import App from './App'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+
+import App from './App.vue'
 import router from './router'
 import store from './store'
-
-import Fabric from './fabric'
-Vue.use(Fabric)
-
-import BoostrapVue from 'bootstrap-vue'
-
-// FIX-ME: work around for bootstrap-vue bug
-// https://github.com/bootstrap-vue/bootstrap-vue/issues/1201
-// let originalVueComponent = Vue.component
-// Vue.component = function(name, definition) {
-//   if (name === 'bFormCheckboxGroup' || name === 'bCheckboxGroup' ||
-//       name === 'bCheckGroup' || name === 'bFormRadioGroup') {
-//     definition.components = {bFormCheckbox: definition.components[0]}
-//   }
-//   originalVueComponent.apply(this, [name, definition])
-// }
-Vue.use(BoostrapVue)
+import './plugins'
+import './modules'
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
-
-// global library setup
-// Object.defineProperty(Vue.prototype, '$Chartist', {
-//   get() {
-//     return this.$root.Chartist
-//   }
-// })
-
-// import Buefy from 'buefy'
-// Vue.use(Buefy)
-Vue.use(VueFire)
-
-Vue.directive('click-outside', {
-  bind: (el, binding, vnode) => {
-    el.event = function (event) {
-      if (!(el === event.target || el.contains(event.target))) {
-        vnode.context[binding.expression](event)
-      }
-    }
-    document.body.addEventListener('click', el.event)
-  },
-
-  unbind: (el) => {
-    document.body.removeEventListener('click', el.event)
-  }
-})
 
 let app
 /* eslint-disable no-new */
 firebase.auth().onAuthStateChanged(user => {
   if (!app) {
     app = new Vue({
-      el: '#app',
       router,
       store,
-      template: '<App/>',
-      components: { App },
+      render: h => h(App),
       data: {
         // Chartist
       }
-    })
+    }).$mount('#app')
   }
 })
