@@ -1,0 +1,9 @@
+{
+  "rules": {
+    ".read": true,
+    "tkg-vue": {
+      ".read": true,
+      ".write": "auth.uid !== null"
+    }
+  }
+}
