@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import fb from '@/modules/firebase.js'
+import fb from '@/modules/fbase.js'
 import store from '../store'
 
 let usersRef = fb.dbFirestore.collection('users')

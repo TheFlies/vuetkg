@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import fb from '@/modules/firebase.js'
+import fb from '@/modules/fbase.js'
 import TkgMangaHeader from '@/components/common/manga/MangaHeader'
 import TkgFooter from '@/components/common/Footer'
 import TkgFlipBook from '@/components/common/manga/FlipBook'

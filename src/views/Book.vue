@@ -23,7 +23,7 @@ b-container#manga
 </template>
 
 <script>
-import fb from '@/modules/firebase.js'
+import fb from '@/modules/fbase.js'
 let booksRef = fb.db.ref('books')
 export default {
   name: 'tkg-book',
