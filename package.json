@@ -23,10 +23,11 @@
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.13.0",
     "vuefire": "^1.4.5",
-    "vuex": "^3.0.1",
-    "webpack-dev-server": "^3.1.11"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@firebase/app-types": "0.x",
+    "@firebase/util": "0.x",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-e2e-nightwatch": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.0",
