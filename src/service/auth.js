@@ -27,7 +27,6 @@ let auth = {
           .signInWithEmailAndPassword(account.email, account.password)
           .then(
             data => {
-              console.log(data.user)
               // getting user infor
               currentUser(data.user.email)
               resolve(data.user)
