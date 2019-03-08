@@ -57,7 +57,7 @@ export default {
     this.canvas.on('mouse:out', this.onMouseOut)
     this.canvas.selection = false
     if (this.imgSrc) {
-      fabric.Image.fromURL(this.imgSrc, (fimg) => {
+      fabric.Image.fromURL(this.imgSrc, () => {
         this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
         this.$emit('imgloaded')
       })
@@ -79,16 +79,16 @@ export default {
     this.canvas.on('mouse:out', this.onMouseOut)
     this.canvas.selection = false
     if (this.imgSrc) {
-      fabric.Image.fromURL(this.imgSrc, (fimg) => {
+      fabric.Image.fromURL(this.imgSrc, () => {
         this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
         this.$emit('imgloaded')
       })
     }
   },
   watch: {
-    imgSrc: function(val) {
+    imgSrc: function() {
       if (this.canvas) {
-        fabric.Image.fromURL(this.imgSrc, (fimg) => {
+        fabric.Image.fromURL(this.imgSrc, () => {
           this.canvas.setBackgroundImage(this.imgSrc, this.canvas.renderAll.bind(this.canvas))
           this.$parent.$emit('imgloaded')
         })
@@ -244,9 +244,7 @@ export default {
         // })
       }
     },
-    onObjectScale(op) {
-      console.log('go')
-    },
+    onObjectScale() {},
     deleteActiveObject(cp) {
       if (cp === this.$el.id) {
         if (this.canvas) {

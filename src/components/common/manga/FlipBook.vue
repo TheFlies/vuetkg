@@ -199,7 +199,7 @@ export default {
         event.preventDefault()
       }
     },
-    mouseUpHandler(event) {
+    mouseUpHandler() {
       for (var i = 0; i < this.flips.length; i++) {
         // If this flip was being dragged we animate to its destination
         if (this.flips[i].dragging) {

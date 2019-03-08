@@ -5,15 +5,17 @@ import 'firebase/auth'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+
 import './plugins'
-import './modules'
+import './permission'
+
 import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
 let app
 /* eslint-disable no-new */
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged(() => {
   if (!app) {
     app = new Vue({
       router,

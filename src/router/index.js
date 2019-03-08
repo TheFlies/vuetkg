@@ -23,17 +23,26 @@ export default new Router({
     {
       path: '/book',
       name: 'Book Shelves',
-      component: () => import(/* webpackChunkName: "book" */ '@/views/Book.vue')
+      component: () => import(/* webpackChunkName: "book" */ '@/views/Book.vue'),
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/manga',
       name: 'Manga Shelves',
-      component: () => import(/* webpackChunkName: "manga" */ '@/views/Manga.vue')
+      component: () => import(/* webpackChunkName: "manga" */ '@/views/Manga.vue'),
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/manga/:id(\\d+)/:volume(\\d+)/:chapter(\\d+)?',
       name: 'Xem truyen tranh',
-      component: () => import(/* webpackChunkName: "manga-reader" */ '@/views/MangaReader.vue')
+      component: () => import(/* webpackChunkName: "manga-reader" */ '@/views/MangaReader.vue'),
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/login',

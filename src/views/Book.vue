@@ -1,8 +1,7 @@
 <template lang="pug">
 b-container#manga
   b-row
-    b-col.bookshelf.text-center(md="12")
-      h1.heading.text-white Your books
+    b-col.bookshelf.text-center(md="12" style="padding-top: 32px")
       .book-holder
         .book-container
           .book(v-for='book in books')
@@ -12,14 +11,6 @@ b-container#manga
                 span.book-writer {{book.author}}
             .book-spine
               h1 testing
-
-  //- table
-  //-   thead: tr
-  //-     th Title
-  //-     th Author
-  //-   tbody: tr(v-for='book in books')
-  //-     td: a {{book.name}}
-  //-     td {{book.author}}
 </template>
 
 <script>

@@ -72,7 +72,7 @@ export default {
         return
       }
       firebase.auth().createUserWithEmailAndPassword(this.account.email, this.account.password)
-        .then((user) => { this.$router.replace('/login') }, (err) => { this.error = err.message })
+        .then(() => { this.$router.replace('/login') }, (err) => { this.error = err.message })
     }
   }
 }
