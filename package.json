@@ -5,12 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "bootstrap-vue": "2.0.0-rc.14",
+    "core-js": "^3.4.4",
     "fabric": "^2.4.6",
     "firebase": "^5.7.0",
     "growl": "^1.10.0",
@@ -28,12 +29,12 @@
   "devDependencies": {
     "@firebase/app-types": "0.x",
     "@firebase/util": "0.x",
-    "@vue/cli-plugin-babel": "^3.2.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.2.0",
-    "@vue/cli-plugin-eslint": "^3.2.0",
-    "@vue/cli-plugin-pwa": "^3.2.0",
-    "@vue/cli-plugin-unit-jest": "^3.2.0",
-    "@vue/cli-service": "^3.2.0",
+    "@vue/cli-plugin-babel": "^4.1.2",
+    "@vue/cli-plugin-e2e-nightwatch": "^4.1.2",
+    "@vue/cli-plugin-eslint": "^4.1.2",
+    "@vue/cli-plugin-pwa": "^4.1.2",
+    "@vue/cli-plugin-unit-jest": "^4.1.2",
+    "@vue/cli-service": "^4.1.2",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
