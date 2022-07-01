@@ -88,8 +88,8 @@ export default {
 </script>
 
 <template>
-  <nav class="fixed bg-blue-200 w-full">header</nav>
+  <nav class="fixed bg-blue-200 w-full top-0 left-0 h-16">header</nav>
 </template>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 </style>
