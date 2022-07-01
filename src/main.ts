@@ -1,9 +1,10 @@
-import { createApp } from "vue";
-import firebase from "firebase/app";
-import "firebase/auth";
+import { createApp } from 'vue'
+import 'uno.css'
+// import firebase from 'firebase/app'
+// import 'firebase/auth'
 
-import App from "./App.vue";
-// import router from "./router";
+import App from './App.vue'
+import { router } from './router'
 // import store from "./store";
 
 // import "./plugins";
@@ -11,8 +12,8 @@ import App from "./App.vue";
 
 // import "./registerServiceWorker";
 
-const app = createApp(App);
-
+const app = createApp(App)
+app.use(router)
 /* eslint-disable no-new */
 // firebase.auth().onAuthStateChanged(() => {
 //   if (!app) {
