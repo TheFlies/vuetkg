@@ -92,13 +92,13 @@ import TkgHeader from '@/components/common/Header.vue'
 export default {
   name: 'tkg-landing',
   components: {
-    TkgHeader
-  }
+    TkgHeader,
+  },
 }
 </script>
 
 <template>
-  <div id="landing">
+  <div id="landing" class="h-1200px overflow-y">
     <TkgHeader />
   </div>
 </template>
@@ -109,12 +109,13 @@ export default {
   // margin-top: -7em;
 }
 .main .section:first-of-type {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
-h2, h3 {
+h2,
+h3 {
   font-family: 'Roboto Slab', serif;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 p {
