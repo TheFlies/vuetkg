@@ -66,7 +66,7 @@
 //   tkg-footer(show-design)
 
 import TkgHeader from '@/components/common/Header.vue'
-// import TkgBanner from '@/components/common/Banner'
+import TkgBanner from '@/components/common/Banner.vue'
 // import TkgFooter from '@/components/common/Footer'
 // import TkgCta from '@/components/common/BetaInvite'
 // import SpecialBox from '@/components/common/SpecialBox'
@@ -93,8 +93,8 @@ import TkgHeader from '@/components/common/Header.vue'
 
 <template>
   <div id="landing" class="h-1200px overflow-y-auto">
-    <TkgHeader transparent-after="#banner" />
-    <div id="banner" class="bg-red-300 w-400px h-350px"></div>
+    <tkg-header transparent-after="#banner" />
+    <tkg-banner />
   </div>
 </template>
 

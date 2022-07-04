@@ -129,7 +129,7 @@ onBeforeUnmount(() => {
 <template>
   <nav
     ref="me"
-    class="fixed w-full top-0 left-0 h-16"
+    class="fixed w-full top-0 left-0 h-16 z-10"
     :class="
       transparentBg
         ? 'animate-fade-in duration-0.5s bg-transparent text-white'

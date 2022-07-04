@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^8.7.5",
     "firebase": "^9.8.4",
     "lodash": "^4.17.21",
     "vue": "^3.2.25",
