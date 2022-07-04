@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 // #landing
 //   tkg-header(color-on-scroll=300)
 //   b-container.p-0(fluid)
@@ -89,42 +89,17 @@ import TkgHeader from '@/components/common/Header.vue'
 //     SpecialBox
 //   }
 // }
-export default {
-  name: 'tkg-landing',
-  components: {
-    TkgHeader,
-  },
-}
 </script>
 
 <template>
-  <div id="landing" class="h-1200px overflow-y">
-    <TkgHeader />
+  <div id="landing" class="h-1200px overflow-y-auto">
+    <TkgHeader transparent-after="#banner" />
+    <div id="banner" class="bg-red-300 w-400px h-350px"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 #landing-man {
   @apply -mt-7;
-  // margin-top: -7em;
-}
-.main .section:first-of-type {
-  position: relative;
-  z-index: 2;
-}
-h2,
-h3 {
-  font-family: 'Roboto Slab', serif;
-  margin-bottom: 0.5em;
-}
-
-p {
-  font-family: 'Roboto Slab', serif;
-}
-
-@media (max-width: 575px) {
-  #landing-man {
-    margin-top: -2em;
-  }
 }
 </style>

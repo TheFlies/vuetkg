@@ -9,12 +9,14 @@
   },
   "dependencies": {
     "firebase": "^9.8.4",
+    "lodash": "^4.17.21",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16"
   },
   "devDependencies": {
     "@firebase/app-types": "^0.7.0",
     "@firebase/util": "^1.6.2",
+    "@types/lodash": "^4.14.182",
     "@unocss/transformer-directives": "^0.42.0",
     "@vitejs/plugin-vue": "^2.3.3",
     "prettier": "^2.7.1",
